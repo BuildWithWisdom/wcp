@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { body } from "express-validator";
 import { TeamController } from "../controllers/team.controller";
+import { asyncHandler } from "../middleware/error.middleware";
 
 const router = Router();
 
-router.get("/", TeamController.getTeams);
+router.get("/", asyncHandler(TeamController.getTeams));
 
 router.put(
   "/:id",
@@ -16,9 +17,9 @@ router.put(
       .isFloat({ min: 1, max: 5000 })
       .withMessage("Squad value must be a number between 1 and 5000."),
   ],
-  TeamController.updateTeam
+  asyncHandler(TeamController.updateTeam)
 );
 
-router.post("/reset", TeamController.resetTeams);
+router.post("/reset", asyncHandler(TeamController.resetTeams));
 
 export default router;

@@ -79,10 +79,25 @@ export interface TournamentState {
   championId: string | null;
 }
 
-import { existsSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync, unlinkSync } from "fs";
 
 const DATA_DIR = path.join(__dirname, "../../data");
-const PERSISTENT_DIR = process.env.PERSISTENT_DATA_DIR || DATA_DIR;
+let PERSISTENT_DIR = DATA_DIR;
+
+if (process.env.PERSISTENT_DATA_DIR) {
+  try {
+    const testDir = process.env.PERSISTENT_DATA_DIR;
+    mkdirSync(testDir, { recursive: true });
+    const testFile = path.join(testDir, ".write_test");
+    writeFileSync(testFile, "test", "utf-8");
+    unlinkSync(testFile);
+    PERSISTENT_DIR = testDir;
+    console.log(`Successfully verified write access to persistent storage directory: ${testDir}`);
+  } catch (error) {
+    console.error(`Warning: Persistent storage directory ${process.env.PERSISTENT_DATA_DIR} is not writable. Falling back to local data directory. Error:`, error);
+    PERSISTENT_DIR = DATA_DIR;
+  }
+}
 
 const TEAMS_PATH = path.join(PERSISTENT_DIR, "teams.json");
 const STATE_PATH = path.join(PERSISTENT_DIR, "tournament_state.json");

@@ -8,7 +8,22 @@ const promises_1 = __importDefault(require("fs/promises"));
 const path_1 = __importDefault(require("path"));
 const fs_1 = require("fs");
 const DATA_DIR = path_1.default.join(__dirname, "../../data");
-const PERSISTENT_DIR = process.env.PERSISTENT_DATA_DIR || DATA_DIR;
+let PERSISTENT_DIR = DATA_DIR;
+if (process.env.PERSISTENT_DATA_DIR) {
+    try {
+        const testDir = process.env.PERSISTENT_DATA_DIR;
+        (0, fs_1.mkdirSync)(testDir, { recursive: true });
+        const testFile = path_1.default.join(testDir, ".write_test");
+        (0, fs_1.writeFileSync)(testFile, "test", "utf-8");
+        (0, fs_1.unlinkSync)(testFile);
+        PERSISTENT_DIR = testDir;
+        console.log(`Successfully verified write access to persistent storage directory: ${testDir}`);
+    }
+    catch (error) {
+        console.error(`Warning: Persistent storage directory ${process.env.PERSISTENT_DATA_DIR} is not writable. Falling back to local data directory. Error:`, error);
+        PERSISTENT_DIR = DATA_DIR;
+    }
+}
 const TEAMS_PATH = path_1.default.join(PERSISTENT_DIR, "teams.json");
 const STATE_PATH = path_1.default.join(PERSISTENT_DIR, "tournament_state.json");
 const SEED_TEAMS_PATH = path_1.default.join(DATA_DIR, "teams.json");
@@ -28,6 +43,7 @@ class StorageService {
             return JSON.parse(data);
         }
         catch (error) {
+            console.error("Detailed loadTeams error:", error);
             throw new Error("Failed to load teams. Seed file may be missing or corrupt.");
         }
     }

@@ -507,9 +507,7 @@
           "awayScore": 1,
           "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": "Simulated historical score: Australia 3-1 Turkey.",
-          "winnerId": "australia",
-          "decidedBy": "REGULAR"
+          "aiSummary": "Simulated historical score: Australia 3-1 Turkey."
         },
         {
           "id": "match_GD_3",

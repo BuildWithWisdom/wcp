@@ -14,6 +14,7 @@ const error_middleware_1 = require("./middleware/error.middleware");
 // Load environment variables
 dotenv_1.default.config();
 const app = (0, express_1.default)();
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 3001;
 // 1. Security Headers via Helmet
 app.use((0, helmet_1.default)());

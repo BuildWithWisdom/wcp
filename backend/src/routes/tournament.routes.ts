@@ -1,11 +1,12 @@
 import { Router } from "express";
 import { body } from "express-validator";
 import { TournamentController } from "../controllers/tournament.controller";
+import { asyncHandler } from "../middleware/error.middleware";
 
 const router = Router();
 
-router.get("/", TournamentController.getTournament);
-router.post("/reset", TournamentController.resetTournament);
+router.get("/", asyncHandler(TournamentController.getTournament));
+router.post("/reset", asyncHandler(TournamentController.resetTournament));
 
 router.post(
   "/simulate-match",
@@ -15,10 +16,10 @@ router.post(
       .notEmpty()
       .withMessage("matchId is required and must be a string."),
   ],
-  TournamentController.simulateMatch
+  asyncHandler(TournamentController.simulateMatch)
 );
 
-router.post("/simulate-day", TournamentController.simulateDay);
-router.post("/fast-forward", TournamentController.fastForwardDay);
+router.post("/simulate-day", asyncHandler(TournamentController.simulateDay));
+router.post("/fast-forward", asyncHandler(TournamentController.fastForwardDay));
 
 export default router;
