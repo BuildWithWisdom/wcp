@@ -36,6 +36,18 @@ const getMatchDateDisplay = (day: number): string => {
   return dates[day] || `Day ${day}`;
 };
 
+const playGoalSound = () => {
+  try {
+    const audio = new Audio("/sounds/goal.mp3");
+    audio.volume = 0.45;
+    audio.play().catch((err) => {
+      console.warn("Audio play blocked by browser auto-play policy:", err);
+    });
+  } catch (err) {
+    console.error("Audio playback error:", err);
+  }
+};
+
 export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
   match,
   teams,
@@ -96,7 +108,7 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
     setIsPlaying(false);
     
     if (match) {
-      if (match.status === "COMPLETED") {
+      if (match.status === "COMPLETED" && (match as any).simulatedByUser) {
         setTickMin(match.decidedBy === "PENALTIES" ? 125 : match.decidedBy === "EXTRA_TIME" ? 120 : 90);
         setLiveHomeScore(match.homeScore ?? 0);
         setLiveAwayScore(match.awayScore ?? 0);
@@ -157,8 +169,12 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
       const minPerTick = maxMinute / numTicks;
 
       let currentTick = 0;
+      let isPausedForEvent = false;
+      let lastProcessedEventMin = -1;
 
       timerRef.current = setInterval(() => {
+        if (isPausedForEvent) return;
+
         currentTick++;
         const currentMin = Math.min(maxMinute, Math.floor(currentTick * minPerTick));
         setTickMin(currentMin);
@@ -166,25 +182,44 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
         const currentEvents = simulatedMatch.timeline.filter((e) => e.minute <= currentMin);
         setSimulatedEvents(currentEvents);
 
-        const goalsHome = currentEvents.filter((e) => e.type === "GOAL" && e.teamId === home.id).length;
-        const goalsAway = currentEvents.filter((e) => e.type === "GOAL" && e.teamId === away.id).length;
-        setLiveHomeScore(goalsHome);
-        setLiveAwayScore(goalsAway);
+        const newEventsInTick = simulatedMatch.timeline.filter((e) => e.minute === currentMin);
+        const matchEvent = newEventsInTick.find(
+          (e) => (e.type === "GOAL" || e.type === "MISS") && e.minute !== lastProcessedEventMin
+        );
 
-        const totalGoalsInTick = goalsHome + goalsAway;
-        if (totalGoalsInTick > prevGoalsCountRef.current) {
-          const lastGoalEvent = [...currentEvents].reverse().find((e) => e.type === "GOAL");
-          if (lastGoalEvent) {
-            const scoringTeam = lastGoalEvent.teamId === home.id ? home : away;
-            setFlashTeamName(scoringTeam.name.toUpperCase());
-            setFlashText(Math.random() < 0.25 ? "GOLAZO!" : "GOAL!");
-            setShowGoalFlash(true);
-            setTimeout(() => setShowGoalFlash(false), 1200);
+        if (matchEvent) {
+          lastProcessedEventMin = matchEvent.minute;
+          isPausedForEvent = true;
+
+          if (matchEvent.type === "GOAL") {
+            setTimeout(() => {
+              isPausedForEvent = false;
+            }, 3200);
+
+            setTimeout(() => {
+              const goalsHome = simulatedMatch.timeline.filter((e) => e.minute <= currentMin && e.type === "GOAL" && e.teamId === home.id).length;
+              const goalsAway = simulatedMatch.timeline.filter((e) => e.minute <= currentMin && e.type === "GOAL" && e.teamId === away.id).length;
+              setLiveHomeScore(goalsHome);
+              setLiveAwayScore(goalsAway);
+
+              const scoringTeam = matchEvent.teamId === home.id ? home : away;
+              setFlashTeamName(scoringTeam.name.toUpperCase());
+              setFlashText(Math.random() < 0.25 ? "GOLAZO!" : "GOAL!");
+              setShowGoalFlash(true);
+              
+              // Play stadium crowd cheer sound effect
+              playGoalSound();
+
+              setTimeout(() => setShowGoalFlash(false), 1200);
+            }, 850);
+          } else {
+            setTimeout(() => {
+              isPausedForEvent = false;
+            }, 1800);
           }
-          prevGoalsCountRef.current = totalGoalsInTick;
         }
 
-        if (currentMin >= maxMinute) {
+        if (currentMin >= maxMinute && !isPausedForEvent) {
           if (timerRef.current) clearInterval(timerRef.current);
           setIsPlaying(false);
 
@@ -267,7 +302,7 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
           </div>
 
           {/* Simulation Badge */}
-          {match.status === "COMPLETED" ? (
+          {match.status === "COMPLETED" && (match as any).simulatedByUser ? (
             <span className="scoreboard-sim-badge completed">Prediction Logged</span>
           ) : (
             <span className="scoreboard-sim-badge" style={{ background: "none", borderStyle: "dashed" }}>Oracle Idle</span>
@@ -345,10 +380,9 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
       </div>
 
       {/* Action CTA: Play or Loading */}
-      {match.status === "PENDING" && !isPlaying && (() => {
+      {(!match.simulatedByUser || match.status === "PENDING") && !isPlaying && (() => {
         const now = new Date();
         const kickoff = new Date(match.kickoffTime);
-        const isLive = now >= kickoff && now.getTime() < kickoff.getTime() + 2 * 60 * 60 * 1000;
         const isPast = now.getTime() >= kickoff.getTime() + 2 * 60 * 60 * 1000;
 
         if (isCalculating) {
@@ -358,16 +392,6 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
                 <span style={{ display: "flex", alignItems: "center", gap: "0.5rem", animation: "pulse 1.5s infinite" }}>
                   🔮 Consulting the oracle...
                 </span>
-              </button>
-            </div>
-          );
-        }
-
-        if (isLive) {
-          return (
-            <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem", width: "100%" }}>
-              <button className="btn-gold" disabled style={{ width: "100%", justifyContent: "center", opacity: 0.8, cursor: "not-allowed", border: "1px dashed #ef4444", color: "#ef4444", background: "rgba(239, 68, 68, 0.05)" }}>
-                Locked — Match in Progress (Live)
               </button>
             </div>
           );

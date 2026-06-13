@@ -103,14 +103,13 @@ export const UpcomingMatches: React.FC<UpcomingMatchesProps> = ({
             if (!home || !away) return null;
 
             const isSelected = activeMatchId === match.id;
-            const isCompleted = match.status === "COMPLETED";
-            const isLocked = !isCompleted && match.day > currentDay + 1;
+            const showScore = match.status === "COMPLETED" && (match as any).simulatedByUser;
             
             const now = new Date();
             const kickoff = new Date(match.kickoffTime);
-            const isLive = !isCompleted && now >= kickoff && now.getTime() < kickoff.getTime() + 2 * 60 * 60 * 1000;
-            const isPastPending = !isCompleted && now.getTime() >= kickoff.getTime() + 2 * 60 * 60 * 1000;
-            const isDisabled = isLocked || isLive || isPastPending;
+            const isLocked = !showScore && match.day > currentDay + 1;
+            const isConcluded = !showScore && now.getTime() >= kickoff.getTime() + 2 * 60 * 60 * 1000;
+            const isDisabled = isLocked || isConcluded;
 
             return (
               <div
@@ -177,7 +176,7 @@ export const UpcomingMatches: React.FC<UpcomingMatchesProps> = ({
                 </div>
 
                 {/* Score or Predict CTA */}
-                {isCompleted ? (
+                {showScore ? (
                   <div className="fixture-completed-score">
                     {match.homeScore} - {match.awayScore}
                     {match.decidedBy === "PENALTIES" && match.penaltyScores && (
@@ -190,11 +189,7 @@ export const UpcomingMatches: React.FC<UpcomingMatchesProps> = ({
                   <div style={{ display: "flex", alignItems: "center", gap: "0.25rem", color: "var(--color-text-muted)", fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase" }}>
                     <Lock size={12} /> Locked
                   </div>
-                ) : isLive ? (
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.25rem", color: "#ef4444", fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", animation: "pulse 1.5s infinite" }}>
-                    ● Live
-                  </div>
-                ) : isPastPending ? (
+                ) : isConcluded ? (
                   <div style={{ display: "flex", alignItems: "center", gap: "0.25rem", color: "var(--color-text-muted)", fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase" }}>
                     Concluded
                   </div>

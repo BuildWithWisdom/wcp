@@ -20,6 +20,12 @@ class TournamentController {
             state = tournamentService.initializeTournament(teams);
             await storageService.saveTournamentState(state);
         }
+        else {
+            const modified = tournamentService.syncOfficialResults(state);
+            if (modified) {
+                await storageService.saveTournamentState(state);
+            }
+        }
         res.json({ success: true, data: state });
     };
     /**
@@ -80,13 +86,11 @@ class TournamentController {
         }
         const now = new Date();
         const kickoff = new Date(matchToSimulate.kickoffTime);
-        if (now >= kickoff) {
-            const isLive = now.getTime() < kickoff.getTime() + 2 * 60 * 60 * 1000;
+        const twoHoursInMs = 2 * 60 * 60 * 1000;
+        if (now.getTime() >= kickoff.getTime() + twoHoursInMs) {
             res.status(400).json({
                 success: false,
-                message: isLive
-                    ? "Match has already started and is currently live/in-progress. Predictions are closed."
-                    : "Match has concluded. You cannot predict past matches.",
+                message: "Match has concluded. You cannot predict past matches.",
             });
             return;
         }
@@ -102,13 +106,27 @@ class TournamentController {
         const result = simulationService.simulateMatch(homeTeam, awayTeam, isKnockout, modifiers);
         const localSummary = simulationService.generateWittySummary(homeTeam, awayTeam, result);
         const finalSummary = `🔮 ${modifiers.tacticalAnalysis} Recap: ${localSummary}`;
-        const updateOutcome = tournamentService.updateMatchResultAndProgress(state, matchId, result, finalSummary);
-        await storageService.saveTournamentState(updateOutcome.state);
+        const simulatedMatch = {
+            ...matchToSimulate,
+            homeScore: result.homeScore,
+            awayScore: result.awayScore,
+            status: "COMPLETED",
+            timeline: result.timeline,
+            aiSummary: finalSummary,
+            winnerId: result.winnerId,
+            decidedBy: result.decidedBy,
+            penaltyScores: result.penaltyScores,
+            homeAttackModifier: result.homeAttackModifier,
+            homeDefenseModifier: result.homeDefenseModifier,
+            awayAttackModifier: result.awayAttackModifier,
+            awayDefenseModifier: result.awayDefenseModifier,
+            aiTacticalAnalysis: result.aiTacticalAnalysis,
+        };
         res.json({
             success: true,
             data: {
-                match: updateOutcome.match,
-                state: updateOutcome.state,
+                match: simulatedMatch,
+                state: state,
             },
         });
     };
@@ -144,6 +162,7 @@ class TournamentController {
         }
         const teams = await storageService.loadTeams();
         const isKnockout = state.currentStage !== "GROUPS";
+        const simulatedMatches = [];
         // Simulate each match in sequence
         for (const match of pendingMatches) {
             const homeTeam = teams[match.homeTeamId];
@@ -152,10 +171,30 @@ class TournamentController {
                 continue;
             const result = simulationService.simulateMatch(homeTeam, awayTeam, isKnockout);
             const summary = simulationService.generateWittySummary(homeTeam, awayTeam, result);
-            tournamentService.updateMatchResultAndProgress(state, match.id, result, summary);
+            simulatedMatches.push({
+                ...match,
+                homeScore: result.homeScore,
+                awayScore: result.awayScore,
+                status: "COMPLETED",
+                timeline: result.timeline,
+                aiSummary: summary,
+                winnerId: result.winnerId,
+                decidedBy: result.decidedBy,
+                penaltyScores: result.penaltyScores,
+                homeAttackModifier: result.homeAttackModifier,
+                homeDefenseModifier: result.homeDefenseModifier,
+                awayAttackModifier: result.awayAttackModifier,
+                awayDefenseModifier: result.awayDefenseModifier,
+                aiTacticalAnalysis: result.aiTacticalAnalysis,
+            });
         }
-        await storageService.saveTournamentState(state);
-        res.json({ success: true, data: state });
+        res.json({
+            success: true,
+            data: {
+                matches: simulatedMatches,
+                state: state,
+            },
+        });
     };
     /**
      * Fast forward the tournament calendar by 1 day (for developer testing).

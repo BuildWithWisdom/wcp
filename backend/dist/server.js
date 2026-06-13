@@ -18,8 +18,11 @@ const PORT = process.env.PORT || 3001;
 // 1. Security Headers via Helmet
 app.use((0, helmet_1.default)());
 // 2. Cross-Origin Resource Sharing (CORS) Configuration
+const allowedOrigins = process.env.CORS_ORIGIN
+    ? process.env.CORS_ORIGIN.split(",")
+    : ["http://localhost:5173", "http://localhost:3000"];
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:5173", "http://localhost:3000"],
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));

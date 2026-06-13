@@ -154,17 +154,6 @@
       ],
       "standings": [
         {
-          "teamId": "switzerland",
-          "played": 1,
-          "wins": 1,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 2,
-          "goalsAgainst": 1,
-          "goalDifference": 1,
-          "points": 3
-        },
-        {
           "teamId": "bosnia_herzegovina",
           "played": 1,
           "wins": 0,
@@ -188,13 +177,24 @@
         },
         {
           "teamId": "qatar",
-          "played": 1,
+          "played": 0,
           "wins": 0,
           "draws": 0,
-          "losses": 1,
-          "goalsFor": 1,
-          "goalsAgainst": 2,
-          "goalDifference": -1,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "switzerland",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
           "points": 0
         }
       ],
@@ -221,82 +221,11 @@
           "groupName": "B",
           "homeTeamId": "qatar",
           "awayTeamId": "switzerland",
-          "homeScore": 1,
-          "awayScore": 2,
-          "status": "COMPLETED",
-          "timeline": [
-            {
-              "type": "GOAL",
-              "minute": 21,
-              "teamId": "qatar",
-              "playerName": "Squad Player",
-              "detail": "Tap-in"
-            },
-            {
-              "type": "GOAL",
-              "minute": 28,
-              "teamId": "switzerland",
-              "playerName": "Granit Xhaka",
-              "detail": "Clinical finish"
-            },
-            {
-              "type": "GOAL",
-              "minute": 28,
-              "teamId": "switzerland",
-              "playerName": "Granit Xhaka",
-              "detail": "Clinical finish"
-            },
-            {
-              "type": "MISS",
-              "minute": 29,
-              "teamId": "qatar",
-              "playerName": "Goalkeeper",
-              "detail": "Header hits the post! Unbelievable escape"
-            },
-            {
-              "type": "MISS",
-              "minute": 41,
-              "teamId": "qatar",
-              "playerName": "Akram Afif",
-              "detail": "Strikes it wide after a brilliant solo dribble"
-            },
-            {
-              "type": "MISS",
-              "minute": 59,
-              "teamId": "qatar",
-              "playerName": "Akram Afif",
-              "detail": "Stunning finger-tip save by the keeper"
-            },
-            {
-              "type": "MISS",
-              "minute": 73,
-              "teamId": "qatar",
-              "playerName": "Hassan Al-Haydos",
-              "detail": "Header hits the post! Unbelievable escape"
-            },
-            {
-              "type": "YELLOW",
-              "minute": 74,
-              "teamId": "qatar",
-              "playerName": "Goalkeeper",
-              "detail": "Tactical foul halting a counter-attack"
-            },
-            {
-              "type": "MISS",
-              "minute": 87,
-              "teamId": "switzerland",
-              "playerName": "Breel Embolo",
-              "detail": "Header hits the post! Unbelievable escape"
-            }
-          ],
-          "aiSummary": "🔮 Switzerland will dominate possession and seek to exploit Qatar's defense, while the home side focuses on a resilient low block and opportunistic counter-attacks. Recap: Switzerland squeezes past Qatar in a tight 1-2 victory via Squad Player (21'), Granit Xhaka (28'), Granit Xhaka (28').",
-          "winnerId": "switzerland",
-          "decidedBy": "REGULAR",
-          "homeAttackModifier": 0.85,
-          "homeDefenseModifier": 1.08,
-          "awayAttackModifier": 1.15,
-          "awayDefenseModifier": 0.9,
-          "aiTacticalAnalysis": "Switzerland will dominate possession and seek to exploit Qatar's defense, while the home side focuses on a resilient low block and opportunistic counter-attacks."
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
         },
         {
           "id": "match_GB_3",
@@ -366,47 +295,47 @@
       ],
       "standings": [
         {
-          "teamId": "scotland",
-          "played": 1,
-          "wins": 1,
+          "teamId": "brazil",
+          "played": 0,
+          "wins": 0,
           "draws": 0,
           "losses": 0,
-          "goalsFor": 4,
+          "goalsFor": 0,
           "goalsAgainst": 0,
-          "goalDifference": 4,
-          "points": 3
-        },
-        {
-          "teamId": "brazil",
-          "played": 1,
-          "wins": 0,
-          "draws": 1,
-          "losses": 0,
-          "goalsFor": 1,
-          "goalsAgainst": 1,
           "goalDifference": 0,
-          "points": 1
-        },
-        {
-          "teamId": "morocco",
-          "played": 1,
-          "wins": 0,
-          "draws": 1,
-          "losses": 0,
-          "goalsFor": 1,
-          "goalsAgainst": 1,
-          "goalDifference": 0,
-          "points": 1
+          "points": 0
         },
         {
           "teamId": "haiti",
-          "played": 1,
+          "played": 0,
           "wins": 0,
           "draws": 0,
-          "losses": 1,
+          "losses": 0,
           "goalsFor": 0,
-          "goalsAgainst": 4,
-          "goalDifference": -4,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "morocco",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "scotland",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
           "points": 0
         }
       ],
@@ -419,68 +348,11 @@
           "groupName": "C",
           "homeTeamId": "brazil",
           "awayTeamId": "morocco",
-          "homeScore": 1,
-          "awayScore": 1,
-          "status": "COMPLETED",
-          "timeline": [
-            {
-              "type": "INJURY",
-              "minute": 5,
-              "teamId": "brazil",
-              "playerName": "Vinícius Júnior",
-              "detail": "Receiving medical attention on the pitch"
-            },
-            {
-              "type": "GOAL",
-              "minute": 7,
-              "teamId": "morocco",
-              "playerName": "Yassine Bounou",
-              "detail": "Tap-in"
-            },
-            {
-              "type": "MISS",
-              "minute": 7,
-              "teamId": "brazil",
-              "playerName": "Martinelli",
-              "detail": "Fires over the crossbar from close range"
-            },
-            {
-              "type": "MISS",
-              "minute": 50,
-              "teamId": "brazil",
-              "playerName": "Paquetá",
-              "detail": "Strikes it wide after a brilliant solo dribble"
-            },
-            {
-              "type": "YELLOW",
-              "minute": 55,
-              "teamId": "morocco",
-              "playerName": "Midfielder",
-              "detail": "Tactical foul halting a counter-attack"
-            },
-            {
-              "type": "MISS",
-              "minute": 59,
-              "teamId": "morocco",
-              "playerName": "Forward",
-              "detail": "Fires over the crossbar from close range"
-            },
-            {
-              "type": "GOAL",
-              "minute": 75,
-              "teamId": "brazil",
-              "playerName": "Squad Player",
-              "detail": "Stunning volley"
-            }
-          ],
-          "aiSummary": "🔮 Brazil will seek to unlock Morocco's disciplined low block with their attacking flair, while Morocco aims to absorb pressure and exploit counter-attacking opportunities. Recap: A thrilling 1-1 draw featuring goals from Yassine Bounou (7'), Squad Player (75').",
-          "winnerId": "",
-          "decidedBy": "REGULAR",
-          "homeAttackModifier": 1.15,
-          "homeDefenseModifier": 0.9,
-          "awayAttackModifier": 0.9,
-          "awayDefenseModifier": 0.85,
-          "aiTacticalAnalysis": "Brazil will seek to unlock Morocco's disciplined low block with their attacking flair, while Morocco aims to absorb pressure and exploit counter-attacking opportunities."
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
         },
         {
           "id": "match_GC_2",
@@ -490,68 +362,11 @@
           "groupName": "C",
           "homeTeamId": "haiti",
           "awayTeamId": "scotland",
-          "homeScore": 0,
-          "awayScore": 4,
-          "status": "COMPLETED",
-          "timeline": [
-            {
-              "type": "GOAL",
-              "minute": 14,
-              "teamId": "scotland",
-              "playerName": "Squad Player",
-              "detail": "Curling effort"
-            },
-            {
-              "type": "MISS",
-              "minute": 38,
-              "teamId": "haiti",
-              "playerName": "Frantzdy Pierrot",
-              "detail": "Fires over the crossbar from close range"
-            },
-            {
-              "type": "YELLOW",
-              "minute": 47,
-              "teamId": "haiti",
-              "playerName": "Midfielder",
-              "detail": "Tactical foul halting a counter-attack"
-            },
-            {
-              "type": "GOAL",
-              "minute": 61,
-              "teamId": "scotland",
-              "playerName": "Squad Player",
-              "detail": "Stunning volley"
-            },
-            {
-              "type": "GOAL",
-              "minute": 66,
-              "teamId": "scotland",
-              "playerName": "John McGinn",
-              "detail": "Tap-in"
-            },
-            {
-              "type": "GOAL",
-              "minute": 71,
-              "teamId": "scotland",
-              "playerName": "Scott McTominay",
-              "detail": "Curling effort"
-            },
-            {
-              "type": "YELLOW",
-              "minute": 86,
-              "teamId": "scotland",
-              "playerName": "Goalkeeper",
-              "detail": "Tactical foul halting a counter-attack"
-            }
-          ],
-          "aiSummary": "🔮 Scotland's superior quality and tactical discipline will dominate, exploiting Haiti's defense while their own robust backline stifles Haitian counters. Recap: Scotland runs riot in a clinical 0-4 masterclass against Haiti.",
-          "winnerId": "scotland",
-          "decidedBy": "REGULAR",
-          "homeAttackModifier": 0.85,
-          "homeDefenseModifier": 1.15,
-          "awayAttackModifier": 1.15,
-          "awayDefenseModifier": 0.85,
-          "aiTacticalAnalysis": "Scotland's superior quality and tactical discipline will dominate, exploiting Haiti's defense while their own robust backline stifles Haitian counters."
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
         },
         {
           "id": "match_GC_3",
@@ -623,45 +438,45 @@
         {
           "teamId": "australia",
           "played": 1,
-          "wins": 0,
-          "draws": 1,
+          "wins": 1,
+          "draws": 0,
           "losses": 0,
-          "goalsFor": 1,
+          "goalsFor": 3,
           "goalsAgainst": 1,
-          "goalDifference": 0,
-          "points": 1
+          "goalDifference": 2,
+          "points": 3
+        },
+        {
+          "teamId": "usa",
+          "played": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "goalDifference": 1,
+          "points": 3
+        },
+        {
+          "teamId": "paraguay",
+          "played": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "goalDifference": -1,
+          "points": 0
         },
         {
           "teamId": "turkey",
           "played": 1,
           "wins": 0,
-          "draws": 1,
-          "losses": 0,
+          "draws": 0,
+          "losses": 1,
           "goalsFor": 1,
-          "goalsAgainst": 1,
-          "goalDifference": 0,
-          "points": 1
-        },
-        {
-          "teamId": "paraguay",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
-          "teamId": "usa",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
+          "goalsAgainst": 3,
+          "goalDifference": -2,
           "points": 0
         }
       ],
@@ -674,11 +489,11 @@
           "groupName": "D",
           "homeTeamId": "usa",
           "awayTeamId": "paraguay",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Simulated historical score: USA 2-1 Paraguay."
         },
         {
           "id": "match_GD_2",
@@ -688,75 +503,13 @@
           "groupName": "D",
           "homeTeamId": "australia",
           "awayTeamId": "turkey",
-          "homeScore": 1,
+          "homeScore": 3,
           "awayScore": 1,
           "status": "COMPLETED",
-          "timeline": [
-            {
-              "type": "MISS",
-              "minute": 11,
-              "teamId": "turkey",
-              "playerName": "Defender",
-              "detail": "Strikes it wide after a brilliant solo dribble"
-            },
-            {
-              "type": "MISS",
-              "minute": 19,
-              "teamId": "turkey",
-              "playerName": "Forward",
-              "detail": "Stunning finger-tip save by the keeper"
-            },
-            {
-              "type": "YELLOW",
-              "minute": 37,
-              "teamId": "australia",
-              "playerName": "Midfielder",
-              "detail": "Tactical foul halting a counter-attack"
-            },
-            {
-              "type": "MISS",
-              "minute": 59,
-              "teamId": "australia",
-              "playerName": "Harry Souttar",
-              "detail": "Fires over the crossbar from close range"
-            },
-            {
-              "type": "GOAL",
-              "minute": 83,
-              "teamId": "turkey",
-              "playerName": "Hakan Çalhanoğlu",
-              "detail": "Stunning volley"
-            },
-            {
-              "type": "MISS",
-              "minute": 85,
-              "teamId": "turkey",
-              "playerName": "Hakan Çalhanoğlu",
-              "detail": "Header hits the post! Unbelievable escape"
-            },
-            {
-              "type": "YELLOW",
-              "minute": 88,
-              "teamId": "turkey",
-              "playerName": "Arda Güler",
-              "detail": "Tactical foul halting a counter-attack"
-            },
-            {
-              "type": "GOAL",
-              "minute": 90,
-              "teamId": "australia",
-              "playerName": "Jackson Irvine",
-              "detail": "Tap-in"
-            }
-          ],
-          "aiSummary": "🔮 Turkey's strong offensive talent will challenge Australia's disciplined defense; the match outcome hinges on whether individual brilliance or collective organization prevails. Recap: Honors even in a dramatic 1-1 stalemate between Australia and Turkey.",
-          "winnerId": "",
-          "decidedBy": "REGULAR",
-          "homeAttackModifier": 0.9,
-          "homeDefenseModifier": 0.9,
-          "awayAttackModifier": 1.2,
-          "awayDefenseModifier": 1.1,
-          "aiTacticalAnalysis": "Turkey's strong offensive talent will challenge Australia's disciplined defense; the match outcome hinges on whether individual brilliance or collective organization prevails."
+          "timeline": [],
+          "aiSummary": "Simulated historical score: Australia 3-1 Turkey.",
+          "winnerId": "australia",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GD_3",
@@ -827,28 +580,28 @@
       "standings": [
         {
           "teamId": "curacao",
-          "played": 1,
+          "played": 0,
           "wins": 0,
-          "draws": 1,
+          "draws": 0,
           "losses": 0,
           "goalsFor": 0,
           "goalsAgainst": 0,
           "goalDifference": 0,
-          "points": 1
-        },
-        {
-          "teamId": "germany",
-          "played": 1,
-          "wins": 0,
-          "draws": 1,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 1
+          "points": 0
         },
         {
           "teamId": "ecuador",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "germany",
           "played": 0,
           "wins": 0,
           "draws": 0,
@@ -879,54 +632,11 @@
           "groupName": "E",
           "homeTeamId": "germany",
           "awayTeamId": "curacao",
-          "homeScore": 0,
-          "awayScore": 0,
-          "status": "COMPLETED",
-          "timeline": [
-            {
-              "type": "MISS",
-              "minute": 31,
-              "teamId": "curacao",
-              "playerName": "Leandro Bacuna",
-              "detail": "Strikes it wide after a brilliant solo dribble"
-            },
-            {
-              "type": "YELLOW",
-              "minute": 48,
-              "teamId": "curacao",
-              "playerName": "Defender",
-              "detail": "Tactical foul halting a counter-attack"
-            },
-            {
-              "type": "MISS",
-              "minute": 57,
-              "teamId": "germany",
-              "playerName": "Florian Wirtz",
-              "detail": "Stunning finger-tip save by the keeper"
-            },
-            {
-              "type": "YELLOW",
-              "minute": 67,
-              "teamId": "germany",
-              "playerName": "Forward",
-              "detail": "Tactical foul halting a counter-attack"
-            },
-            {
-              "type": "MISS",
-              "minute": 87,
-              "teamId": "germany",
-              "playerName": "Defender",
-              "detail": "Fires over the crossbar from close range"
-            }
-          ],
-          "aiSummary": "🔮 Oracle's Tactical Analysis:\nGermany will dominate possession, pressing high and relentlessly attacking Curaçao's defense through their creative midfielders and forwards. Curaçao will aim to sit deep in a compact low block, hoping to frustrate Germany and perhaps nick a counter-attack, but will likely struggle to withstand the constant pressure.\n\n⚽ Post-Match Recap:\nA total tactical snorefest as Germany and Curaçao cancel each other out in a 0-0 gridlock. Fans in the stadium were spotted checking their tax returns by the 75th minute. Both managers will claim it was a \"disciplined defensive performance,\" but we know the truth.",
-          "winnerId": "",
-          "decidedBy": "REGULAR",
-          "homeAttackModifier": 1.15,
-          "homeDefenseModifier": 0.85,
-          "awayAttackModifier": 0.82,
-          "awayDefenseModifier": 1.18,
-          "aiTacticalAnalysis": "Germany will dominate possession, pressing high and relentlessly attacking Curaçao's defense through their creative midfielders and forwards. Curaçao will aim to sit deep in a compact low block, hoping to frustrate Germany and perhaps nick a counter-attack, but will likely struggle to withstand the constant pressure."
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
         },
         {
           "id": "match_GE_2",
@@ -1010,15 +720,26 @@
       ],
       "standings": [
         {
-          "teamId": "netherlands",
-          "played": 1,
-          "wins": 1,
+          "teamId": "japan",
+          "played": 0,
+          "wins": 0,
           "draws": 0,
           "losses": 0,
-          "goalsFor": 2,
+          "goalsFor": 0,
           "goalsAgainst": 0,
-          "goalDifference": 2,
-          "points": 3
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "netherlands",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
         },
         {
           "teamId": "sweden",
@@ -1041,17 +762,6 @@
           "goalsAgainst": 0,
           "goalDifference": 0,
           "points": 0
-        },
-        {
-          "teamId": "japan",
-          "played": 1,
-          "wins": 0,
-          "draws": 0,
-          "losses": 1,
-          "goalsFor": 0,
-          "goalsAgainst": 2,
-          "goalDifference": -2,
-          "points": 0
         }
       ],
       "matches": [
@@ -1063,40 +773,11 @@
           "groupName": "F",
           "homeTeamId": "netherlands",
           "awayTeamId": "japan",
-          "homeScore": 2,
-          "awayScore": 0,
-          "status": "COMPLETED",
-          "timeline": [
-            {
-              "type": "GOAL",
-              "minute": 49,
-              "teamId": "netherlands",
-              "playerName": "Squad Player",
-              "detail": "Curling effort"
-            },
-            {
-              "type": "GOAL",
-              "minute": 79,
-              "teamId": "netherlands",
-              "playerName": "Virgil van Dijk",
-              "detail": "Tap-in"
-            },
-            {
-              "type": "YELLOW",
-              "minute": 80,
-              "teamId": "netherlands",
-              "playerName": "Forward",
-              "detail": "Tactical foul halting a counter-attack"
-            }
-          ],
-          "aiSummary": "🔮 Oracle's Tactical Analysis:\nThe Netherlands will aim to dominate possession and dictate the tempo, utilizing Frenkie de Jong's control in midfield and Cody Gakpo's attacking prowess to break down Japan's disciplined defense. Japan is expected to adopt a compact, defensive setup, focusing on absorbing pressure and launching rapid counter-attacks, primarily through the pace and dribbling of Kaoru Mitoma and Takefusa Kubo. The match will likely see the Dutch trying to unlock a deep-sitting Japanese side, with tactical fouls and quick transitions being key for Japan.\n\n⚽ Post-Match Recap:\nJob done for Netherlands! They secure a vital 2-0 win against a resilient Japan. A mixture of tactical composure and defensive coordination saw them lock down the three points as the whistle blew.",
-          "winnerId": "netherlands",
-          "decidedBy": "REGULAR",
-          "homeAttackModifier": 1.15,
-          "homeDefenseModifier": 0.85,
-          "awayAttackModifier": 0.95,
-          "awayDefenseModifier": 0.9,
-          "aiTacticalAnalysis": "The Netherlands will aim to dominate possession and dictate the tempo, utilizing Frenkie de Jong's control in midfield and Cody Gakpo's attacking prowess to break down Japan's disciplined defense. Japan is expected to adopt a compact, defensive setup, focusing on absorbing pressure and launching rapid counter-attacks, primarily through the pace and dribbling of Kaoru Mitoma and Takefusa Kubo. The match will likely see the Dutch trying to unlock a deep-sitting Japanese side, with tactical fouls and quick transitions being key for Japan."
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
         },
         {
           "id": "match_GF_2",

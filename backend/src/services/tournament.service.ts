@@ -638,4 +638,149 @@ export class TournamentService {
       });
     });
   }
+
+  syncOfficialResults(state: TournamentState): boolean {
+    let openfootballMatches: any[] = [];
+    try {
+      const filePath = path.join(__dirname, "../../data/worldcup_2026.json");
+      const rawData = fs.readFileSync(filePath, "utf-8");
+      const parsed = JSON.parse(rawData);
+      openfootballMatches = parsed.matches || [];
+    } catch (error) {
+      console.error("Failed to load worldcup_2026.json for sync:", error);
+      return false;
+    }
+
+    let modified = false;
+
+    // 1. Sync Group Stage Matches
+    const groupNames = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
+    groupNames.forEach((gName) => {
+      const groupMatchesData = openfootballMatches.filter((m: any) => m.group === `Group ${gName}`);
+      const group = state.groups[gName];
+      if (!group) return;
+
+      groupMatchesData.forEach((m: any, idx: number) => {
+        const matchId = `match_G${gName}_${idx + 1}`;
+        const match = group.matches.find((x) => x.id === matchId);
+        if (match) {
+          const isCompletedInJson = m.score && m.score.ft;
+          if (isCompletedInJson && match.status !== "COMPLETED") {
+            match.homeScore = m.score.ft[0];
+            match.awayScore = m.score.ft[1];
+            match.status = "COMPLETED";
+            match.aiSummary = `Simulated historical score: ${m.team1} ${m.score.ft[0]}-${m.score.ft[1]} ${m.team2}.`;
+            
+            const nameToIdMap: Record<string, string> = {
+              "Bosnia & Herzegovina": "bosnia_herzegovina",
+              "Czech Republic": "czech_republic",
+              "South Korea": "south_korea",
+              "DR Congo": "dr_congo",
+              "Ivory Coast": "ivory_coast",
+              "Cape Verde": "cape_verde",
+              "Saudi Arabia": "saudi_arabia",
+              "New Zealand": "new_zealand",
+              "Costa Rica": "costa_rica",
+              "Curaçao": "curacao",
+              "Turkey": "turkey",
+              "USA": "usa"
+            };
+            const getTeamIdByName = (name: string): string => {
+              if (nameToIdMap[name]) return nameToIdMap[name];
+              return name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+            };
+            
+            const homeId = getTeamIdByName(m.team1);
+            const awayId = getTeamIdByName(m.team2);
+            if (m.score.ft[0] > m.score.ft[1]) {
+              match.winnerId = homeId;
+            } else if (m.score.ft[1] > m.score.ft[0]) {
+              match.winnerId = awayId;
+            } else {
+              match.winnerId = "";
+            }
+            match.decidedBy = "REGULAR";
+
+            modified = true;
+          }
+        }
+      });
+
+      if (modified) {
+        group.standings = this.calculateStandings(group);
+      }
+    });
+
+    // 2. Sync Knockout Stage Matches
+    const knockoutStages: { roundJson: string; stageKey: string }[] = [
+      { roundJson: "Round of 32", stageKey: "R32" },
+      { roundJson: "Round of 16", stageKey: "R16" },
+      { roundJson: "Quarter-finals", stageKey: "QF" },
+      { roundJson: "Quarter-final", stageKey: "QF" },
+      { roundJson: "Semi-finals", stageKey: "SF" },
+      { roundJson: "Semi-final", stageKey: "SF" },
+      { roundJson: "Final", stageKey: "FINAL" }
+    ];
+
+    knockoutStages.forEach(({ roundJson, stageKey }) => {
+      const jsonMatches = openfootballMatches.filter(
+        (m: any) => m.round && m.round.toLowerCase() === roundJson.toLowerCase()
+      );
+      const round = state.bracket[stageKey];
+      if (!round) return;
+
+      jsonMatches.forEach((m: any, idx: number) => {
+        const match = round.matches[idx];
+        if (match) {
+          const isCompletedInJson = m.score && m.score.ft;
+          if (isCompletedInJson && match.status !== "COMPLETED") {
+            match.homeScore = m.score.ft[0];
+            match.awayScore = m.score.ft[1];
+            match.status = "COMPLETED";
+            match.aiSummary = `Simulated historical score: ${m.team1} ${m.score.ft[0]}-${m.score.ft[1]} ${m.team2}.`;
+            
+            const nameToIdMap: Record<string, string> = {
+              "Bosnia & Herzegovina": "bosnia_herzegovina",
+              "Czech Republic": "czech_republic",
+              "South Korea": "south_korea",
+              "DR Congo": "dr_congo",
+              "Ivory Coast": "ivory_coast",
+              "Cape Verde": "cape_verde",
+              "Saudi Arabia": "saudi_arabia",
+              "New Zealand": "new_zealand",
+              "Costa Rica": "costa_rica",
+              "Curaçao": "curacao",
+              "Turkey": "turkey",
+              "USA": "usa"
+            };
+            const getTeamIdByName = (name: string): string => {
+              if (nameToIdMap[name]) return nameToIdMap[name];
+              return name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+            };
+
+            const homeId = getTeamIdByName(m.team1);
+            const awayId = getTeamIdByName(m.team2);
+
+            match.homeTeamId = homeId;
+            match.awayTeamId = awayId;
+
+            if (m.score.ft[0] > m.score.ft[1]) {
+              match.winnerId = homeId;
+            } else if (m.score.ft[1] > m.score.ft[0]) {
+              match.winnerId = awayId;
+            }
+            match.decidedBy = "REGULAR";
+
+            modified = true;
+          }
+        }
+      });
+    });
+
+    if (modified) {
+      this.checkProgress(state);
+    }
+
+    return modified;
+  }
 }

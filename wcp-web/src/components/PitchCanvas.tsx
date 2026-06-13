@@ -33,43 +33,123 @@ interface VisualParticle {
 
 const getTeamColor = (teamId: string): string => {
   const colorMap: Record<string, string> = {
-    argentina: "#38bdf8",
-    brazil: "#fbbf24",
-    germany: "#e2e8f0",
-    france: "#2563eb",
-    spain: "#dc2626",
-    portugal: "#991b1b",
-    england: "#ffffff",
-    italy: "#1d4ed8",
-    netherlands: "#ea580c",
-    belgium: "#be123c",
-    croatia: "#e11d48",
-    uruguay: "#60a5fa",
-    usa: "#1e3a8a",
     mexico: "#16a34a",
-    japan: "#1e40af",
-    morocco: "#047857",
-    qatar: "#881337",
+    south_korea: "#e11d48",
+    czech_republic: "#dc2626",
+    south_africa: "#eab308",
     switzerland: "#dc2626",
+    canada: "#dc2626",
+    bosnia_herzegovina: "#1d4ed8",
+    qatar: "#881337",
+    brazil: "#eab308",
+    morocco: "#dc2626",
+    scotland: "#1e3a8a",
+    haiti: "#1d4ed8",
+    usa: "#1e3a8a",
+    turkey: "#dc2626",
+    paraguay: "#dc2626",
+    australia: "#eab308",
+    germany: "#e2e8f0",
+    ecuador: "#facc15",
+    ivory_coast: "#f97316",
+    curacao: "#1d4ed8",
+    netherlands: "#ea580c",
+    sweden: "#facc15",
+    japan: "#1e40af",
+    tunisia: "#dc2626",
+    belgium: "#be123c",
+    egypt: "#dc2626",
+    iran: "#ffffff",
+    new_zealand: "#0f172a",
+    spain: "#dc2626",
+    uruguay: "#60a5fa",
+    saudi_arabia: "#16a34a",
+    cape_verde: "#1e40af",
+    france: "#2563eb",
+    senegal: "#16a34a",
+    norway: "#dc2626",
+    iraq: "#16a34a",
+    argentina: "#38bdf8",
+    austria: "#dc2626",
+    algeria: "#ffffff",
+    jordan: "#dc2626",
+    portugal: "#991b1b",
+    colombia: "#facc15",
+    dr_congo: "#3b82f6",
+    uzbekistan: "#ffffff",
+    england: "#ffffff",
+    croatia: "#e11d48",
+    ghana: "#ffffff",
+    panama: "#dc2626",
   };
   return colorMap[teamId] || "#475569";
 };
 
 const getTeamBorderColor = (teamId: string): string => {
   const borderMap: Record<string, string> = {
-    argentina: "#ffffff",
-    brazil: "#16a34a",
-    germany: "#0f172a",
-    france: "#ffffff",
-    spain: "#fbbf24",
-    portugal: "#16a34a",
-    england: "#dc2626",
-    netherlands: "#ffffff",
-    usa: "#ffffff",
     mexico: "#ffffff",
+    south_korea: "#1d4ed8",
+    czech_republic: "#1d4ed8",
+    south_africa: "#16a34a",
+    switzerland: "#ffffff",
+    canada: "#ffffff",
+    bosnia_herzegovina: "#facc15",
+    qatar: "#ffffff",
+    brazil: "#16a34a",
+    morocco: "#047857",
+    scotland: "#ffffff",
+    haiti: "#dc2626",
+    usa: "#ffffff",
+    turkey: "#ffffff",
+    paraguay: "#1d4ed8",
+    australia: "#16a34a",
+    germany: "#0f172a",
+    ecuador: "#1d4ed8",
+    ivory_coast: "#16a34a",
+    curacao: "#facc15",
+    netherlands: "#ffffff",
+    sweden: "#1d4ed8",
     japan: "#ffffff",
+    tunisia: "#ffffff",
+    belgium: "#facc15",
+    egypt: "#ffffff",
+    iran: "#dc2626",
+    new_zealand: "#ffffff",
+    spain: "#facc15",
+    uruguay: "#ffffff",
+    saudi_arabia: "#ffffff",
+    cape_verde: "#facc15",
+    france: "#ffffff",
+    senegal: "#facc15",
+    norway: "#1d4ed8",
+    iraq: "#ffffff",
+    argentina: "#ffffff",
+    austria: "#ffffff",
+    algeria: "#16a34a",
+    jordan: "#ffffff",
+    portugal: "#16a34a",
+    colombia: "#1d4ed8",
+    dr_congo: "#ef4444",
+    uzbekistan: "#3b82f6",
+    england: "#dc2626",
+    croatia: "#ffffff",
+    ghana: "#facc15",
+    panama: "#1d4ed8",
   };
   return borderMap[teamId] || "#ffffff";
+};
+
+const movePlayerTowards = (p: PlayerNode, tx: number, ty: number, speed: number) => {
+  const dx = tx - p.posX;
+  const dy = ty - p.posY;
+  const dist = Math.hypot(dx, dy);
+  if (dist <= speed) {
+    p.posX = tx;
+    p.posY = ty;
+  } else {
+    p.posX += (dx / dist) * speed;
+    p.posY += (dy / dist) * speed;
+  }
 };
 
 export const PitchCanvas: React.FC<PitchCanvasProps> = ({
@@ -85,11 +165,6 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
   const requestRef = useRef<number | null>(null);
 
   const [players, setPlayers] = useState<PlayerNode[]>([]);
-
-  const activeSequenceRef = useRef<"NONE" | "GOAL" | "MISS">("NONE");
-  const sequenceFrameRef = useRef<number>(0);
-  const sequenceTeamRef = useRef<boolean>(true);
-  const lastProcessedMinRef = useRef<number>(-1);
 
   const particlesRef = useRef<VisualParticle[]>([]);
 
@@ -147,9 +222,6 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
     ];
 
     setPlayers([...homeList, ...awayList]);
-    activeSequenceRef.current = "NONE";
-    sequenceFrameRef.current = 0;
-    lastProcessedMinRef.current = -1;
     particlesRef.current = [];
   }, [homeTeam, awayTeam]);
 
@@ -160,8 +232,50 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let localBallX = 50;
-    let localBallY = 50;
+    let ballX = 50;
+    let ballY = 50;
+    let ballState: "HELD" | "PASSING" | "SHOOTING" | "SAVED" | "GOAL_CELEBRATION" = "HELD";
+
+    let ballHolderId = 7;
+    let passTargetId = 7;
+    let passProgress = 0;
+    let passSpeed = 0.04;
+    let passStartX = 50;
+    let passStartY = 50;
+
+    let shootTargetX = 50;
+    let shootTargetY = 50;
+    let shootProgress = 0;
+    let goalScored = false;
+    let saveMade = false;
+
+    let activeEventMin = -1;
+    let activeEventType: "NONE" | "GOAL" | "MISS" = "NONE";
+    let activeEventTeam: "HOME" | "AWAY" = "HOME";
+    let buildupState: "MIDFIELD" | "ATTACK" | "SHOOT" | "DONE" = "MIDFIELD";
+    let delayTimer = 0;
+    let scorerId = -1;
+    let shootSpeed = 0.05;
+
+    const startPass = (targetId: number, startX: number, startY: number) => {
+      ballState = "PASSING";
+      passStartX = startX;
+      passStartY = startY;
+      passTargetId = targetId;
+      passProgress = 0;
+
+      const activePlayers = stateRef.current.players;
+      const targetPlayer = activePlayers.find((p) => p.id === targetId);
+      if (targetPlayer) {
+        const dx = targetPlayer.posX - startX;
+        const dy = targetPlayer.posY - startY;
+        const dist = Math.hypot(dx, dy);
+        const frames = Math.min(45, Math.max(12, dist / 1.4));
+        passSpeed = 1 / frames;
+      } else {
+        passSpeed = 0.04;
+      }
+    };
 
     const spawnGoalExplosion = (targetX: number, targetY: number) => {
       const { homeTeam: activeHome, awayTeam: activeAway } = stateRef.current;
@@ -184,122 +298,266 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
         currentMinute: activeMin,
         events: activeEvents,
         homeTeam: activeHome,
+        players: activePlayers,
       } = stateRef.current;
 
       if (!activePlaying) {
-        activeSequenceRef.current = "NONE";
-        sequenceFrameRef.current = 0;
-        lastProcessedMinRef.current = -1;
+        ballX = 50;
+        ballY = 50;
+        ballState = "HELD";
+        ballHolderId = 7;
+        passTargetId = 7;
+        buildupState = "MIDFIELD";
+        activeEventType = "NONE";
+        activeEventMin = -1;
+        delayTimer = 0;
         particlesRef.current = [];
         return;
-      }
-
-      if (activeMin !== lastProcessedMinRef.current) {
-        lastProcessedMinRef.current = activeMin;
-        const matchingEvent = activeEvents.find((evt) => evt.minute === activeMin);
-        if (matchingEvent) {
-          if (matchingEvent.type === "GOAL") {
-            activeSequenceRef.current = "GOAL";
-            sequenceFrameRef.current = 0;
-            sequenceTeamRef.current = matchingEvent.teamId === activeHome.id;
-          } else if (matchingEvent.type === "MISS") {
-            activeSequenceRef.current = "MISS";
-            sequenceFrameRef.current = 0;
-            sequenceTeamRef.current = matchingEvent.teamId === activeHome.id;
-          }
-        }
-      }
-
-      const isHomeSequence = sequenceTeamRef.current;
-
-      if (activeSequenceRef.current !== "NONE") {
-        sequenceFrameRef.current += 1;
-        const currentFrame = sequenceFrameRef.current;
-
-        if (currentFrame < 45) {
-          const startX = 50;
-          const startY = 50;
-          const midX = isHomeSequence ? 70 : 30;
-          const midY = 35 + (activeMin % 3) * 10;
-          const progress = currentFrame / 45;
-          localBallX = startX + (midX - startX) * progress;
-          localBallY = startY + (midY - startY) * progress;
-        } else if (currentFrame < 80) {
-          const midX = isHomeSequence ? 70 : 30;
-          const midY = 35 + (activeMin % 3) * 10;
-          const shootX = isHomeSequence ? 88 : 12;
-          const shootY = 40 + (activeMin % 2) * 20;
-          const progress = (currentFrame - 45) / 35;
-          localBallX = midX + (shootX - midX) * progress;
-          localBallY = midY + (shootY - midY) * progress;
-        } else if (currentFrame < 110) {
-          const shootX = isHomeSequence ? 88 : 12;
-          const shootY = 40 + (activeMin % 2) * 20;
-          const goalX = isHomeSequence ? 98.5 : 1.5;
-          const goalY = activeSequenceRef.current === "GOAL" ? 47 + (activeMin % 2) * 6 : 32 + (activeMin % 2) * 36;
-          const progress = (currentFrame - 80) / 30;
-          localBallX = shootX + (goalX - shootX) * progress;
-          localBallY = shootY + (goalY - shootY) * progress;
-
-          if (currentFrame === 109 && activeSequenceRef.current === "GOAL") {
-            spawnGoalExplosion(goalX, goalY);
-          }
-        } else if (currentFrame < 150) {
-          if (activeSequenceRef.current === "GOAL") {
-            localBallX = isHomeSequence ? 99 : 1;
-          } else {
-            const bounceTargetX = isHomeSequence ? 90 : 10;
-            const bounceTargetY = 50;
-            const progress = (currentFrame - 110) / 40;
-            localBallX = (isHomeSequence ? 98.5 : 1.5) + (bounceTargetX - (isHomeSequence ? 98.5 : 1.5)) * progress;
-            localBallY = (32 + (activeMin % 2) * 36) + (bounceTargetY - (32 + (activeMin % 2) * 36)) * progress;
-          }
-        } else {
-          activeSequenceRef.current = "NONE";
-          sequenceFrameRef.current = 0;
-        }
-      } else {
-        const passFrequency = 50;
-        const passPhase = Math.floor(Date.now() / (passFrequency * 40)) % 4;
-        const isHomePossession = (Math.floor(Date.now() / 8000) % 2) === 0;
-
-        if (isHomePossession) {
-          if (passPhase === 0) {
-            localBallX = 20 + Math.sin(Date.now() * 0.001) * 2;
-            localBallY = 40 + Math.cos(Date.now() * 0.001) * 5;
-          } else if (passPhase === 1) {
-            localBallX = 40 + Math.cos(Date.now() * 0.0015) * 3;
-            localBallY = 30 + Math.sin(Date.now() * 0.0015) * 6;
-          } else if (passPhase === 2) {
-            localBallX = 35 + Math.sin(Date.now() * 0.002) * 4;
-            localBallY = 50 + Math.cos(Date.now() * 0.002) * 3;
-          } else {
-            localBallX = 60 + Math.cos(Date.now() * 0.001) * 5;
-            localBallY = 50 + Math.sin(Date.now() * 0.001) * 10;
-          }
-        } else {
-          if (passPhase === 0) {
-            localBallX = 80 + Math.cos(Date.now() * 0.001) * 2;
-            localBallY = 60 + Math.sin(Date.now() * 0.001) * 5;
-          } else if (passPhase === 1) {
-            localBallX = 60 + Math.sin(Date.now() * 0.0015) * 3;
-            localBallY = 70 + Math.cos(Date.now() * 0.0015) * 6;
-          } else if (passPhase === 2) {
-            localBallX = 65 + Math.cos(Date.now() * 0.002) * 4;
-            localBallY = 50 + Math.sin(Date.now() * 0.002) * 3;
-          } else {
-            localBallX = 40 + Math.sin(Date.now() * 0.001) * 5;
-            localBallY = 50 + Math.cos(Date.now() * 0.001) * 10;
-          }
-        }
       }
 
       particlesRef.current.forEach((part) => {
         part.posX += part.velX;
         part.posY += part.velY;
-        part.life -= 0.02;
+        part.life -= 0.025;
       });
       particlesRef.current = particlesRef.current.filter((part) => part.life > 0);
+
+      if (activeMin !== activeEventMin) {
+        const matchingEvent = activeEvents.find((evt) => evt.minute === activeMin);
+        if (matchingEvent && (matchingEvent.type === "GOAL" || matchingEvent.type === "MISS")) {
+          activeEventMin = activeMin;
+          activeEventType = matchingEvent.type as "GOAL" | "MISS";
+          activeEventTeam = matchingEvent.teamId === activeHome.id ? "HOME" : "AWAY";
+          buildupState = "MIDFIELD";
+
+          const attackingMFs = activePlayers.filter(
+            (p) => p.isHome === (activeEventTeam === "HOME") && p.label === "MF"
+          );
+          if (attackingMFs.length > 0) {
+            const receiver = attackingMFs[Math.floor(Math.random() * attackingMFs.length)];
+            startPass(receiver.id, ballX, ballY);
+          }
+        }
+      }
+
+      activePlayers.forEach((p) => {
+        let targetX = p.baseX;
+        let targetY = p.baseY;
+
+        if (p.label === "GK") {
+          targetY = ballY;
+          if (targetY < 42) targetY = 42;
+          if (targetY > 58) targetY = 58;
+        } else {
+          const dx = ballX - p.baseX;
+          const dy = ballY - p.baseY;
+          targetX += dx * 0.15;
+          targetY += dy * 0.1;
+
+          if (p.isHome) {
+            if (targetX > 85) targetX = 85;
+            if (targetX < 5) targetX = 5;
+          } else {
+            if (targetX < 15) targetX = 15;
+            if (targetX > 95) targetX = 95;
+          }
+        }
+
+        if (ballState === "HELD" && p.id === ballHolderId) {
+          const goalDirection = p.isHome ? 1 : -1;
+          targetX += goalDirection * 4;
+        }
+
+        p.posX += (targetX - p.posX) * 0.08;
+        p.posY += (targetY - p.posY) * 0.08;
+      });
+
+      const holder = activePlayers.find((p) => p.id === ballHolderId);
+      const targetPasser = activePlayers.find((p) => p.id === passTargetId);
+
+      if (ballState === "HELD" && holder) {
+        ballX = holder.posX;
+        ballY = holder.posY;
+
+        if (activeEventType !== "NONE") {
+          if (buildupState === "MIDFIELD") {
+            const teamFWs = activePlayers.filter(
+              (p) => p.isHome === (activeEventTeam === "HOME") && p.label === "FW"
+            );
+            if (teamFWs.length > 0) {
+              const receiver = teamFWs[Math.floor(Math.random() * teamFWs.length)];
+              startPass(receiver.id, ballX, ballY);
+              buildupState = "ATTACK";
+            }
+          } else if (buildupState === "ATTACK") {
+            ballState = "SHOOTING";
+            shootProgress = 0;
+            scorerId = ballHolderId;
+
+            const isHomeAttacking = activeEventTeam === "HOME";
+            shootTargetX = isHomeAttacking ? 98.5 : 1.5;
+
+            if (activeEventType === "GOAL") {
+              shootTargetY = 44 + Math.random() * 12;
+              goalScored = true;
+              saveMade = false;
+            } else {
+              if (Math.random() < 0.5) {
+                shootTargetY = 46 + Math.random() * 8;
+                saveMade = true;
+                goalScored = false;
+              } else {
+                shootTargetY = Math.random() < 0.5 ? 32 + Math.random() * 6 : 62 + Math.random() * 6;
+                goalScored = false;
+                saveMade = false;
+              }
+            }
+
+            const dx = shootTargetX - holder.posX;
+            const dy = shootTargetY - holder.posY;
+            const dist = Math.hypot(dx, dy);
+            const frames = Math.min(30, Math.max(10, dist / 2.2));
+            shootSpeed = 1 / frames;
+
+            buildupState = "SHOOT";
+          }
+        } else {
+          delayTimer++;
+          if (delayTimer > 90) {
+            delayTimer = 0;
+            const isIntercepted = Math.random() < 0.25;
+
+            if (isIntercepted) {
+              const opponents = activePlayers.filter((p) => p.isHome !== holder.isHome);
+              let closestOpponent = opponents[0];
+              let minDist = 99999;
+              opponents.forEach((opp) => {
+                const dx = opp.posX - ballX;
+                const dy = opp.posY - ballY;
+                const dist = dx * dx + dy * dy;
+                if (dist < minDist) {
+                  minDist = dist;
+                  closestOpponent = opp;
+                }
+              });
+
+              startPass(closestOpponent.id, ballX, ballY);
+            } else {
+              const teammates = activePlayers.filter((p) => p.isHome === holder.isHome && p.id !== holder.id);
+              if (teammates.length > 0) {
+                const receiver = teammates[Math.floor(Math.random() * teammates.length)];
+                startPass(receiver.id, ballX, ballY);
+              }
+            }
+          }
+        }
+      } else if (ballState === "PASSING" && targetPasser) {
+        passProgress += passSpeed;
+        if (passProgress >= 1) {
+          passProgress = 1;
+          ballState = "HELD";
+          ballHolderId = passTargetId;
+          delayTimer = 0;
+        }
+        ballX = passStartX + (targetPasser.posX - passStartX) * passProgress;
+        ballY = passStartY + (targetPasser.posY - passStartY) * passProgress;
+      } else if (ballState === "SHOOTING") {
+        shootProgress += shootSpeed;
+
+        const defendingGK = activePlayers.find(
+          (p) => p.label === "GK" && p.isHome !== (activeEventTeam === "HOME")
+        );
+        if (defendingGK) {
+          if (saveMade) {
+            defendingGK.posY += (shootTargetY - defendingGK.posY) * 0.15;
+          } else {
+            const diveOffset = goalScored ? (shootTargetY > 50 ? -6 : 6) : 0;
+            defendingGK.posY += (shootTargetY + diveOffset - defendingGK.posY) * 0.08;
+          }
+        }
+
+        if (shootProgress >= 1) {
+          shootProgress = 1;
+          if (goalScored) {
+            ballState = "GOAL_CELEBRATION";
+            spawnGoalExplosion(shootTargetX, shootTargetY);
+            delayTimer = 0;
+          } else if (saveMade) {
+            ballState = "SAVED";
+            delayTimer = 0;
+          } else {
+            activeEventType = "NONE";
+            const defenders = activePlayers.filter(
+              (p) => p.isHome !== (activeEventTeam === "HOME") && p.label === "DF"
+            );
+            if (defenders.length > 0) {
+              const receiver = defenders[Math.floor(Math.random() * defenders.length)];
+              startPass(receiver.id, ballX, ballY);
+            }
+          }
+        }
+
+        ballX = holder!.posX + (shootTargetX - holder!.posX) * shootProgress;
+        ballY = holder!.posY + (shootTargetY - holder!.posY) * shootProgress;
+      } else if (ballState === "SAVED") {
+        delayTimer++;
+        const goalDirection = activeEventTeam === "HOME" ? 1 : -1;
+        ballX = (activeEventTeam === "HOME" ? 95 : 5) - goalDirection * 5;
+        ballY += Math.sin(delayTimer * 0.1) * 1.5;
+
+        if (delayTimer > 45) {
+          activeEventType = "NONE";
+          const defenders = activePlayers.filter(
+            (p) => p.isHome !== (activeEventTeam === "HOME") && p.label === "DF"
+          );
+          if (defenders.length > 0) {
+            const receiver = defenders[Math.floor(Math.random() * defenders.length)];
+            startPass(receiver.id, ballX, ballY);
+          }
+        }
+      } else if (ballState === "GOAL_CELEBRATION") {
+        delayTimer++;
+        ballX = activeEventTeam === "HOME" ? 99 : 1;
+        ballY = shootTargetY + Math.sin(delayTimer * 0.5) * 1.5;
+
+        activePlayers.forEach((p) => {
+          if (p.isHome === (activeEventTeam === "HOME")) {
+            if (p.id === scorerId || p.label === "FW" || p.label === "MF") {
+              const baseCelebrateX = activeEventTeam === "HOME" ? 90 : 10;
+              const baseCelebrateY = 15;
+              const offsetX = ((p.id * 7) % 13) - 6;
+              const offsetY = ((p.id * 11) % 11) - 5;
+              const targetX = baseCelebrateX + offsetX;
+              const targetY = baseCelebrateY + offsetY;
+              movePlayerTowards(p, targetX, targetY, 0.4);
+            } else if (p.label === "DF") {
+              const goalDirection = activeEventTeam === "HOME" ? 1 : -1;
+              const targetX = p.baseX + goalDirection * 8;
+              const targetY = p.baseY;
+              movePlayerTowards(p, targetX, targetY, 0.15);
+            } else if (p.label === "GK") {
+              const targetX = p.baseX;
+              const targetY = p.baseY + Math.sin(delayTimer * 0.1) * 2;
+              movePlayerTowards(p, targetX, targetY, 0.08);
+            }
+          } else {
+            movePlayerTowards(p, p.baseX, p.baseY, 0.1);
+          }
+        });
+
+        if (delayTimer > 120) {
+          activeEventType = "NONE";
+          ballX = 50;
+          ballY = 50;
+          const defenders = activePlayers.filter(
+            (p) => p.isHome !== (activeEventTeam === "HOME") && p.label === "MF"
+          );
+          if (defenders.length > 0) {
+            const receiver = defenders[Math.floor(Math.random() * defenders.length)];
+            startPass(receiver.id, 50, 50);
+          }
+        }
+      }
     };
 
     const drawField = (canvasW: number, canvasH: number) => {
@@ -344,7 +602,6 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
 
     const drawPlayers = (canvasW: number, canvasH: number) => {
       const {
-        isPlaying: activePlaying,
         homeTeam: activeHome,
         awayTeam: activeAway,
         players: activePlayers,
@@ -353,46 +610,12 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
       const radius = 9;
 
       activePlayers.forEach((p) => {
-        let pX = (p.baseX / 100) * canvasW;
-        let pY = (p.baseY / 100) * canvasH;
-
-        if (activePlaying && activeSequenceRef.current === "NONE") {
-          const noiseX = Math.sin(Date.now() * 0.002 + p.id) * 6;
-          const noiseY = Math.cos(Date.now() * 0.002 + p.id) * 4;
-
-          const distToBallX = (localBallX / 100) * canvasW - pX;
-          const distToBallY = (localBallY / 100) * canvasH - pY;
-          const dist = Math.sqrt(distToBallX * distToBallX + distToBallY * distToBallY);
-
-          if (dist < 100) {
-            const pull = (100 - dist) / 100;
-            pX += distToBallX * pull * 0.25;
-            pY += distToBallY * pull * 0.25;
-          }
-
-          pX += noiseX;
-          pY += noiseY;
-        } else if (activePlaying && activeSequenceRef.current !== "NONE") {
-          const isHomeSeq = sequenceTeamRef.current;
-          const progress = sequenceFrameRef.current / 150;
-
-          if (p.isHome === isHomeSeq && p.label === "FW") {
-            const targetX = (p.baseX + 15) / 100 * canvasW;
-            pX += (targetX - pX) * Math.min(progress * 1.5, 1.0);
-          } else if (p.isHome !== isHomeSeq && p.label === "DF") {
-            const targetX = (p.baseX - (isHomeSeq ? 5 : -5)) / 100 * canvasW;
-            pX += (targetX - pX) * Math.min(progress * 1.2, 1.0);
-          }
-
-          if (p.label === "GK") {
-            const targetBallY = (localBallY / 100) * canvasH;
-            pY += (targetBallY - pY) * 0.2;
-          }
-        }
-
         const teamId = p.isHome ? activeHome.id : activeAway.id;
         const color = getTeamColor(teamId);
         const borderColor = getTeamBorderColor(teamId);
+
+        const pX = (p.posX / 100) * canvasW;
+        const pY = (p.posY / 100) * canvasH;
 
         ctx.beginPath();
         ctx.arc(pX, pY, radius, 0, Math.PI * 2);
@@ -420,8 +643,8 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
     };
 
     const drawBall = (canvasW: number, canvasH: number) => {
-      const bX = (localBallX / 100) * canvasW;
-      const bY = (localBallY / 100) * canvasH;
+      const bX = (ballX / 100) * canvasW;
+      const bY = (ballY / 100) * canvasH;
 
       ctx.beginPath();
       ctx.arc(bX, bY, 4.5, 0, Math.PI * 2);

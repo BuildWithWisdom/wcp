@@ -127,7 +127,7 @@ Analyze their form, squad quality, tactics, and key players to return modifiers 
         tacticalAnalysis: parsed.tacticalAnalysis || "Strategic battle expected.",
       };
     } catch (error) {
-      console.warn("Gemini service error: using fallback.", error);
+      console.warn("Gemini service offline: using standard historical fallbacks.");
       return this.getFallbackModifiers(error instanceof Error ? error.message : "Unknown error");
     }
   }
@@ -138,7 +138,7 @@ Analyze their form, squad quality, tactics, and key players to return modifiers 
       homeDefenseModifier: 1.0,
       awayAttackModifier: 1.0,
       awayDefenseModifier: 1.0,
-      tacticalAnalysis: `Offline fallback (${reason}). Oracle predicted using standard historical team metrics.`,
+      tacticalAnalysis: "Oracle predicted using standard historical team metrics.",
     };
   }
 }

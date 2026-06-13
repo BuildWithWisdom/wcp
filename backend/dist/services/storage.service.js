@@ -6,14 +6,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StorageService = void 0;
 const promises_1 = __importDefault(require("fs/promises"));
 const path_1 = __importDefault(require("path"));
-const TEAMS_PATH = path_1.default.join(__dirname, "../../data/teams.json");
-const STATE_PATH = path_1.default.join(__dirname, "../../data/tournament_state.json");
+const fs_1 = require("fs");
+const DATA_DIR = path_1.default.join(__dirname, "../../data");
+const PERSISTENT_DIR = process.env.PERSISTENT_DATA_DIR || DATA_DIR;
+const TEAMS_PATH = path_1.default.join(PERSISTENT_DIR, "teams.json");
+const STATE_PATH = path_1.default.join(PERSISTENT_DIR, "tournament_state.json");
+const SEED_TEAMS_PATH = path_1.default.join(DATA_DIR, "teams.json");
 class StorageService {
     /**
      * Load the team database.
      */
     async loadTeams() {
         try {
+            // Auto-seed teams.json to persistent volume if missing
+            if (!(0, fs_1.existsSync)(TEAMS_PATH) && (0, fs_1.existsSync)(SEED_TEAMS_PATH)) {
+                await promises_1.default.mkdir(PERSISTENT_DIR, { recursive: true });
+                const seedData = await promises_1.default.readFile(SEED_TEAMS_PATH, "utf-8");
+                await promises_1.default.writeFile(TEAMS_PATH, seedData, "utf-8");
+            }
             const data = await promises_1.default.readFile(TEAMS_PATH, "utf-8");
             return JSON.parse(data);
         }

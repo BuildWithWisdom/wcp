@@ -16,6 +16,15 @@ export default function App() {
   const [customTeams, setCustomTeams] = useState<Record<string, Team> | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const [userPredictions, setUserPredictions] = useState<Record<string, Match>>(() => {
+    try {
+      const saved = localStorage.getItem("wco_user_predictions");
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  });
+
   const [activeMatchId, setActiveMatchId] = useState<string | null>(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [geminiKey, setGeminiKey] = useState(() => {
@@ -44,38 +53,39 @@ export default function App() {
     loadInitialData();
   }, []);
 
-  // Retrieve current active match object
-  const getActiveMatch = (): Match | null => {
-    if (!tournamentState || !activeMatchId) return null;
-    
-    // Check in groups first
-    for (const group of Object.values(tournamentState.groups)) {
-      const match = group.matches.find((m) => m.id === activeMatchId);
-      if (match) return match;
-    }
-    
-    // Check in bracket
-    for (const round of Object.values(tournamentState.bracket)) {
-      const match = round.matches.find((m) => m.id === activeMatchId);
-      if (match) return match;
-    }
-    
-    return null;
-  };
-
   // Get active matches list for current tournament stage
   const getMatchesForCurrentStage = (): Match[] => {
     if (!tournamentState) return [];
+
+    const mergePredictions = (m: Match): Match => {
+      const pred = userPredictions[m.id];
+      if (pred) {
+        return {
+          ...m,
+          ...pred,
+          status: "COMPLETED",
+        };
+      }
+      return m;
+    };
+
     if (tournamentState.currentStage === "GROUPS") {
       const allGroupMatches: Match[] = [];
       Object.values(tournamentState.groups).forEach((group) => {
-        allGroupMatches.push(...group.matches);
+        allGroupMatches.push(...group.matches.map(mergePredictions));
       });
       return allGroupMatches.sort((a, b) => a.day - b.day);
     } else {
       const bracketMatches = tournamentState.bracket[tournamentState.currentStage]?.matches || [];
-      return [...bracketMatches].sort((a, b) => a.day - b.day);
+      return bracketMatches.map(mergePredictions).sort((a, b) => a.day - b.day);
     }
+  };
+
+  // Retrieve current active match object
+  const getActiveMatch = (): Match | null => {
+    if (!tournamentState || !activeMatchId) return null;
+    const matches = getMatchesForCurrentStage();
+    return matches.find((m) => m.id === activeMatchId) || null;
   };
 
   // 2. Action Handlers
@@ -125,6 +135,8 @@ export default function App() {
       try {
         const reset = await api.resetTournament();
         setTournamentState(reset);
+        setUserPredictions({});
+        localStorage.removeItem("wco_user_predictions");
         setActiveMatchId(null);
         setActiveMobileView("home");
       } catch (err: any) {
@@ -137,17 +149,31 @@ export default function App() {
    * Logs a single match simulation outcome and handles bracket progression.
    */
   const handleSimulateSingleMatch = (
-    _matchId: string,
-    _simulatedMatch: Match,
+    matchId: string,
+    simulatedMatch: Match,
     updatedState: TournamentState
   ) => {
+    setUserPredictions((prev) => {
+      const next = { ...prev, [matchId]: { ...simulatedMatch, simulatedByUser: true } };
+      localStorage.setItem("wco_user_predictions", JSON.stringify(next));
+      return next;
+    });
     setTournamentState(updatedState);
   };
 
   const handleSimulateDay = async () => {
     try {
-      const updatedState = await api.simulateDay();
-      setTournamentState(updatedState);
+      const data = await api.simulateDay();
+      const { matches, state } = data;
+      setUserPredictions((prev) => {
+        const next = { ...prev };
+        matches.forEach((m) => {
+          next[m.id] = { ...m, simulatedByUser: true };
+        });
+        localStorage.setItem("wco_user_predictions", JSON.stringify(next));
+        return next;
+      });
+      setTournamentState(state);
       setActiveMatchId(null);
     } catch (err: any) {
       alert(err.message || "Failed to simulate matches for the day.");

@@ -79,8 +79,14 @@ export interface TournamentState {
   championId: string | null;
 }
 
-const TEAMS_PATH = path.join(__dirname, "../../data/teams.json");
-const STATE_PATH = path.join(__dirname, "../../data/tournament_state.json");
+import { existsSync } from "fs";
+
+const DATA_DIR = path.join(__dirname, "../../data");
+const PERSISTENT_DIR = process.env.PERSISTENT_DATA_DIR || DATA_DIR;
+
+const TEAMS_PATH = path.join(PERSISTENT_DIR, "teams.json");
+const STATE_PATH = path.join(PERSISTENT_DIR, "tournament_state.json");
+const SEED_TEAMS_PATH = path.join(DATA_DIR, "teams.json");
 
 export class StorageService {
   /**
@@ -88,6 +94,12 @@ export class StorageService {
    */
   async loadTeams(): Promise<Record<string, Team>> {
     try {
+      // Auto-seed teams.json to persistent volume if missing
+      if (!existsSync(TEAMS_PATH) && existsSync(SEED_TEAMS_PATH)) {
+        await fs.mkdir(PERSISTENT_DIR, { recursive: true });
+        const seedData = await fs.readFile(SEED_TEAMS_PATH, "utf-8");
+        await fs.writeFile(TEAMS_PATH, seedData, "utf-8");
+      }
       const data = await fs.readFile(TEAMS_PATH, "utf-8");
       return JSON.parse(data);
     } catch (error) {

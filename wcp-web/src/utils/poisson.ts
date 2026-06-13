@@ -32,6 +32,7 @@ export interface Match {
   awayAttackModifier?: number;
   awayDefenseModifier?: number;
   aiTacticalAnalysis?: string | null;
+  simulatedByUser?: boolean;
 }
 
 export interface SimulationResult {

@@ -2,7 +2,7 @@ import type { Team } from "./teams";
 import type { Match } from "./poisson";
 import type { TournamentState } from "./state";
 
-const API_BASE = "http://localhost:3001/api";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
 
 async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${API_BASE}${endpoint}`;
@@ -46,7 +46,7 @@ export const api = {
       body: JSON.stringify({ matchId }),
     }),
 
-  simulateDay: () => request<TournamentState>("/tournament/simulate-day", { method: "POST" }),
+  simulateDay: () => request<{ matches: Match[]; state: TournamentState }>("/tournament/simulate-day", { method: "POST" }),
   
   fastForwardDay: () => request<TournamentState>("/tournament/fast-forward", { method: "POST" }),
 };
