@@ -33,14 +33,32 @@ class StorageService {
      */
     async loadTeams() {
         try {
-            // Auto-seed teams.json to persistent volume if missing
-            if (!(0, fs_1.existsSync)(TEAMS_PATH) && (0, fs_1.existsSync)(SEED_TEAMS_PATH)) {
+            let data = null;
+            let parsed = null;
+            // 1. Try to read and parse existing persistent file if it exists
+            if ((0, fs_1.existsSync)(TEAMS_PATH)) {
+                try {
+                    data = await promises_1.default.readFile(TEAMS_PATH, "utf-8");
+                    if (data && data.trim().length > 0) {
+                        parsed = JSON.parse(data);
+                    }
+                }
+                catch (readErr) {
+                    console.warn("Warning: Existing teams.json in persistent storage is empty or corrupt. Overwriting with seed defaults.", readErr);
+                }
+            }
+            // 2. If file doesn't exist, is empty, or is corrupted, seed it from built-in file
+            if (!parsed && (0, fs_1.existsSync)(SEED_TEAMS_PATH)) {
                 await promises_1.default.mkdir(PERSISTENT_DIR, { recursive: true });
                 const seedData = await promises_1.default.readFile(SEED_TEAMS_PATH, "utf-8");
+                parsed = JSON.parse(seedData);
                 await promises_1.default.writeFile(TEAMS_PATH, seedData, "utf-8");
+                console.log("Successfully seeded default team ratings to persistent storage.");
             }
-            const data = await promises_1.default.readFile(TEAMS_PATH, "utf-8");
-            return JSON.parse(data);
+            if (!parsed) {
+                throw new Error("Teams database is empty and no seed data is available.");
+            }
+            return parsed;
         }
         catch (error) {
             console.error("Detailed loadTeams error:", error);

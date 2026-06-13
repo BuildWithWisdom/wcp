@@ -109,14 +109,35 @@ export class StorageService {
    */
   async loadTeams(): Promise<Record<string, Team>> {
     try {
-      // Auto-seed teams.json to persistent volume if missing
-      if (!existsSync(TEAMS_PATH) && existsSync(SEED_TEAMS_PATH)) {
+      let data: string | null = null;
+      let parsed: Record<string, Team> | null = null;
+
+      // 1. Try to read and parse existing persistent file if it exists
+      if (existsSync(TEAMS_PATH)) {
+        try {
+          data = await fs.readFile(TEAMS_PATH, "utf-8");
+          if (data && data.trim().length > 0) {
+            parsed = JSON.parse(data);
+          }
+        } catch (readErr) {
+          console.warn("Warning: Existing teams.json in persistent storage is empty or corrupt. Overwriting with seed defaults.", readErr);
+        }
+      }
+
+      // 2. If file doesn't exist, is empty, or is corrupted, seed it from built-in file
+      if (!parsed && existsSync(SEED_TEAMS_PATH)) {
         await fs.mkdir(PERSISTENT_DIR, { recursive: true });
         const seedData = await fs.readFile(SEED_TEAMS_PATH, "utf-8");
+        parsed = JSON.parse(seedData);
         await fs.writeFile(TEAMS_PATH, seedData, "utf-8");
+        console.log("Successfully seeded default team ratings to persistent storage.");
       }
-      const data = await fs.readFile(TEAMS_PATH, "utf-8");
-      return JSON.parse(data);
+
+      if (!parsed) {
+        throw new Error("Teams database is empty and no seed data is available.");
+      }
+
+      return parsed;
     } catch (error) {
       console.error("Detailed loadTeams error:", error);
       throw new Error("Failed to load teams. Seed file may be missing or corrupt.");
