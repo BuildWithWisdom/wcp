@@ -50,12 +50,14 @@ export const Header: React.FC<HeaderProps> = ({ currentStage, currentDay, onRese
       <div className="logo-container">
         <Trophy size={26} color="#fbbf24" style={{ filter: "drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))" }} />
         <div className="logo-text">
-          World Cup <span>Oracle</span>
+          <span className="logo-text-desktop">World Cup <span>Oracle</span></span>
+          <span className="logo-text-mobile">WCP</span>
         </div>
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
         <span
+          className="header-stage-badge"
           style={{
             background: "rgba(56, 189, 248, 0.08)",
             border: "1px solid rgba(56, 189, 248, 0.25)",

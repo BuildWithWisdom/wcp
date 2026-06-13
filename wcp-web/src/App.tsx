@@ -7,7 +7,7 @@ import { SettingsModal } from "./components/SettingsModal";
 import type { Team } from "./utils/teams";
 import type { Match } from "./utils/poisson";
 import type { TournamentState } from "./utils/state";
-import { Play, BarChart, Sparkles } from "lucide-react";
+import { Play, BarChart, Tv } from "lucide-react";
 import { api } from "./utils/api";
 
 export default function App() {
@@ -92,6 +92,7 @@ export default function App() {
   const handleSelectMatch = (matchId: string) => {
     setActiveMatchId(matchId);
     setActiveMobileView("simulator"); // Slide simulator view on mobile
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleSaveGeminiKey = (key: string) => {
@@ -246,21 +247,30 @@ export default function App() {
       <div className="mobile-tabs">
         <button
           className={`mobile-tab-btn ${activeMobileView === "home" ? "active" : ""}`}
-          onClick={() => setActiveMobileView("home")}
+          onClick={() => {
+            setActiveMobileView("home");
+            window.scrollTo({ top: 0 });
+          }}
         >
           <Play size={18} />
           <span>Matches</span>
         </button>
         <button
           className={`mobile-tab-btn ${activeMobileView === "simulator" ? "active" : ""}`}
-          onClick={() => setActiveMobileView("simulator")}
+          onClick={() => {
+            setActiveMobileView("simulator");
+            window.scrollTo({ top: 0 });
+          }}
         >
-          <Sparkles size={18} />
+          <Tv size={18} />
           <span>Live Sim</span>
         </button>
         <button
           className={`mobile-tab-btn ${activeMobileView === "stats" ? "active" : ""}`}
-          onClick={() => setActiveMobileView("stats")}
+          onClick={() => {
+            setActiveMobileView("stats");
+            window.scrollTo({ top: 0 });
+          }}
         >
           <BarChart size={18} />
           <span>Stats</span>

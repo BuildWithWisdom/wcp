@@ -94,6 +94,14 @@ body {
   text-transform: uppercase;
 }
 
+.logo-text-desktop {
+  display: inline;
+}
+
+.logo-text-mobile {
+  display: none;
+}
+
 .logo-text span {
   display: block;
   font-size: 0.75rem;
@@ -1094,6 +1102,15 @@ body {
   }
   .glass-card {
     padding: 1rem;
+  }
+  .logo-text-desktop {
+    display: none;
+  }
+  .logo-text-mobile {
+    display: inline;
+  }
+  .header-stage-badge {
+    display: none !important;
   }
 }
 
