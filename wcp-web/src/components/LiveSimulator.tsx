@@ -5,6 +5,7 @@ import { getTeamRatings } from "../utils/poisson";
 import type { Team } from "../utils/teams";
 import type { TournamentState } from "../utils/state";
 import { api } from "../utils/api";
+import { PitchCanvas } from "./PitchCanvas";
 
 interface LiveSimulatorProps {
   match: Match | null;
@@ -150,8 +151,8 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
       prevGoalsCountRef.current = 0;
 
       const maxMinute = simulatedMatch.decidedBy === "PENALTIES" ? 125 : simulatedMatch.decidedBy === "EXTRA_TIME" ? 120 : 90;
-      const tickDuration = 5000; // total 5 seconds simulation
-      const intervalMs = 60;     // Ticks every 60ms
+      const tickDuration = 15000;
+      const intervalMs = 60;
       const numTicks = tickDuration / intervalMs;
       const minPerTick = maxMinute / numTicks;
 
@@ -238,41 +239,84 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
       </div>
 
       {/* Scoreboard Widget */}
-      <div className="scoreboard-card">
-        {showGoalFlash && (
-          <div className="goal-flash-overlay">
-            <div className="goal-flash-text">{flashText}<br/><span style={{ fontSize: "1.2rem", fontWeight: "normal", letterSpacing: "1px" }}>{flashTeamName}</span></div>
+      {!isPlaying && !isCalculating && (
+        <div className="scoreboard-card">
+          {showGoalFlash && (
+            <div className="goal-flash-overlay">
+              <div className="goal-flash-text">{flashText}<br/><span style={{ fontSize: "1.2rem", fontWeight: "normal", letterSpacing: "1px" }}>{flashTeamName}</span></div>
+            </div>
+          )}
+
+          {/* Home */}
+          <div className="scoreboard-team">
+            <span className="scoreboard-flag">{home.flag}</span>
+            <span className="scoreboard-name">{home.name}</span>
           </div>
-        )}
 
-        {/* Home */}
-        <div className="scoreboard-team">
-          <span className="scoreboard-flag">{home.flag}</span>
-          <span className="scoreboard-name">{home.name}</span>
+          {/* Live Score */}
+          <div className="scoreboard-score">
+            <span>{liveHomeScore}</span>
+            <span style={{ fontSize: "1.25rem", color: "var(--color-text-muted)" }}>-</span>
+            <span>{liveAwayScore}</span>
+          </div>
+
+          {/* Away */}
+          <div className="scoreboard-team">
+            <span className="scoreboard-flag">{away.flag}</span>
+            <span className="scoreboard-name">{away.name}</span>
+          </div>
+
+          {/* Simulation Badge */}
+          {match.status === "COMPLETED" ? (
+            <span className="scoreboard-sim-badge completed">Prediction Logged</span>
+          ) : (
+            <span className="scoreboard-sim-badge" style={{ background: "none", borderStyle: "dashed" }}>Oracle Idle</span>
+          )}
         </div>
+      )}
 
-        {/* Live Score */}
-        <div className="scoreboard-score">
-          <span>{liveHomeScore}</span>
-          <span style={{ fontSize: "1.25rem", color: "var(--color-text-muted)" }}>-</span>
-          <span>{liveAwayScore}</span>
+      {(isPlaying || isCalculating) && (
+        <div style={{ marginBottom: "1.25rem", width: "100%", position: "relative" }}>
+          {showGoalFlash && (
+            <div className="goal-flash-overlay">
+              <div className="goal-flash-text">{flashText}<br/><span style={{ fontSize: "1.2rem", fontWeight: "normal", letterSpacing: "1px" }}>{flashTeamName}</span></div>
+            </div>
+          )}
+          <PitchCanvas
+            homeTeam={home}
+            awayTeam={away}
+            isPlaying={isPlaying}
+            currentMinute={tickMin}
+            events={simulatedEvents}
+            liveHomeScore={liveHomeScore}
+            liveAwayScore={liveAwayScore}
+          />
+          {isCalculating && (
+            <div style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(10, 17, 30, 0.65)",
+              backdropFilter: "blur(5px)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "12px",
+              color: "#fbbf24",
+              fontFamily: "var(--font-heading)",
+              fontWeight: 600,
+              gap: "0.5rem",
+              zIndex: 10
+            }}>
+              <span style={{ animation: "pulse 1.5s infinite", fontSize: "1.1rem" }}>🔮 Consulting the oracle...</span>
+              <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)" }}>Analyzing team tactics & Poisson distribution multipliers</span>
+            </div>
+          )}
         </div>
-
-        {/* Away */}
-        <div className="scoreboard-team">
-          <span className="scoreboard-flag">{away.flag}</span>
-          <span className="scoreboard-name">{away.name}</span>
-        </div>
-
-        {/* Simulation Badge */}
-        {isPlaying ? (
-          <span className="scoreboard-sim-badge">Live Simulating ((●))</span>
-        ) : match.status === "COMPLETED" ? (
-          <span className="scoreboard-sim-badge completed">Prediction Logged</span>
-        ) : (
-          <span className="scoreboard-sim-badge" style={{ background: "none", borderStyle: "dashed" }}>Oracle Idle</span>
-        )}
-      </div>
+      )}
 
       {/* Time and Probability Tracker */}
       <div className="timeline-slider-container">
