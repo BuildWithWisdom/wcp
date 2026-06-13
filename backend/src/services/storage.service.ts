@@ -103,6 +103,7 @@ export class StorageService {
       const data = await fs.readFile(TEAMS_PATH, "utf-8");
       return JSON.parse(data);
     } catch (error) {
+      console.error("Detailed loadTeams error:", error);
       throw new Error("Failed to load teams. Seed file may be missing or corrupt.");
     }
   }
