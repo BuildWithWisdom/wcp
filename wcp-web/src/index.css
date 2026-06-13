@@ -102,7 +102,7 @@ body {
   display: none;
 }
 
-.logo-text span {
+.logo-text-desktop span {
   display: block;
   font-size: 0.75rem;
   color: var(--color-accent-blue);
