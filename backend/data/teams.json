@@ -1,0 +1,482 @@
+{
+  "mexico": {
+    "id": "mexico",
+    "name": "Mexico",
+    "code": "MEX",
+    "flag": "🇲🇽",
+    "group": "A",
+    "fifaPoints": 1630,
+    "squadValue": 250,
+    "keyPlayers": ["Santiago Giménez", "Edson Álvarez", "Hirving Lozano"]
+  },
+  "south_korea": {
+    "id": "south_korea",
+    "name": "South Korea",
+    "code": "KOR",
+    "flag": "🇰🇷",
+    "group": "A",
+    "fifaPoints": 1560,
+    "squadValue": 180,
+    "keyPlayers": ["Son Heung-min", "Kim Min-jae", "Lee Kang-in"]
+  },
+  "czech_republic": {
+    "id": "czech_republic",
+    "name": "Czech Republic",
+    "code": "CZE",
+    "flag": "🇨🇿",
+    "group": "A",
+    "fifaPoints": 1500,
+    "squadValue": 180,
+    "keyPlayers": ["Patrik Schick", "Tomáš Souček", "Adam Hložek"]
+  },
+  "south_africa": {
+    "id": "south_africa",
+    "name": "South Africa",
+    "code": "RSA",
+    "flag": "🇿🇦",
+    "group": "A",
+    "fifaPoints": 1410,
+    "squadValue": 40,
+    "keyPlayers": ["Percy Tau", "Teboho Mokoena", "Lyle Foster"]
+  },
+  "switzerland": {
+    "id": "switzerland",
+    "name": "Switzerland",
+    "code": "SUI",
+    "flag": "🇨🇭",
+    "group": "B",
+    "fifaPoints": 1620,
+    "squadValue": 280,
+    "keyPlayers": ["Granit Xhaka", "Manuel Akanji", "Breel Embolo"]
+  },
+  "canada": {
+    "id": "canada",
+    "name": "Canada",
+    "code": "CAN",
+    "flag": "🇨🇦",
+    "group": "B",
+    "fifaPoints": 1500,
+    "squadValue": 180,
+    "keyPlayers": ["Alphonso Davies", "Jonathan David", "Cyle Larin"]
+  },
+  "bosnia_herzegovina": {
+    "id": "bosnia_herzegovina",
+    "name": "Bosnia & Herzegovina",
+    "code": "BIH",
+    "flag": "🇧🇦",
+    "group": "B",
+    "fifaPoints": 1380,
+    "squadValue": 100,
+    "keyPlayers": ["Edin Džeko", "Ermedin Demirović", "Amar Dedić"]
+  },
+  "qatar": {
+    "id": "qatar",
+    "name": "Qatar",
+    "code": "QAT",
+    "flag": "🇶🇦",
+    "group": "B",
+    "fifaPoints": 1350,
+    "squadValue": 20,
+    "keyPlayers": ["Akram Afif", "Almoez Ali", "Hassan Al-Haydos"]
+  },
+  "brazil": {
+    "id": "brazil",
+    "name": "Brazil",
+    "code": "BRA",
+    "flag": "🇧🇷",
+    "group": "C",
+    "fifaPoints": 1785,
+    "squadValue": 1000,
+    "keyPlayers": ["Vinícius Júnior", "Rodrygo", "Bruno Guimarães"]
+  },
+  "morocco": {
+    "id": "morocco",
+    "name": "Morocco",
+    "code": "MAR",
+    "flag": "🇲🇦",
+    "group": "C",
+    "fifaPoints": 1665,
+    "squadValue": 350,
+    "keyPlayers": ["Achraf Hakimi", "Yassine Bounou", "Sofyan Amrabat"]
+  },
+  "scotland": {
+    "id": "scotland",
+    "name": "Scotland",
+    "code": "SCO",
+    "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+    "group": "C",
+    "fifaPoints": 1500,
+    "squadValue": 200,
+    "keyPlayers": ["Scott McTominay", "Andy Robertson", "John McGinn"]
+  },
+  "haiti": {
+    "id": "haiti",
+    "name": "Haiti",
+    "code": "HAI",
+    "flag": "🇭🇹",
+    "group": "C",
+    "fifaPoints": 1260,
+    "squadValue": 15,
+    "keyPlayers": ["Duckens Nazon", "Frantzdy Pierrot", "Louicius Don Deedson"]
+  },
+  "usa": {
+    "id": "usa",
+    "name": "USA",
+    "code": "USA",
+    "flag": "🇺🇸",
+    "group": "D",
+    "fifaPoints": 1650,
+    "squadValue": 350,
+    "keyPlayers": ["Christian Pulisic", "Weston McKennie", "Folarin Balogun"]
+  },
+  "turkey": {
+    "id": "turkey",
+    "name": "Turkey",
+    "code": "TUR",
+    "flag": "🇹🇷",
+    "group": "D",
+    "fifaPoints": 1500,
+    "squadValue": 350,
+    "keyPlayers": ["Arda Güler", "Hakan Çalhanoğlu", "Kenan Yıldız"]
+  },
+  "paraguay": {
+    "id": "paraguay",
+    "name": "Paraguay",
+    "code": "PAR",
+    "flag": "🇵🇾",
+    "group": "D",
+    "fifaPoints": 1430,
+    "squadValue": 120,
+    "keyPlayers": ["Miguel Almirón", "Julio Enciso", "Antonio Sanabria"]
+  },
+  "australia": {
+    "id": "australia",
+    "name": "Australia",
+    "code": "AUS",
+    "flag": "🇦🇺",
+    "group": "D",
+    "fifaPoints": 1560,
+    "squadValue": 50,
+    "keyPlayers": ["Mathew Ryan", "Jackson Irvine", "Harry Souttar"]
+  },
+  "germany": {
+    "id": "germany",
+    "name": "Germany",
+    "code": "GER",
+    "flag": "🇩🇪",
+    "group": "E",
+    "fifaPoints": 1650,
+    "squadValue": 800,
+    "keyPlayers": ["Jamal Musiala", "Florian Wirtz", "Kai Havertz"]
+  },
+  "ecuador": {
+    "id": "ecuador",
+    "name": "Ecuador",
+    "code": "ECU",
+    "flag": "🇪🇨",
+    "group": "E",
+    "fifaPoints": 1515,
+    "squadValue": 220,
+    "keyPlayers": ["Moisés Caicedo", "Piero Hincapié", "Enner Valencia"]
+  },
+  "ivory_coast": {
+    "id": "ivory_coast",
+    "name": "Ivory Coast",
+    "code": "CIV",
+    "flag": "🇨🇮",
+    "group": "E",
+    "fifaPoints": 1490,
+    "squadValue": 300,
+    "keyPlayers": ["Sébastien Haller", "Franck Kessié", "Simon Adingra"]
+  },
+  "curacao": {
+    "id": "curacao",
+    "name": "Curaçao",
+    "code": "CUW",
+    "flag": "🇨🇼",
+    "group": "E",
+    "fifaPoints": 1200,
+    "squadValue": 10,
+    "keyPlayers": ["Juninho Bacuna", "Kenji Gorré", "Leandro Bacuna"]
+  },
+  "netherlands": {
+    "id": "netherlands",
+    "name": "Netherlands",
+    "code": "NED",
+    "flag": "🇳🇱",
+    "group": "F",
+    "fifaPoints": 1740,
+    "squadValue": 750,
+    "keyPlayers": ["Cody Gakpo", "Virgil van Dijk", "Frenkie de Jong"]
+  },
+  "sweden": {
+    "id": "sweden",
+    "name": "Sweden",
+    "code": "SWE",
+    "flag": "🇸🇪",
+    "group": "F",
+    "fifaPoints": 1530,
+    "squadValue": 250,
+    "keyPlayers": ["Alexander Isak", "Dejan Kulusevski", "Viktor Gyökeres"]
+  },
+  "japan": {
+    "id": "japan",
+    "name": "Japan",
+    "code": "JPN",
+    "flag": "🇯🇵",
+    "group": "F",
+    "fifaPoints": 1625,
+    "squadValue": 300,
+    "keyPlayers": ["Kaoru Mitoma", "Takefusa Kubo", "Wataru Endo"]
+  },
+  "tunisia": {
+    "id": "tunisia",
+    "name": "Tunisia",
+    "code": "TUN",
+    "flag": "🇹🇳",
+    "group": "F",
+    "fifaPoints": 1430,
+    "squadValue": 50,
+    "keyPlayers": ["Youssef Msakni", "Ellyes Skhiri", "Hannibal Mejbri"]
+  },
+  "belgium": {
+    "id": "belgium",
+    "name": "Belgium",
+    "code": "BEL",
+    "flag": "🇧🇪",
+    "group": "G",
+    "fifaPoints": 1790,
+    "squadValue": 600,
+    "keyPlayers": ["Kevin De Bruyne", "Romelu Lukaku", "Jeremy Doku"]
+  },
+  "egypt": {
+    "id": "egypt",
+    "name": "Egypt",
+    "code": "EGY",
+    "flag": "🇪🇬",
+    "group": "G",
+    "fifaPoints": 1500,
+    "squadValue": 150,
+    "keyPlayers": ["Mohamed Salah", "Omar Marmoush", "Trézéguet"]
+  },
+  "iran": {
+    "id": "iran",
+    "name": "Iran",
+    "code": "IRN",
+    "flag": "🇮🇷",
+    "group": "G",
+    "fifaPoints": 1610,
+    "squadValue": 50,
+    "keyPlayers": ["Mehdi Taremi", "Sardar Azmoun", "Alireza Jahanbakhsh"]
+  },
+  "new_zealand": {
+    "id": "new_zealand",
+    "name": "New Zealand",
+    "code": "NZL",
+    "flag": "🇳🇿",
+    "group": "G",
+    "fifaPoints": 1200,
+    "squadValue": 25,
+    "keyPlayers": ["Chris Wood", "Liberato Cacace", "Sarpreet Singh"]
+  },
+  "spain": {
+    "id": "spain",
+    "name": "Spain",
+    "code": "ESP",
+    "flag": "🇪🇸",
+    "group": "H",
+    "fifaPoints": 1730,
+    "squadValue": 950,
+    "keyPlayers": ["Lamine Yamal", "Rodri", "Pedri"]
+  },
+  "uruguay": {
+    "id": "uruguay",
+    "name": "Uruguay",
+    "code": "URU",
+    "flag": "🇺🇾",
+    "group": "H",
+    "fifaPoints": 1660,
+    "squadValue": 500,
+    "keyPlayers": ["Federico Valverde", "Darwin Núñez", "Ronald Araújo"]
+  },
+  "saudi_arabia": {
+    "id": "saudi_arabia",
+    "name": "Saudi Arabia",
+    "code": "KSA",
+    "flag": "🇸🇦",
+    "group": "H",
+    "fifaPoints": 1440,
+    "squadValue": 30,
+    "keyPlayers": ["Salem Al-Dawsari", "Firas Al-Buraikan", "Saud Abdulhamid"]
+  },
+  "cape_verde": {
+    "id": "cape_verde",
+    "name": "Cape Verde",
+    "code": "CPV",
+    "flag": "🇨🇻",
+    "group": "H",
+    "fifaPoints": 1380,
+    "squadValue": 30,
+    "keyPlayers": ["Ryan Mendes", "Garry Rodrigues", "Jovane Cabral"]
+  },
+  "france": {
+    "id": "france",
+    "name": "France",
+    "code": "FRA",
+    "flag": "🇫🇷",
+    "group": "I",
+    "fifaPoints": 1840,
+    "squadValue": 1200,
+    "keyPlayers": ["Kylian Mbappé", "Antoine Griezmann", "Aurélien Tchouaméni"]
+  },
+  "senegal": {
+    "id": "senegal",
+    "name": "Senegal",
+    "code": "SEN",
+    "flag": "🇸🇳",
+    "group": "I",
+    "fifaPoints": 1620,
+    "squadValue": 250,
+    "keyPlayers": ["Sadio Mané", "Nicolas Jackson", "Kalidou Koulibaly"]
+  },
+  "norway": {
+    "id": "norway",
+    "name": "Norway",
+    "code": "NOR",
+    "flag": "🇳🇴",
+    "group": "I",
+    "fifaPoints": 1520,
+    "squadValue": 450,
+    "keyPlayers": ["Erling Haaland", "Martin Ødegaard", "Alexander Sørloth"]
+  },
+  "iraq": {
+    "id": "iraq",
+    "name": "Iraq",
+    "code": "IRQ",
+    "flag": "🇮🇶",
+    "group": "I",
+    "fifaPoints": 1360,
+    "squadValue": 15,
+    "keyPlayers": ["Aymen Hussein", "Mohanad Ali", "Ali Jasim"]
+  },
+  "argentina": {
+    "id": "argentina",
+    "name": "Argentina",
+    "code": "ARG",
+    "flag": "🇦🇷",
+    "group": "J",
+    "fifaPoints": 1860,
+    "squadValue": 850,
+    "keyPlayers": ["Lionel Messi", "Lautaro Martínez", "Alexis Mac Allister"]
+  },
+  "austria": {
+    "id": "austria",
+    "name": "Austria",
+    "code": "AUT",
+    "flag": "🇦🇹",
+    "group": "J",
+    "fifaPoints": 1550,
+    "squadValue": 250,
+    "keyPlayers": ["Marcel Sabitzer", "Konrad Laimer", "Christoph Baumgartner"]
+  },
+  "algeria": {
+    "id": "algeria",
+    "name": "Algeria",
+    "code": "ALG",
+    "flag": "🇩🇿",
+    "group": "J",
+    "fifaPoints": 1480,
+    "squadValue": 180,
+    "keyPlayers": ["Riyad Mahrez", "Saïd Benrahma", "Amine Gouiri"]
+  },
+  "jordan": {
+    "id": "jordan",
+    "name": "Jordan",
+    "code": "JOR",
+    "flag": "🇯🇴",
+    "group": "J",
+    "fifaPoints": 1350,
+    "squadValue": 20,
+    "keyPlayers": ["Mousa Al-Tamari", "Yazan Al-Naimat", "Ali Olwan"]
+  },
+  "portugal": {
+    "id": "portugal",
+    "name": "Portugal",
+    "code": "POR",
+    "flag": "🇵🇹",
+    "group": "K",
+    "fifaPoints": 1750,
+    "squadValue": 900,
+    "keyPlayers": ["Cristiano Ronaldo", "Bruno Fernandes", "Bernardo Silva"]
+  },
+  "colombia": {
+    "id": "colombia",
+    "name": "Colombia",
+    "code": "COL",
+    "flag": "🇨🇴",
+    "group": "K",
+    "fifaPoints": 1660,
+    "squadValue": 300,
+    "keyPlayers": ["Luis Díaz", "James Rodríguez", "Daniel Muñoz"]
+  },
+  "dr_congo": {
+    "id": "dr_congo",
+    "name": "DR Congo",
+    "code": "COD",
+    "flag": "🇨🇩",
+    "group": "K",
+    "fifaPoints": 1390,
+    "squadValue": 100,
+    "keyPlayers": ["Yoane Wissa", "Chancel Mbemba", "Cédric Bakambu"]
+  },
+  "uzbekistan": {
+    "id": "uzbekistan",
+    "name": "Uzbekistan",
+    "code": "UZB",
+    "flag": "🇺🇿",
+    "group": "K",
+    "fifaPoints": 1370,
+    "squadValue": 40,
+    "keyPlayers": ["Eldor Shomurodov", "Abbosbek Fayzullaev", "Jaloliddin Masharipov"]
+  },
+  "england": {
+    "id": "england",
+    "name": "England",
+    "code": "ENG",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "group": "L",
+    "fifaPoints": 1800,
+    "squadValue": 1300,
+    "keyPlayers": ["Jude Bellingham", "Harry Kane", "Bukayo Saka"]
+  },
+  "croatia": {
+    "id": "croatia",
+    "name": "Croatia",
+    "code": "CRO",
+    "flag": "🇭🇷",
+    "group": "L",
+    "fifaPoints": 1710,
+    "squadValue": 400,
+    "keyPlayers": ["Luka Modrić", "Mateo Kovačić", "Joško Gvardiol"]
+  },
+  "ghana": {
+    "id": "ghana",
+    "name": "Ghana",
+    "code": "GHA",
+    "flag": "🇬🇭",
+    "group": "L",
+    "fifaPoints": 1400,
+    "squadValue": 250,
+    "keyPlayers": ["Mohammed Kudus", "Iñaki Williams", "Thomas Partey"]
+  },
+  "panama": {
+    "id": "panama",
+    "name": "Panama",
+    "code": "PAN",
+    "flag": "🇵🇦",
+    "group": "L",
+    "fifaPoints": 1400,
+    "squadValue": 25,
+    "keyPlayers": ["Adalberto Carrasquilla", "José Fajardo", "Aníbal Godoy"]
+  }
+}

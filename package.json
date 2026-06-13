@@ -1,0 +1,15 @@
+{
+  "name": "world-cup-oracle",
+  "version": "1.0.0",
+  "description": "World Cup Oracle Application Suite",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix wcp-web",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix wcp-web run dev",
+    "dev": "concurrently --kill-others -n \"api,web\" -c \"cyan,magenta\" \"npm run dev:backend\" \"npm run dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

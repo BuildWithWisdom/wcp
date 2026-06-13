@@ -1,0 +1,2259 @@
+{
+  "currentStage": "GROUPS",
+  "currentDay": 3,
+  "dateOffset": 0,
+  "groups": {
+    "A": {
+      "groupName": "A",
+      "teams": [
+        "mexico",
+        "south_korea",
+        "czech_republic",
+        "south_africa"
+      ],
+      "standings": [
+        {
+          "teamId": "mexico",
+          "played": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "goalDifference": 2,
+          "points": 3
+        },
+        {
+          "teamId": "south_korea",
+          "played": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "goalDifference": 1,
+          "points": 3
+        },
+        {
+          "teamId": "czech_republic",
+          "played": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "goalDifference": -1,
+          "points": 0
+        },
+        {
+          "teamId": "south_africa",
+          "played": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "goalDifference": -2,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GA_1",
+          "stage": "GROUP",
+          "day": 1,
+          "kickoffTime": "2026-06-11T13:00:00-06:00",
+          "groupName": "A",
+          "homeTeamId": "mexico",
+          "awayTeamId": "south_africa",
+          "homeScore": 2,
+          "awayScore": 0,
+          "status": "COMPLETED",
+          "timeline": [],
+          "aiSummary": "Simulated historical score: Mexico 2-0 South Africa."
+        },
+        {
+          "id": "match_GA_2",
+          "stage": "GROUP",
+          "day": 1,
+          "kickoffTime": "2026-06-11T20:00:00-06:00",
+          "groupName": "A",
+          "homeTeamId": "south_korea",
+          "awayTeamId": "czech_republic",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
+          "timeline": [],
+          "aiSummary": "Simulated historical score: South Korea 2-1 Czech Republic."
+        },
+        {
+          "id": "match_GA_3",
+          "stage": "GROUP",
+          "day": 8,
+          "kickoffTime": "2026-06-18T12:00:00-04:00",
+          "groupName": "A",
+          "homeTeamId": "czech_republic",
+          "awayTeamId": "south_africa",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GA_4",
+          "stage": "GROUP",
+          "day": 8,
+          "kickoffTime": "2026-06-18T19:00:00-06:00",
+          "groupName": "A",
+          "homeTeamId": "mexico",
+          "awayTeamId": "south_korea",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GA_5",
+          "stage": "GROUP",
+          "day": 14,
+          "kickoffTime": "2026-06-24T19:00:00-06:00",
+          "groupName": "A",
+          "homeTeamId": "czech_republic",
+          "awayTeamId": "mexico",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GA_6",
+          "stage": "GROUP",
+          "day": 14,
+          "kickoffTime": "2026-06-24T19:00:00-06:00",
+          "groupName": "A",
+          "homeTeamId": "south_africa",
+          "awayTeamId": "south_korea",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "B": {
+      "groupName": "B",
+      "teams": [
+        "switzerland",
+        "canada",
+        "bosnia_herzegovina",
+        "qatar"
+      ],
+      "standings": [
+        {
+          "teamId": "bosnia_herzegovina",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "goalDifference": 0,
+          "points": 1
+        },
+        {
+          "teamId": "canada",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "goalDifference": 0,
+          "points": 1
+        },
+        {
+          "teamId": "qatar",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "switzerland",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GB_1",
+          "stage": "GROUP",
+          "day": 2,
+          "kickoffTime": "2026-06-12T15:00:00-04:00",
+          "groupName": "B",
+          "homeTeamId": "canada",
+          "awayTeamId": "bosnia_herzegovina",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
+          "timeline": [],
+          "aiSummary": "Simulated historical score: Canada 1-1 Bosnia & Herzegovina."
+        },
+        {
+          "id": "match_GB_2",
+          "stage": "GROUP",
+          "day": 3,
+          "kickoffTime": "2026-06-13T12:00:00-07:00",
+          "groupName": "B",
+          "homeTeamId": "qatar",
+          "awayTeamId": "switzerland",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GB_3",
+          "stage": "GROUP",
+          "day": 8,
+          "kickoffTime": "2026-06-18T12:00:00-07:00",
+          "groupName": "B",
+          "homeTeamId": "switzerland",
+          "awayTeamId": "bosnia_herzegovina",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GB_4",
+          "stage": "GROUP",
+          "day": 8,
+          "kickoffTime": "2026-06-18T15:00:00-07:00",
+          "groupName": "B",
+          "homeTeamId": "canada",
+          "awayTeamId": "qatar",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GB_5",
+          "stage": "GROUP",
+          "day": 14,
+          "kickoffTime": "2026-06-24T12:00:00-07:00",
+          "groupName": "B",
+          "homeTeamId": "switzerland",
+          "awayTeamId": "canada",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GB_6",
+          "stage": "GROUP",
+          "day": 14,
+          "kickoffTime": "2026-06-24T12:00:00-07:00",
+          "groupName": "B",
+          "homeTeamId": "bosnia_herzegovina",
+          "awayTeamId": "qatar",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "C": {
+      "groupName": "C",
+      "teams": [
+        "brazil",
+        "morocco",
+        "scotland",
+        "haiti"
+      ],
+      "standings": [
+        {
+          "teamId": "brazil",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "goalDifference": 0,
+          "points": 1
+        },
+        {
+          "teamId": "morocco",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goalsFor": 1,
+          "goalsAgainst": 1,
+          "goalDifference": 0,
+          "points": 1
+        },
+        {
+          "teamId": "haiti",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "scotland",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GC_1",
+          "stage": "GROUP",
+          "day": 3,
+          "kickoffTime": "2026-06-13T18:00:00-04:00",
+          "groupName": "C",
+          "homeTeamId": "brazil",
+          "awayTeamId": "morocco",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
+          "timeline": [
+            {
+              "type": "INJURY",
+              "minute": 5,
+              "teamId": "brazil",
+              "playerName": "Vinícius Júnior",
+              "detail": "Receiving medical attention on the pitch"
+            },
+            {
+              "type": "GOAL",
+              "minute": 7,
+              "teamId": "morocco",
+              "playerName": "Yassine Bounou",
+              "detail": "Tap-in"
+            },
+            {
+              "type": "MISS",
+              "minute": 7,
+              "teamId": "brazil",
+              "playerName": "Martinelli",
+              "detail": "Fires over the crossbar from close range"
+            },
+            {
+              "type": "MISS",
+              "minute": 50,
+              "teamId": "brazil",
+              "playerName": "Paquetá",
+              "detail": "Strikes it wide after a brilliant solo dribble"
+            },
+            {
+              "type": "YELLOW",
+              "minute": 55,
+              "teamId": "morocco",
+              "playerName": "Midfielder",
+              "detail": "Tactical foul halting a counter-attack"
+            },
+            {
+              "type": "MISS",
+              "minute": 59,
+              "teamId": "morocco",
+              "playerName": "Forward",
+              "detail": "Fires over the crossbar from close range"
+            },
+            {
+              "type": "GOAL",
+              "minute": 75,
+              "teamId": "brazil",
+              "playerName": "Squad Player",
+              "detail": "Stunning volley"
+            }
+          ],
+          "aiSummary": "🔮 Brazil will seek to unlock Morocco's disciplined low block with their attacking flair, while Morocco aims to absorb pressure and exploit counter-attacking opportunities. Recap: A thrilling 1-1 draw featuring goals from Yassine Bounou (7'), Squad Player (75').",
+          "winnerId": "",
+          "decidedBy": "REGULAR",
+          "homeAttackModifier": 1.15,
+          "homeDefenseModifier": 0.9,
+          "awayAttackModifier": 0.9,
+          "awayDefenseModifier": 0.85,
+          "aiTacticalAnalysis": "Brazil will seek to unlock Morocco's disciplined low block with their attacking flair, while Morocco aims to absorb pressure and exploit counter-attacking opportunities."
+        },
+        {
+          "id": "match_GC_2",
+          "stage": "GROUP",
+          "day": 3,
+          "kickoffTime": "2026-06-13T21:00:00-04:00",
+          "groupName": "C",
+          "homeTeamId": "haiti",
+          "awayTeamId": "scotland",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GC_3",
+          "stage": "GROUP",
+          "day": 9,
+          "kickoffTime": "2026-06-19T18:00:00-04:00",
+          "groupName": "C",
+          "homeTeamId": "scotland",
+          "awayTeamId": "morocco",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GC_4",
+          "stage": "GROUP",
+          "day": 9,
+          "kickoffTime": "2026-06-19T20:30:00-04:00",
+          "groupName": "C",
+          "homeTeamId": "brazil",
+          "awayTeamId": "haiti",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GC_5",
+          "stage": "GROUP",
+          "day": 14,
+          "kickoffTime": "2026-06-24T18:00:00-04:00",
+          "groupName": "C",
+          "homeTeamId": "scotland",
+          "awayTeamId": "brazil",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GC_6",
+          "stage": "GROUP",
+          "day": 14,
+          "kickoffTime": "2026-06-24T18:00:00-04:00",
+          "groupName": "C",
+          "homeTeamId": "morocco",
+          "awayTeamId": "haiti",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "D": {
+      "groupName": "D",
+      "teams": [
+        "usa",
+        "turkey",
+        "paraguay",
+        "australia"
+      ],
+      "standings": [
+        {
+          "teamId": "australia",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "paraguay",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "turkey",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "usa",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GD_1",
+          "stage": "GROUP",
+          "day": 2,
+          "kickoffTime": "2026-06-12T18:00:00-07:00",
+          "groupName": "D",
+          "homeTeamId": "usa",
+          "awayTeamId": "paraguay",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GD_2",
+          "stage": "GROUP",
+          "day": 3,
+          "kickoffTime": "2026-06-13T21:00:00-07:00",
+          "groupName": "D",
+          "homeTeamId": "australia",
+          "awayTeamId": "turkey",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GD_3",
+          "stage": "GROUP",
+          "day": 9,
+          "kickoffTime": "2026-06-19T12:00:00-07:00",
+          "groupName": "D",
+          "homeTeamId": "usa",
+          "awayTeamId": "australia",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GD_4",
+          "stage": "GROUP",
+          "day": 9,
+          "kickoffTime": "2026-06-19T20:00:00-07:00",
+          "groupName": "D",
+          "homeTeamId": "turkey",
+          "awayTeamId": "paraguay",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GD_5",
+          "stage": "GROUP",
+          "day": 15,
+          "kickoffTime": "2026-06-25T19:00:00-07:00",
+          "groupName": "D",
+          "homeTeamId": "turkey",
+          "awayTeamId": "usa",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GD_6",
+          "stage": "GROUP",
+          "day": 15,
+          "kickoffTime": "2026-06-25T19:00:00-07:00",
+          "groupName": "D",
+          "homeTeamId": "paraguay",
+          "awayTeamId": "australia",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "E": {
+      "groupName": "E",
+      "teams": [
+        "germany",
+        "ecuador",
+        "ivory_coast",
+        "curacao"
+      ],
+      "standings": [
+        {
+          "teamId": "curacao",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 1
+        },
+        {
+          "teamId": "germany",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 1
+        },
+        {
+          "teamId": "ecuador",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "ivory_coast",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GE_1",
+          "stage": "GROUP",
+          "day": 4,
+          "kickoffTime": "2026-06-14T12:00:00-05:00",
+          "groupName": "E",
+          "homeTeamId": "germany",
+          "awayTeamId": "curacao",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
+          "timeline": [
+            {
+              "type": "MISS",
+              "minute": 31,
+              "teamId": "curacao",
+              "playerName": "Leandro Bacuna",
+              "detail": "Strikes it wide after a brilliant solo dribble"
+            },
+            {
+              "type": "YELLOW",
+              "minute": 48,
+              "teamId": "curacao",
+              "playerName": "Defender",
+              "detail": "Tactical foul halting a counter-attack"
+            },
+            {
+              "type": "MISS",
+              "minute": 57,
+              "teamId": "germany",
+              "playerName": "Florian Wirtz",
+              "detail": "Stunning finger-tip save by the keeper"
+            },
+            {
+              "type": "YELLOW",
+              "minute": 67,
+              "teamId": "germany",
+              "playerName": "Forward",
+              "detail": "Tactical foul halting a counter-attack"
+            },
+            {
+              "type": "MISS",
+              "minute": 87,
+              "teamId": "germany",
+              "playerName": "Defender",
+              "detail": "Fires over the crossbar from close range"
+            }
+          ],
+          "aiSummary": "🔮 Oracle's Tactical Analysis:\nGermany will dominate possession, pressing high and relentlessly attacking Curaçao's defense through their creative midfielders and forwards. Curaçao will aim to sit deep in a compact low block, hoping to frustrate Germany and perhaps nick a counter-attack, but will likely struggle to withstand the constant pressure.\n\n⚽ Post-Match Recap:\nA total tactical snorefest as Germany and Curaçao cancel each other out in a 0-0 gridlock. Fans in the stadium were spotted checking their tax returns by the 75th minute. Both managers will claim it was a \"disciplined defensive performance,\" but we know the truth.",
+          "winnerId": "",
+          "decidedBy": "REGULAR",
+          "homeAttackModifier": 1.15,
+          "homeDefenseModifier": 0.85,
+          "awayAttackModifier": 0.82,
+          "awayDefenseModifier": 1.18,
+          "aiTacticalAnalysis": "Germany will dominate possession, pressing high and relentlessly attacking Curaçao's defense through their creative midfielders and forwards. Curaçao will aim to sit deep in a compact low block, hoping to frustrate Germany and perhaps nick a counter-attack, but will likely struggle to withstand the constant pressure."
+        },
+        {
+          "id": "match_GE_2",
+          "stage": "GROUP",
+          "day": 4,
+          "kickoffTime": "2026-06-14T19:00:00-04:00",
+          "groupName": "E",
+          "homeTeamId": "ivory_coast",
+          "awayTeamId": "ecuador",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GE_3",
+          "stage": "GROUP",
+          "day": 10,
+          "kickoffTime": "2026-06-20T16:00:00-04:00",
+          "groupName": "E",
+          "homeTeamId": "germany",
+          "awayTeamId": "ivory_coast",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GE_4",
+          "stage": "GROUP",
+          "day": 10,
+          "kickoffTime": "2026-06-20T19:00:00-05:00",
+          "groupName": "E",
+          "homeTeamId": "ecuador",
+          "awayTeamId": "curacao",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GE_5",
+          "stage": "GROUP",
+          "day": 15,
+          "kickoffTime": "2026-06-25T16:00:00-04:00",
+          "groupName": "E",
+          "homeTeamId": "curacao",
+          "awayTeamId": "ivory_coast",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GE_6",
+          "stage": "GROUP",
+          "day": 15,
+          "kickoffTime": "2026-06-25T16:00:00-04:00",
+          "groupName": "E",
+          "homeTeamId": "ecuador",
+          "awayTeamId": "germany",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "F": {
+      "groupName": "F",
+      "teams": [
+        "netherlands",
+        "sweden",
+        "japan",
+        "tunisia"
+      ],
+      "standings": [
+        {
+          "teamId": "netherlands",
+          "played": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "goalDifference": 2,
+          "points": 3
+        },
+        {
+          "teamId": "sweden",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "tunisia",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "japan",
+          "played": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "goalDifference": -2,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GF_1",
+          "stage": "GROUP",
+          "day": 4,
+          "kickoffTime": "2026-06-14T15:00:00-05:00",
+          "groupName": "F",
+          "homeTeamId": "netherlands",
+          "awayTeamId": "japan",
+          "homeScore": 2,
+          "awayScore": 0,
+          "status": "COMPLETED",
+          "timeline": [
+            {
+              "type": "GOAL",
+              "minute": 49,
+              "teamId": "netherlands",
+              "playerName": "Squad Player",
+              "detail": "Curling effort"
+            },
+            {
+              "type": "GOAL",
+              "minute": 79,
+              "teamId": "netherlands",
+              "playerName": "Virgil van Dijk",
+              "detail": "Tap-in"
+            },
+            {
+              "type": "YELLOW",
+              "minute": 80,
+              "teamId": "netherlands",
+              "playerName": "Forward",
+              "detail": "Tactical foul halting a counter-attack"
+            }
+          ],
+          "aiSummary": "🔮 Oracle's Tactical Analysis:\nThe Netherlands will aim to dominate possession and dictate the tempo, utilizing Frenkie de Jong's control in midfield and Cody Gakpo's attacking prowess to break down Japan's disciplined defense. Japan is expected to adopt a compact, defensive setup, focusing on absorbing pressure and launching rapid counter-attacks, primarily through the pace and dribbling of Kaoru Mitoma and Takefusa Kubo. The match will likely see the Dutch trying to unlock a deep-sitting Japanese side, with tactical fouls and quick transitions being key for Japan.\n\n⚽ Post-Match Recap:\nJob done for Netherlands! They secure a vital 2-0 win against a resilient Japan. A mixture of tactical composure and defensive coordination saw them lock down the three points as the whistle blew.",
+          "winnerId": "netherlands",
+          "decidedBy": "REGULAR",
+          "homeAttackModifier": 1.15,
+          "homeDefenseModifier": 0.85,
+          "awayAttackModifier": 0.95,
+          "awayDefenseModifier": 0.9,
+          "aiTacticalAnalysis": "The Netherlands will aim to dominate possession and dictate the tempo, utilizing Frenkie de Jong's control in midfield and Cody Gakpo's attacking prowess to break down Japan's disciplined defense. Japan is expected to adopt a compact, defensive setup, focusing on absorbing pressure and launching rapid counter-attacks, primarily through the pace and dribbling of Kaoru Mitoma and Takefusa Kubo. The match will likely see the Dutch trying to unlock a deep-sitting Japanese side, with tactical fouls and quick transitions being key for Japan."
+        },
+        {
+          "id": "match_GF_2",
+          "stage": "GROUP",
+          "day": 4,
+          "kickoffTime": "2026-06-14T20:00:00-06:00",
+          "groupName": "F",
+          "homeTeamId": "sweden",
+          "awayTeamId": "tunisia",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GF_3",
+          "stage": "GROUP",
+          "day": 10,
+          "kickoffTime": "2026-06-20T12:00:00-05:00",
+          "groupName": "F",
+          "homeTeamId": "netherlands",
+          "awayTeamId": "sweden",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GF_4",
+          "stage": "GROUP",
+          "day": 10,
+          "kickoffTime": "2026-06-20T22:00:00-06:00",
+          "groupName": "F",
+          "homeTeamId": "tunisia",
+          "awayTeamId": "japan",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GF_5",
+          "stage": "GROUP",
+          "day": 15,
+          "kickoffTime": "2026-06-25T18:00:00-05:00",
+          "groupName": "F",
+          "homeTeamId": "japan",
+          "awayTeamId": "sweden",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GF_6",
+          "stage": "GROUP",
+          "day": 15,
+          "kickoffTime": "2026-06-25T18:00:00-05:00",
+          "groupName": "F",
+          "homeTeamId": "tunisia",
+          "awayTeamId": "netherlands",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "G": {
+      "groupName": "G",
+      "teams": [
+        "belgium",
+        "egypt",
+        "iran",
+        "new_zealand"
+      ],
+      "standings": [
+        {
+          "teamId": "belgium",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "egypt",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "iran",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "new_zealand",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GG_1",
+          "stage": "GROUP",
+          "day": 5,
+          "kickoffTime": "2026-06-15T12:00:00-07:00",
+          "groupName": "G",
+          "homeTeamId": "belgium",
+          "awayTeamId": "egypt",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GG_2",
+          "stage": "GROUP",
+          "day": 5,
+          "kickoffTime": "2026-06-15T18:00:00-07:00",
+          "groupName": "G",
+          "homeTeamId": "iran",
+          "awayTeamId": "new_zealand",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GG_3",
+          "stage": "GROUP",
+          "day": 11,
+          "kickoffTime": "2026-06-21T12:00:00-07:00",
+          "groupName": "G",
+          "homeTeamId": "belgium",
+          "awayTeamId": "iran",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GG_4",
+          "stage": "GROUP",
+          "day": 11,
+          "kickoffTime": "2026-06-21T18:00:00-07:00",
+          "groupName": "G",
+          "homeTeamId": "new_zealand",
+          "awayTeamId": "egypt",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GG_5",
+          "stage": "GROUP",
+          "day": 16,
+          "kickoffTime": "2026-06-26T20:00:00-07:00",
+          "groupName": "G",
+          "homeTeamId": "egypt",
+          "awayTeamId": "iran",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GG_6",
+          "stage": "GROUP",
+          "day": 16,
+          "kickoffTime": "2026-06-26T20:00:00-07:00",
+          "groupName": "G",
+          "homeTeamId": "new_zealand",
+          "awayTeamId": "belgium",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "H": {
+      "groupName": "H",
+      "teams": [
+        "spain",
+        "uruguay",
+        "saudi_arabia",
+        "cape_verde"
+      ],
+      "standings": [
+        {
+          "teamId": "cape_verde",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "saudi_arabia",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "spain",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "uruguay",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GH_1",
+          "stage": "GROUP",
+          "day": 5,
+          "kickoffTime": "2026-06-15T12:00:00-04:00",
+          "groupName": "H",
+          "homeTeamId": "spain",
+          "awayTeamId": "cape_verde",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GH_2",
+          "stage": "GROUP",
+          "day": 5,
+          "kickoffTime": "2026-06-15T18:00:00-04:00",
+          "groupName": "H",
+          "homeTeamId": "saudi_arabia",
+          "awayTeamId": "uruguay",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GH_3",
+          "stage": "GROUP",
+          "day": 11,
+          "kickoffTime": "2026-06-21T12:00:00-04:00",
+          "groupName": "H",
+          "homeTeamId": "spain",
+          "awayTeamId": "saudi_arabia",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GH_4",
+          "stage": "GROUP",
+          "day": 11,
+          "kickoffTime": "2026-06-21T18:00:00-04:00",
+          "groupName": "H",
+          "homeTeamId": "uruguay",
+          "awayTeamId": "cape_verde",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GH_5",
+          "stage": "GROUP",
+          "day": 16,
+          "kickoffTime": "2026-06-26T19:00:00-05:00",
+          "groupName": "H",
+          "homeTeamId": "cape_verde",
+          "awayTeamId": "saudi_arabia",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GH_6",
+          "stage": "GROUP",
+          "day": 16,
+          "kickoffTime": "2026-06-26T18:00:00-06:00",
+          "groupName": "H",
+          "homeTeamId": "uruguay",
+          "awayTeamId": "spain",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "I": {
+      "groupName": "I",
+      "teams": [
+        "france",
+        "senegal",
+        "norway",
+        "iraq"
+      ],
+      "standings": [
+        {
+          "teamId": "france",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "iraq",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "norway",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "senegal",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GI_1",
+          "stage": "GROUP",
+          "day": 6,
+          "kickoffTime": "2026-06-16T15:00:00-04:00",
+          "groupName": "I",
+          "homeTeamId": "france",
+          "awayTeamId": "senegal",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GI_2",
+          "stage": "GROUP",
+          "day": 6,
+          "kickoffTime": "2026-06-16T18:00:00-04:00",
+          "groupName": "I",
+          "homeTeamId": "iraq",
+          "awayTeamId": "norway",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GI_3",
+          "stage": "GROUP",
+          "day": 12,
+          "kickoffTime": "2026-06-22T17:00:00-04:00",
+          "groupName": "I",
+          "homeTeamId": "france",
+          "awayTeamId": "iraq",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GI_4",
+          "stage": "GROUP",
+          "day": 12,
+          "kickoffTime": "2026-06-22T20:00:00-04:00",
+          "groupName": "I",
+          "homeTeamId": "norway",
+          "awayTeamId": "senegal",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GI_5",
+          "stage": "GROUP",
+          "day": 16,
+          "kickoffTime": "2026-06-26T15:00:00-04:00",
+          "groupName": "I",
+          "homeTeamId": "norway",
+          "awayTeamId": "france",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GI_6",
+          "stage": "GROUP",
+          "day": 16,
+          "kickoffTime": "2026-06-26T15:00:00-04:00",
+          "groupName": "I",
+          "homeTeamId": "senegal",
+          "awayTeamId": "iraq",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "J": {
+      "groupName": "J",
+      "teams": [
+        "argentina",
+        "austria",
+        "algeria",
+        "jordan"
+      ],
+      "standings": [
+        {
+          "teamId": "algeria",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "argentina",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "austria",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "jordan",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GJ_1",
+          "stage": "GROUP",
+          "day": 6,
+          "kickoffTime": "2026-06-16T20:00:00-05:00",
+          "groupName": "J",
+          "homeTeamId": "argentina",
+          "awayTeamId": "algeria",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GJ_2",
+          "stage": "GROUP",
+          "day": 6,
+          "kickoffTime": "2026-06-16T21:00:00-07:00",
+          "groupName": "J",
+          "homeTeamId": "austria",
+          "awayTeamId": "jordan",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GJ_3",
+          "stage": "GROUP",
+          "day": 12,
+          "kickoffTime": "2026-06-22T12:00:00-05:00",
+          "groupName": "J",
+          "homeTeamId": "argentina",
+          "awayTeamId": "austria",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GJ_4",
+          "stage": "GROUP",
+          "day": 12,
+          "kickoffTime": "2026-06-22T20:00:00-07:00",
+          "groupName": "J",
+          "homeTeamId": "jordan",
+          "awayTeamId": "algeria",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GJ_5",
+          "stage": "GROUP",
+          "day": 17,
+          "kickoffTime": "2026-06-27T21:00:00-05:00",
+          "groupName": "J",
+          "homeTeamId": "algeria",
+          "awayTeamId": "austria",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GJ_6",
+          "stage": "GROUP",
+          "day": 17,
+          "kickoffTime": "2026-06-27T21:00:00-05:00",
+          "groupName": "J",
+          "homeTeamId": "jordan",
+          "awayTeamId": "argentina",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "K": {
+      "groupName": "K",
+      "teams": [
+        "portugal",
+        "colombia",
+        "dr_congo",
+        "uzbekistan"
+      ],
+      "standings": [
+        {
+          "teamId": "colombia",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "dr_congo",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "portugal",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "uzbekistan",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GK_1",
+          "stage": "GROUP",
+          "day": 7,
+          "kickoffTime": "2026-06-17T12:00:00-05:00",
+          "groupName": "K",
+          "homeTeamId": "portugal",
+          "awayTeamId": "dr_congo",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GK_2",
+          "stage": "GROUP",
+          "day": 7,
+          "kickoffTime": "2026-06-17T20:00:00-06:00",
+          "groupName": "K",
+          "homeTeamId": "uzbekistan",
+          "awayTeamId": "colombia",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GK_3",
+          "stage": "GROUP",
+          "day": 13,
+          "kickoffTime": "2026-06-23T12:00:00-05:00",
+          "groupName": "K",
+          "homeTeamId": "portugal",
+          "awayTeamId": "uzbekistan",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GK_4",
+          "stage": "GROUP",
+          "day": 13,
+          "kickoffTime": "2026-06-23T20:00:00-06:00",
+          "groupName": "K",
+          "homeTeamId": "colombia",
+          "awayTeamId": "dr_congo",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GK_5",
+          "stage": "GROUP",
+          "day": 17,
+          "kickoffTime": "2026-06-27T19:30:00-04:00",
+          "groupName": "K",
+          "homeTeamId": "colombia",
+          "awayTeamId": "portugal",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GK_6",
+          "stage": "GROUP",
+          "day": 17,
+          "kickoffTime": "2026-06-27T19:30:00-04:00",
+          "groupName": "K",
+          "homeTeamId": "dr_congo",
+          "awayTeamId": "uzbekistan",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "L": {
+      "groupName": "L",
+      "teams": [
+        "england",
+        "croatia",
+        "ghana",
+        "panama"
+      ],
+      "standings": [
+        {
+          "teamId": "croatia",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "england",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "ghana",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        },
+        {
+          "teamId": "panama",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0
+        }
+      ],
+      "matches": [
+        {
+          "id": "match_GL_1",
+          "stage": "GROUP",
+          "day": 7,
+          "kickoffTime": "2026-06-17T15:00:00-05:00",
+          "groupName": "L",
+          "homeTeamId": "england",
+          "awayTeamId": "croatia",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GL_2",
+          "stage": "GROUP",
+          "day": 7,
+          "kickoffTime": "2026-06-17T19:00:00-04:00",
+          "groupName": "L",
+          "homeTeamId": "ghana",
+          "awayTeamId": "panama",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GL_3",
+          "stage": "GROUP",
+          "day": 13,
+          "kickoffTime": "2026-06-23T16:00:00-04:00",
+          "groupName": "L",
+          "homeTeamId": "england",
+          "awayTeamId": "ghana",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GL_4",
+          "stage": "GROUP",
+          "day": 13,
+          "kickoffTime": "2026-06-23T19:00:00-04:00",
+          "groupName": "L",
+          "homeTeamId": "panama",
+          "awayTeamId": "croatia",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GL_5",
+          "stage": "GROUP",
+          "day": 17,
+          "kickoffTime": "2026-06-27T17:00:00-04:00",
+          "groupName": "L",
+          "homeTeamId": "panama",
+          "awayTeamId": "england",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "match_GL_6",
+          "stage": "GROUP",
+          "day": 17,
+          "kickoffTime": "2026-06-27T17:00:00-04:00",
+          "groupName": "L",
+          "homeTeamId": "croatia",
+          "awayTeamId": "ghana",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    }
+  },
+  "bracket": {
+    "R32": {
+      "roundName": "R32",
+      "matches": [
+        {
+          "id": "R32_M1",
+          "stage": "R32",
+          "day": 18,
+          "kickoffTime": "2026-06-28T12:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M2",
+          "stage": "R32",
+          "day": 18,
+          "kickoffTime": "2026-06-28T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M3",
+          "stage": "R32",
+          "day": 18,
+          "kickoffTime": "2026-06-28T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M4",
+          "stage": "R32",
+          "day": 19,
+          "kickoffTime": "2026-06-29T12:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M5",
+          "stage": "R32",
+          "day": 19,
+          "kickoffTime": "2026-06-29T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M6",
+          "stage": "R32",
+          "day": 19,
+          "kickoffTime": "2026-06-29T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M7",
+          "stage": "R32",
+          "day": 20,
+          "kickoffTime": "2026-06-30T12:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M8",
+          "stage": "R32",
+          "day": 20,
+          "kickoffTime": "2026-06-30T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M9",
+          "stage": "R32",
+          "day": 20,
+          "kickoffTime": "2026-06-30T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M10",
+          "stage": "R32",
+          "day": 21,
+          "kickoffTime": "2026-07-01T12:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M11",
+          "stage": "R32",
+          "day": 21,
+          "kickoffTime": "2026-07-01T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M12",
+          "stage": "R32",
+          "day": 21,
+          "kickoffTime": "2026-07-01T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M13",
+          "stage": "R32",
+          "day": 22,
+          "kickoffTime": "2026-07-02T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M14",
+          "stage": "R32",
+          "day": 22,
+          "kickoffTime": "2026-07-02T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M15",
+          "stage": "R32",
+          "day": 23,
+          "kickoffTime": "2026-07-03T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R32_M16",
+          "stage": "R32",
+          "day": 23,
+          "kickoffTime": "2026-07-03T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "R16": {
+      "roundName": "R16",
+      "matches": [
+        {
+          "id": "R16_M1",
+          "stage": "R16",
+          "day": 24,
+          "kickoffTime": "2026-07-04T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R16_M2",
+          "stage": "R16",
+          "day": 24,
+          "kickoffTime": "2026-07-04T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R16_M3",
+          "stage": "R16",
+          "day": 25,
+          "kickoffTime": "2026-07-05T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R16_M4",
+          "stage": "R16",
+          "day": 25,
+          "kickoffTime": "2026-07-05T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R16_M5",
+          "stage": "R16",
+          "day": 26,
+          "kickoffTime": "2026-07-06T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R16_M6",
+          "stage": "R16",
+          "day": 26,
+          "kickoffTime": "2026-07-06T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R16_M7",
+          "stage": "R16",
+          "day": 27,
+          "kickoffTime": "2026-07-07T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "R16_M8",
+          "stage": "R16",
+          "day": 27,
+          "kickoffTime": "2026-07-07T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "QF": {
+      "roundName": "QF",
+      "matches": [
+        {
+          "id": "QF_M1",
+          "stage": "QF",
+          "day": 28,
+          "kickoffTime": "2026-07-09T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "QF_M2",
+          "stage": "QF",
+          "day": 28,
+          "kickoffTime": "2026-07-09T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "QF_M3",
+          "stage": "QF",
+          "day": 29,
+          "kickoffTime": "2026-07-10T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "QF_M4",
+          "stage": "QF",
+          "day": 30,
+          "kickoffTime": "2026-07-11T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "SF": {
+      "roundName": "SF",
+      "matches": [
+        {
+          "id": "SF_M1",
+          "stage": "SF",
+          "day": 31,
+          "kickoffTime": "2026-07-14T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        },
+        {
+          "id": "SF_M2",
+          "stage": "SF",
+          "day": 32,
+          "kickoffTime": "2026-07-15T19:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    },
+    "FINAL": {
+      "roundName": "FINAL",
+      "matches": [
+        {
+          "id": "FINAL_M1",
+          "stage": "FINAL",
+          "day": 33,
+          "kickoffTime": "2026-07-19T15:00:00-04:00",
+          "homeTeamId": "",
+          "awayTeamId": "",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "PENDING",
+          "timeline": [],
+          "aiSummary": null
+        }
+      ]
+    }
+  },
+  "championId": null
+}
