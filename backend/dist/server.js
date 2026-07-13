@@ -8,6 +8,9 @@ const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const dns_1 = __importDefault(require("dns"));
+// Force IPv4-first resolution to prevent Node.js fetch dual-stack timeouts
+dns_1.default.setDefaultResultOrder("ipv4first");
 const team_routes_1 = __importDefault(require("./routes/team.routes"));
 const tournament_routes_1 = __importDefault(require("./routes/tournament.routes"));
 const error_middleware_1 = require("./middleware/error.middleware");

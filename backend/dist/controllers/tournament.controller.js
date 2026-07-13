@@ -21,7 +21,7 @@ class TournamentController {
             await storageService.saveTournamentState(state);
         }
         else {
-            const modified = tournamentService.syncOfficialResults(state);
+            const modified = await tournamentService.syncOfficialResults(state);
             if (modified) {
                 await storageService.saveTournamentState(state);
             }

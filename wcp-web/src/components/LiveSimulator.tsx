@@ -108,7 +108,7 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
     setIsPlaying(false);
     
     if (match) {
-      if (match.status === "COMPLETED" && (match as any).simulatedByUser) {
+      if (match.status === "COMPLETED") {
         setTickMin(match.decidedBy === "PENALTIES" ? 125 : match.decidedBy === "EXTRA_TIME" ? 120 : 90);
         setLiveHomeScore(match.homeScore ?? 0);
         setLiveAwayScore(match.awayScore ?? 0);
@@ -302,8 +302,12 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
           </div>
 
           {/* Simulation Badge */}
-          {match.status === "COMPLETED" && (match as any).simulatedByUser ? (
-            <span className="scoreboard-sim-badge completed">Prediction Logged</span>
+          {match.status === "COMPLETED" ? (
+            (match as any).simulatedByUser ? (
+              <span className="scoreboard-sim-badge completed">Prediction Logged</span>
+            ) : (
+              <span className="scoreboard-sim-badge completed" style={{ background: "var(--color-accent-gold)", color: "#030712" }}>Official Result</span>
+            )
           ) : (
             <span className="scoreboard-sim-badge" style={{ background: "none", borderStyle: "dashed" }}>Oracle Idle</span>
           )}
@@ -380,7 +384,7 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({
       </div>
 
       {/* Action CTA: Play or Loading */}
-      {(!match.simulatedByUser || match.status === "PENDING") && !isPlaying && (() => {
+      {match.status === "PENDING" && !isPlaying && (() => {
         const now = new Date();
         const kickoff = new Date(match.kickoffTime);
         const isPast = now.getTime() >= kickoff.getTime() + 2 * 60 * 60 * 1000;

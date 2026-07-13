@@ -103,7 +103,7 @@ export const UpcomingMatches: React.FC<UpcomingMatchesProps> = ({
             if (!home || !away) return null;
 
             const isSelected = activeMatchId === match.id;
-            const showScore = match.status === "COMPLETED" && (match as any).simulatedByUser;
+            const showScore = match.status === "COMPLETED" && match.homeScore !== null && match.awayScore !== null;
             
             const now = new Date();
             const kickoff = new Date(match.kickoffTime);

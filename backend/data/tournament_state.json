@@ -1,6 +1,6 @@
 {
-  "currentStage": "GROUPS",
-  "currentDay": 3,
+  "currentStage": "SF",
+  "currentDay": 32,
   "dateOffset": 0,
   "groups": {
     "A": {
@@ -14,47 +14,47 @@
       "standings": [
         {
           "teamId": "mexico",
-          "played": 1,
-          "wins": 1,
+          "played": 3,
+          "wins": 3,
           "draws": 0,
           "losses": 0,
-          "goalsFor": 2,
+          "goalsFor": 6,
           "goalsAgainst": 0,
-          "goalDifference": 2,
-          "points": 3
+          "goalDifference": 6,
+          "points": 9
+        },
+        {
+          "teamId": "south_africa",
+          "played": 3,
+          "wins": 1,
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "goalDifference": -1,
+          "points": 4
         },
         {
           "teamId": "south_korea",
-          "played": 1,
+          "played": 3,
           "wins": 1,
           "draws": 0,
-          "losses": 0,
+          "losses": 2,
           "goalsFor": 2,
-          "goalsAgainst": 1,
-          "goalDifference": 1,
+          "goalsAgainst": 3,
+          "goalDifference": -1,
           "points": 3
         },
         {
           "teamId": "czech_republic",
-          "played": 1,
+          "played": 3,
           "wins": 0,
-          "draws": 0,
-          "losses": 1,
-          "goalsFor": 1,
-          "goalsAgainst": 2,
-          "goalDifference": -1,
-          "points": 0
-        },
-        {
-          "teamId": "south_africa",
-          "played": 1,
-          "wins": 0,
-          "draws": 0,
-          "losses": 1,
-          "goalsFor": 0,
-          "goalsAgainst": 2,
-          "goalDifference": -2,
-          "points": 0
+          "draws": 1,
+          "losses": 2,
+          "goalsFor": 2,
+          "goalsAgainst": 6,
+          "goalDifference": -4,
+          "points": 1
         }
       ],
       "matches": [
@@ -94,11 +94,13 @@
           "groupName": "A",
           "homeTeamId": "czech_republic",
           "awayTeamId": "south_africa",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Czech Republic 1-1 South Africa.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GA_4",
@@ -108,11 +110,13 @@
           "groupName": "A",
           "homeTeamId": "mexico",
           "awayTeamId": "south_korea",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Mexico 1-0 South Korea.",
+          "winnerId": "mexico",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GA_5",
@@ -122,11 +126,13 @@
           "groupName": "A",
           "homeTeamId": "czech_republic",
           "awayTeamId": "mexico",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 3,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Czech Republic 0-3 Mexico.",
+          "winnerId": "mexico",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GA_6",
@@ -136,11 +142,13 @@
           "groupName": "A",
           "homeTeamId": "south_africa",
           "awayTeamId": "south_korea",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: South Africa 1-0 South Korea.",
+          "winnerId": "south_africa",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -154,48 +162,48 @@
       ],
       "standings": [
         {
-          "teamId": "bosnia_herzegovina",
-          "played": 1,
-          "wins": 0,
+          "teamId": "switzerland",
+          "played": 3,
+          "wins": 2,
           "draws": 1,
           "losses": 0,
-          "goalsFor": 1,
-          "goalsAgainst": 1,
-          "goalDifference": 0,
-          "points": 1
+          "goalsFor": 7,
+          "goalsAgainst": 3,
+          "goalDifference": 4,
+          "points": 7
         },
         {
           "teamId": "canada",
-          "played": 1,
-          "wins": 0,
+          "played": 3,
+          "wins": 1,
           "draws": 1,
-          "losses": 0,
-          "goalsFor": 1,
-          "goalsAgainst": 1,
-          "goalDifference": 0,
-          "points": 1
+          "losses": 1,
+          "goalsFor": 8,
+          "goalsAgainst": 3,
+          "goalDifference": 5,
+          "points": 4
+        },
+        {
+          "teamId": "bosnia_herzegovina",
+          "played": 3,
+          "wins": 1,
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 5,
+          "goalsAgainst": 6,
+          "goalDifference": -1,
+          "points": 4
         },
         {
           "teamId": "qatar",
-          "played": 0,
+          "played": 3,
           "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
-          "teamId": "switzerland",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "draws": 1,
+          "losses": 2,
+          "goalsFor": 2,
+          "goalsAgainst": 10,
+          "goalDifference": -8,
+          "points": 1
         }
       ],
       "matches": [
@@ -221,11 +229,13 @@
           "groupName": "B",
           "homeTeamId": "qatar",
           "awayTeamId": "switzerland",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Qatar 1-1 Switzerland.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GB_3",
@@ -235,11 +245,13 @@
           "groupName": "B",
           "homeTeamId": "switzerland",
           "awayTeamId": "bosnia_herzegovina",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 4,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Switzerland 4-1 Bosnia and Herzegovina.",
+          "winnerId": "switzerland",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GB_4",
@@ -249,11 +261,13 @@
           "groupName": "B",
           "homeTeamId": "canada",
           "awayTeamId": "qatar",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 6,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Canada 6-0 Qatar.",
+          "winnerId": "canada",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GB_5",
@@ -263,11 +277,13 @@
           "groupName": "B",
           "homeTeamId": "switzerland",
           "awayTeamId": "canada",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Switzerland 2-1 Canada.",
+          "winnerId": "switzerland",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GB_6",
@@ -277,11 +293,13 @@
           "groupName": "B",
           "homeTeamId": "bosnia_herzegovina",
           "awayTeamId": "qatar",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Bosnia and Herzegovina 3-1 Qatar.",
+          "winnerId": "bosnia_herzegovina",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -296,46 +314,46 @@
       "standings": [
         {
           "teamId": "brazil",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "played": 3,
+          "wins": 2,
+          "draws": 1,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
-          "teamId": "haiti",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 7,
+          "goalsAgainst": 1,
+          "goalDifference": 6,
+          "points": 7
         },
         {
           "teamId": "morocco",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "played": 3,
+          "wins": 2,
+          "draws": 1,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "goalDifference": 3,
+          "points": 7
         },
         {
           "teamId": "scotland",
-          "played": 0,
+          "played": 3,
+          "wins": 1,
+          "draws": 0,
+          "losses": 2,
+          "goalsFor": 1,
+          "goalsAgainst": 4,
+          "goalDifference": -3,
+          "points": 3
+        },
+        {
+          "teamId": "haiti",
+          "played": 3,
           "wins": 0,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
+          "losses": 3,
+          "goalsFor": 2,
+          "goalsAgainst": 8,
+          "goalDifference": -6,
           "points": 0
         }
       ],
@@ -348,11 +366,13 @@
           "groupName": "C",
           "homeTeamId": "brazil",
           "awayTeamId": "morocco",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Brazil 1-1 Morocco.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GC_2",
@@ -362,11 +382,13 @@
           "groupName": "C",
           "homeTeamId": "haiti",
           "awayTeamId": "scotland",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Haiti 0-1 Scotland.",
+          "winnerId": "scotland",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GC_3",
@@ -376,11 +398,13 @@
           "groupName": "C",
           "homeTeamId": "scotland",
           "awayTeamId": "morocco",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Scotland 0-1 Morocco.",
+          "winnerId": "morocco",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GC_4",
@@ -390,11 +414,13 @@
           "groupName": "C",
           "homeTeamId": "brazil",
           "awayTeamId": "haiti",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Brazil 3-0 Haiti.",
+          "winnerId": "brazil",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GC_5",
@@ -404,11 +430,13 @@
           "groupName": "C",
           "homeTeamId": "scotland",
           "awayTeamId": "brazil",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 3,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Scotland 0-3 Brazil.",
+          "winnerId": "brazil",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GC_6",
@@ -418,11 +446,13 @@
           "groupName": "C",
           "homeTeamId": "morocco",
           "awayTeamId": "haiti",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 4,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Morocco 4-2 Haiti.",
+          "winnerId": "morocco",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -436,48 +466,48 @@
       ],
       "standings": [
         {
-          "teamId": "australia",
-          "played": 1,
-          "wins": 1,
+          "teamId": "usa",
+          "played": 3,
+          "wins": 2,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 3,
-          "goalsAgainst": 1,
+          "losses": 1,
+          "goalsFor": 6,
+          "goalsAgainst": 4,
           "goalDifference": 2,
-          "points": 3
+          "points": 6
         },
         {
-          "teamId": "usa",
-          "played": 1,
+          "teamId": "australia",
+          "played": 3,
           "wins": 1,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 2,
-          "goalsAgainst": 1,
-          "goalDifference": 1,
-          "points": 3
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 3,
+          "goalsAgainst": 3,
+          "goalDifference": 0,
+          "points": 4
         },
         {
           "teamId": "paraguay",
-          "played": 1,
-          "wins": 0,
-          "draws": 0,
+          "played": 3,
+          "wins": 1,
+          "draws": 1,
           "losses": 1,
-          "goalsFor": 1,
+          "goalsFor": 2,
           "goalsAgainst": 2,
-          "goalDifference": -1,
-          "points": 0
+          "goalDifference": 0,
+          "points": 4
         },
         {
           "teamId": "turkey",
-          "played": 1,
-          "wins": 0,
+          "played": 3,
+          "wins": 1,
           "draws": 0,
-          "losses": 1,
-          "goalsFor": 1,
-          "goalsAgainst": 3,
+          "losses": 2,
+          "goalsFor": 4,
+          "goalsAgainst": 6,
           "goalDifference": -2,
-          "points": 0
+          "points": 3
         }
       ],
       "matches": [
@@ -517,11 +547,13 @@
           "groupName": "D",
           "homeTeamId": "usa",
           "awayTeamId": "australia",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: United States 2-0 Australia.",
+          "winnerId": "usa",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GD_4",
@@ -531,11 +563,13 @@
           "groupName": "D",
           "homeTeamId": "turkey",
           "awayTeamId": "paraguay",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Turkey 0-1 Paraguay.",
+          "winnerId": "paraguay",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GD_5",
@@ -545,11 +579,13 @@
           "groupName": "D",
           "homeTeamId": "turkey",
           "awayTeamId": "usa",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Turkey 3-2 United States.",
+          "winnerId": "turkey",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GD_6",
@@ -559,11 +595,13 @@
           "groupName": "D",
           "homeTeamId": "paraguay",
           "awayTeamId": "australia",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Paraguay 0-0 Australia.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -577,48 +615,48 @@
       ],
       "standings": [
         {
-          "teamId": "curacao",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
-          "teamId": "ecuador",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
           "teamId": "germany",
-          "played": 0,
-          "wins": 0,
+          "played": 3,
+          "wins": 2,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "losses": 1,
+          "goalsFor": 10,
+          "goalsAgainst": 4,
+          "goalDifference": 6,
+          "points": 6
         },
         {
           "teamId": "ivory_coast",
-          "played": 0,
-          "wins": 0,
+          "played": 3,
+          "wins": 2,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
+          "losses": 1,
+          "goalsFor": 4,
+          "goalsAgainst": 2,
+          "goalDifference": 2,
+          "points": 6
+        },
+        {
+          "teamId": "ecuador",
+          "played": 3,
+          "wins": 1,
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 2,
+          "goalsAgainst": 2,
           "goalDifference": 0,
-          "points": 0
+          "points": 4
+        },
+        {
+          "teamId": "curacao",
+          "played": 3,
+          "wins": 0,
+          "draws": 1,
+          "losses": 2,
+          "goalsFor": 1,
+          "goalsAgainst": 9,
+          "goalDifference": -8,
+          "points": 1
         }
       ],
       "matches": [
@@ -630,11 +668,13 @@
           "groupName": "E",
           "homeTeamId": "germany",
           "awayTeamId": "curacao",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 7,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Germany 7-1 Curaçao.",
+          "winnerId": "germany",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GE_2",
@@ -644,11 +684,13 @@
           "groupName": "E",
           "homeTeamId": "ivory_coast",
           "awayTeamId": "ecuador",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Ivory Coast 1-0 Ecuador.",
+          "winnerId": "ivory_coast",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GE_3",
@@ -658,11 +700,13 @@
           "groupName": "E",
           "homeTeamId": "germany",
           "awayTeamId": "ivory_coast",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Germany 2-1 Ivory Coast.",
+          "winnerId": "germany",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GE_4",
@@ -672,11 +716,13 @@
           "groupName": "E",
           "homeTeamId": "ecuador",
           "awayTeamId": "curacao",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Ecuador 0-0 Curaçao.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GE_5",
@@ -686,11 +732,13 @@
           "groupName": "E",
           "homeTeamId": "curacao",
           "awayTeamId": "ivory_coast",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Curaçao 0-2 Ivory Coast.",
+          "winnerId": "ivory_coast",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GE_6",
@@ -700,11 +748,13 @@
           "groupName": "E",
           "homeTeamId": "ecuador",
           "awayTeamId": "germany",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Ecuador 2-1 Germany.",
+          "winnerId": "ecuador",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -718,47 +768,47 @@
       ],
       "standings": [
         {
-          "teamId": "japan",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "teamId": "netherlands",
+          "played": 3,
+          "wins": 2,
+          "draws": 1,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 10,
+          "goalsAgainst": 4,
+          "goalDifference": 6,
+          "points": 7
         },
         {
-          "teamId": "netherlands",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "teamId": "japan",
+          "played": 3,
+          "wins": 1,
+          "draws": 2,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 7,
+          "goalsAgainst": 3,
+          "goalDifference": 4,
+          "points": 5
         },
         {
           "teamId": "sweden",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
+          "played": 3,
+          "wins": 1,
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 7,
+          "goalsAgainst": 7,
           "goalDifference": 0,
-          "points": 0
+          "points": 4
         },
         {
           "teamId": "tunisia",
-          "played": 0,
+          "played": 3,
           "wins": 0,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
+          "losses": 3,
+          "goalsFor": 2,
+          "goalsAgainst": 12,
+          "goalDifference": -10,
           "points": 0
         }
       ],
@@ -771,11 +821,13 @@
           "groupName": "F",
           "homeTeamId": "netherlands",
           "awayTeamId": "japan",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Netherlands 2-2 Japan.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GF_2",
@@ -785,11 +837,13 @@
           "groupName": "F",
           "homeTeamId": "sweden",
           "awayTeamId": "tunisia",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 5,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Sweden 5-1 Tunisia.",
+          "winnerId": "sweden",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GF_3",
@@ -799,11 +853,13 @@
           "groupName": "F",
           "homeTeamId": "netherlands",
           "awayTeamId": "sweden",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 5,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Netherlands 5-1 Sweden.",
+          "winnerId": "netherlands",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GF_4",
@@ -813,11 +869,13 @@
           "groupName": "F",
           "homeTeamId": "tunisia",
           "awayTeamId": "japan",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 4,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Tunisia 0-4 Japan.",
+          "winnerId": "japan",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GF_5",
@@ -827,11 +885,13 @@
           "groupName": "F",
           "homeTeamId": "japan",
           "awayTeamId": "sweden",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Japan 1-1 Sweden.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GF_6",
@@ -841,11 +901,13 @@
           "groupName": "F",
           "homeTeamId": "tunisia",
           "awayTeamId": "netherlands",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 3,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Tunisia 1-3 Netherlands.",
+          "winnerId": "netherlands",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -860,47 +922,47 @@
       "standings": [
         {
           "teamId": "belgium",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "played": 3,
+          "wins": 1,
+          "draws": 2,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 6,
+          "goalsAgainst": 2,
+          "goalDifference": 4,
+          "points": 5
         },
         {
           "teamId": "egypt",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "played": 3,
+          "wins": 1,
+          "draws": 2,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 5,
+          "goalsAgainst": 3,
+          "goalDifference": 2,
+          "points": 5
         },
         {
           "teamId": "iran",
-          "played": 0,
+          "played": 3,
           "wins": 0,
-          "draws": 0,
+          "draws": 3,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
+          "goalsFor": 3,
+          "goalsAgainst": 3,
           "goalDifference": 0,
-          "points": 0
+          "points": 3
         },
         {
           "teamId": "new_zealand",
-          "played": 0,
+          "played": 3,
           "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "draws": 1,
+          "losses": 2,
+          "goalsFor": 4,
+          "goalsAgainst": 10,
+          "goalDifference": -6,
+          "points": 1
         }
       ],
       "matches": [
@@ -912,11 +974,13 @@
           "groupName": "G",
           "homeTeamId": "belgium",
           "awayTeamId": "egypt",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Belgium 1-1 Egypt.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GG_2",
@@ -926,11 +990,13 @@
           "groupName": "G",
           "homeTeamId": "iran",
           "awayTeamId": "new_zealand",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Iran 2-2 New Zealand.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GG_3",
@@ -940,11 +1006,13 @@
           "groupName": "G",
           "homeTeamId": "belgium",
           "awayTeamId": "iran",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Belgium 0-0 Iran.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GG_4",
@@ -954,11 +1022,13 @@
           "groupName": "G",
           "homeTeamId": "new_zealand",
           "awayTeamId": "egypt",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 3,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: New Zealand 1-3 Egypt.",
+          "winnerId": "egypt",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GG_5",
@@ -968,11 +1038,13 @@
           "groupName": "G",
           "homeTeamId": "egypt",
           "awayTeamId": "iran",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Egypt 1-1 Iran.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GG_6",
@@ -982,11 +1054,13 @@
           "groupName": "G",
           "homeTeamId": "new_zealand",
           "awayTeamId": "belgium",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 5,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: New Zealand 1-5 Belgium.",
+          "winnerId": "belgium",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -1000,48 +1074,48 @@
       ],
       "standings": [
         {
-          "teamId": "cape_verde",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
-          "teamId": "saudi_arabia",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
           "teamId": "spain",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "played": 3,
+          "wins": 2,
+          "draws": 1,
           "losses": 0,
-          "goalsFor": 0,
+          "goalsFor": 5,
           "goalsAgainst": 0,
+          "goalDifference": 5,
+          "points": 7
+        },
+        {
+          "teamId": "cape_verde",
+          "played": 3,
+          "wins": 0,
+          "draws": 3,
+          "losses": 0,
+          "goalsFor": 2,
+          "goalsAgainst": 2,
           "goalDifference": 0,
-          "points": 0
+          "points": 3
         },
         {
           "teamId": "uruguay",
-          "played": 0,
+          "played": 3,
           "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "draws": 2,
+          "losses": 1,
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "goalDifference": -1,
+          "points": 2
+        },
+        {
+          "teamId": "saudi_arabia",
+          "played": 3,
+          "wins": 0,
+          "draws": 2,
+          "losses": 1,
+          "goalsFor": 1,
+          "goalsAgainst": 5,
+          "goalDifference": -4,
+          "points": 2
         }
       ],
       "matches": [
@@ -1053,11 +1127,13 @@
           "groupName": "H",
           "homeTeamId": "spain",
           "awayTeamId": "cape_verde",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Spain 0-0 Cape Verde.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GH_2",
@@ -1067,11 +1143,13 @@
           "groupName": "H",
           "homeTeamId": "saudi_arabia",
           "awayTeamId": "uruguay",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Saudi Arabia 1-1 Uruguay.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GH_3",
@@ -1081,11 +1159,13 @@
           "groupName": "H",
           "homeTeamId": "spain",
           "awayTeamId": "saudi_arabia",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 4,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Spain 4-0 Saudi Arabia.",
+          "winnerId": "spain",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GH_4",
@@ -1095,11 +1175,13 @@
           "groupName": "H",
           "homeTeamId": "uruguay",
           "awayTeamId": "cape_verde",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Uruguay 2-2 Cape Verde.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GH_5",
@@ -1109,11 +1191,13 @@
           "groupName": "H",
           "homeTeamId": "cape_verde",
           "awayTeamId": "saudi_arabia",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Cape Verde 0-0 Saudi Arabia.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GH_6",
@@ -1123,11 +1207,13 @@
           "groupName": "H",
           "homeTeamId": "uruguay",
           "awayTeamId": "spain",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Uruguay 0-1 Spain.",
+          "winnerId": "spain",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -1142,46 +1228,46 @@
       "standings": [
         {
           "teamId": "france",
-          "played": 0,
-          "wins": 0,
+          "played": 3,
+          "wins": 3,
           "draws": 0,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
-          "teamId": "iraq",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 10,
+          "goalsAgainst": 2,
+          "goalDifference": 8,
+          "points": 9
         },
         {
           "teamId": "norway",
-          "played": 0,
-          "wins": 0,
+          "played": 3,
+          "wins": 2,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "losses": 1,
+          "goalsFor": 8,
+          "goalsAgainst": 7,
+          "goalDifference": 1,
+          "points": 6
         },
         {
           "teamId": "senegal",
-          "played": 0,
+          "played": 3,
+          "wins": 1,
+          "draws": 0,
+          "losses": 2,
+          "goalsFor": 8,
+          "goalsAgainst": 6,
+          "goalDifference": 2,
+          "points": 3
+        },
+        {
+          "teamId": "iraq",
+          "played": 3,
           "wins": 0,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
+          "losses": 3,
+          "goalsFor": 1,
+          "goalsAgainst": 12,
+          "goalDifference": -11,
           "points": 0
         }
       ],
@@ -1194,11 +1280,13 @@
           "groupName": "I",
           "homeTeamId": "france",
           "awayTeamId": "senegal",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: France 3-1 Senegal.",
+          "winnerId": "france",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GI_2",
@@ -1208,11 +1296,13 @@
           "groupName": "I",
           "homeTeamId": "iraq",
           "awayTeamId": "norway",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 4,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Iraq 1-4 Norway.",
+          "winnerId": "norway",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GI_3",
@@ -1222,11 +1312,13 @@
           "groupName": "I",
           "homeTeamId": "france",
           "awayTeamId": "iraq",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: France 3-0 Iraq.",
+          "winnerId": "france",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GI_4",
@@ -1236,11 +1328,13 @@
           "groupName": "I",
           "homeTeamId": "norway",
           "awayTeamId": "senegal",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Norway 3-2 Senegal.",
+          "winnerId": "norway",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GI_5",
@@ -1250,11 +1344,13 @@
           "groupName": "I",
           "homeTeamId": "norway",
           "awayTeamId": "france",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 4,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Norway 1-4 France.",
+          "winnerId": "france",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GI_6",
@@ -1264,11 +1360,13 @@
           "groupName": "I",
           "homeTeamId": "senegal",
           "awayTeamId": "iraq",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 5,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Senegal 5-0 Iraq.",
+          "winnerId": "senegal",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -1282,47 +1380,47 @@
       ],
       "standings": [
         {
-          "teamId": "algeria",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
           "teamId": "argentina",
-          "played": 0,
-          "wins": 0,
+          "played": 3,
+          "wins": 3,
           "draws": 0,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 8,
+          "goalsAgainst": 1,
+          "goalDifference": 7,
+          "points": 9
         },
         {
           "teamId": "austria",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
+          "played": 3,
+          "wins": 1,
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 6,
+          "goalsAgainst": 6,
           "goalDifference": 0,
-          "points": 0
+          "points": 4
+        },
+        {
+          "teamId": "algeria",
+          "played": 3,
+          "wins": 1,
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 5,
+          "goalsAgainst": 7,
+          "goalDifference": -2,
+          "points": 4
         },
         {
           "teamId": "jordan",
-          "played": 0,
+          "played": 3,
           "wins": 0,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
+          "losses": 3,
+          "goalsFor": 3,
+          "goalsAgainst": 8,
+          "goalDifference": -5,
           "points": 0
         }
       ],
@@ -1335,11 +1433,13 @@
           "groupName": "J",
           "homeTeamId": "argentina",
           "awayTeamId": "algeria",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Argentina 3-0 Algeria.",
+          "winnerId": "argentina",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GJ_2",
@@ -1349,11 +1449,13 @@
           "groupName": "J",
           "homeTeamId": "austria",
           "awayTeamId": "jordan",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Austria 3-1 Jordan.",
+          "winnerId": "austria",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GJ_3",
@@ -1363,11 +1465,13 @@
           "groupName": "J",
           "homeTeamId": "argentina",
           "awayTeamId": "austria",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Argentina 2-0 Austria.",
+          "winnerId": "argentina",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GJ_4",
@@ -1377,11 +1481,13 @@
           "groupName": "J",
           "homeTeamId": "jordan",
           "awayTeamId": "algeria",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Jordan 1-2 Algeria.",
+          "winnerId": "algeria",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GJ_5",
@@ -1391,11 +1497,13 @@
           "groupName": "J",
           "homeTeamId": "algeria",
           "awayTeamId": "austria",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 3,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Algeria 3-3 Austria.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GJ_6",
@@ -1405,11 +1513,13 @@
           "groupName": "J",
           "homeTeamId": "jordan",
           "awayTeamId": "argentina",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 3,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Jordan 1-3 Argentina.",
+          "winnerId": "argentina",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -1424,46 +1534,46 @@
       "standings": [
         {
           "teamId": "colombia",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "played": 3,
+          "wins": 2,
+          "draws": 1,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
-        },
-        {
-          "teamId": "dr_congo",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 4,
+          "goalsAgainst": 1,
+          "goalDifference": 3,
+          "points": 7
         },
         {
           "teamId": "portugal",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "played": 3,
+          "wins": 1,
+          "draws": 2,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 6,
+          "goalsAgainst": 1,
+          "goalDifference": 5,
+          "points": 5
+        },
+        {
+          "teamId": "dr_congo",
+          "played": 3,
+          "wins": 1,
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "goalDifference": 1,
+          "points": 4
         },
         {
           "teamId": "uzbekistan",
-          "played": 0,
+          "played": 3,
           "wins": 0,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
+          "losses": 3,
+          "goalsFor": 2,
+          "goalsAgainst": 11,
+          "goalDifference": -9,
           "points": 0
         }
       ],
@@ -1476,11 +1586,13 @@
           "groupName": "K",
           "homeTeamId": "portugal",
           "awayTeamId": "dr_congo",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Portugal 1-1 Democratic Republic of the Congo.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GK_2",
@@ -1490,11 +1602,13 @@
           "groupName": "K",
           "homeTeamId": "uzbekistan",
           "awayTeamId": "colombia",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 3,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Uzbekistan 1-3 Colombia.",
+          "winnerId": "colombia",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GK_3",
@@ -1504,11 +1618,13 @@
           "groupName": "K",
           "homeTeamId": "portugal",
           "awayTeamId": "uzbekistan",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 5,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Portugal 5-0 Uzbekistan.",
+          "winnerId": "portugal",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GK_4",
@@ -1518,11 +1634,13 @@
           "groupName": "K",
           "homeTeamId": "colombia",
           "awayTeamId": "dr_congo",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Colombia 1-0 Democratic Republic of the Congo.",
+          "winnerId": "colombia",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GK_5",
@@ -1532,11 +1650,13 @@
           "groupName": "K",
           "homeTeamId": "colombia",
           "awayTeamId": "portugal",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Colombia 0-0 Portugal.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GK_6",
@@ -1546,11 +1666,13 @@
           "groupName": "K",
           "homeTeamId": "dr_congo",
           "awayTeamId": "uzbekistan",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 3,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Democratic Republic of the Congo 3-1 Uzbekistan.",
+          "winnerId": "dr_congo",
+          "decidedBy": "REGULAR"
         }
       ]
     },
@@ -1564,47 +1686,47 @@
       ],
       "standings": [
         {
-          "teamId": "croatia",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
+          "teamId": "england",
+          "played": 3,
+          "wins": 2,
+          "draws": 1,
           "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
-          "points": 0
+          "goalsFor": 6,
+          "goalsAgainst": 2,
+          "goalDifference": 4,
+          "points": 7
         },
         {
-          "teamId": "england",
-          "played": 0,
-          "wins": 0,
+          "teamId": "croatia",
+          "played": 3,
+          "wins": 2,
           "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
+          "losses": 1,
+          "goalsFor": 5,
+          "goalsAgainst": 5,
           "goalDifference": 0,
-          "points": 0
+          "points": 6
         },
         {
           "teamId": "ghana",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalsFor": 0,
-          "goalsAgainst": 0,
+          "played": 3,
+          "wins": 1,
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 2,
+          "goalsAgainst": 2,
           "goalDifference": 0,
-          "points": 0
+          "points": 4
         },
         {
           "teamId": "panama",
-          "played": 0,
+          "played": 3,
           "wins": 0,
           "draws": 0,
-          "losses": 0,
+          "losses": 3,
           "goalsFor": 0,
-          "goalsAgainst": 0,
-          "goalDifference": 0,
+          "goalsAgainst": 4,
+          "goalDifference": -4,
           "points": 0
         }
       ],
@@ -1617,11 +1739,13 @@
           "groupName": "L",
           "homeTeamId": "england",
           "awayTeamId": "croatia",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 4,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: England 4-2 Croatia.",
+          "winnerId": "england",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GL_2",
@@ -1631,11 +1755,13 @@
           "groupName": "L",
           "homeTeamId": "ghana",
           "awayTeamId": "panama",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 1,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Ghana 1-0 Panama.",
+          "winnerId": "ghana",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GL_3",
@@ -1645,11 +1771,13 @@
           "groupName": "L",
           "homeTeamId": "england",
           "awayTeamId": "ghana",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: England 0-0 Ghana.",
+          "winnerId": "",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GL_4",
@@ -1659,11 +1787,13 @@
           "groupName": "L",
           "homeTeamId": "panama",
           "awayTeamId": "croatia",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Panama 0-1 Croatia.",
+          "winnerId": "croatia",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GL_5",
@@ -1673,11 +1803,13 @@
           "groupName": "L",
           "homeTeamId": "panama",
           "awayTeamId": "england",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 0,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Panama 0-2 England.",
+          "winnerId": "england",
+          "decidedBy": "REGULAR"
         },
         {
           "id": "match_GL_6",
@@ -1687,11 +1819,13 @@
           "groupName": "L",
           "homeTeamId": "croatia",
           "awayTeamId": "ghana",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Croatia 2-1 Ghana.",
+          "winnerId": "croatia",
+          "decidedBy": "REGULAR"
         }
       ]
     }
@@ -1705,208 +1839,252 @@
           "stage": "R32",
           "day": 18,
           "kickoffTime": "2026-06-28T12:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "south_africa",
+          "awayTeamId": "canada",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: South Africa 0-1 Canada.",
+          "decidedBy": "REGULAR",
+          "winnerId": "canada"
         },
         {
           "id": "R32_M2",
           "stage": "R32",
           "day": 18,
           "kickoffTime": "2026-06-28T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "germany",
+          "awayTeamId": "paraguay",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Germany 1-1 Paraguay.",
+          "decidedBy": "PENALTIES",
+          "penaltyScores": {
+            "home": 3,
+            "away": 4
+          },
+          "winnerId": "paraguay"
         },
         {
           "id": "R32_M3",
           "stage": "R32",
           "day": 18,
           "kickoffTime": "2026-06-28T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "netherlands",
+          "awayTeamId": "morocco",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Netherlands 1-1 Morocco.",
+          "decidedBy": "PENALTIES",
+          "penaltyScores": {
+            "home": 2,
+            "away": 3
+          },
+          "winnerId": "morocco"
         },
         {
           "id": "R32_M4",
           "stage": "R32",
           "day": 19,
           "kickoffTime": "2026-06-29T12:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "brazil",
+          "awayTeamId": "japan",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Brazil 2-1 Japan.",
+          "decidedBy": "REGULAR",
+          "winnerId": "brazil"
         },
         {
           "id": "R32_M5",
           "stage": "R32",
           "day": 19,
           "kickoffTime": "2026-06-29T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "france",
+          "awayTeamId": "sweden",
+          "homeScore": 3,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: France 3-0 Sweden.",
+          "decidedBy": "REGULAR",
+          "winnerId": "france"
         },
         {
           "id": "R32_M6",
           "stage": "R32",
           "day": 19,
           "kickoffTime": "2026-06-29T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "ivory_coast",
+          "awayTeamId": "norway",
+          "homeScore": 1,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Ivory Coast 1-2 Norway.",
+          "decidedBy": "REGULAR",
+          "winnerId": "norway"
         },
         {
           "id": "R32_M7",
           "stage": "R32",
           "day": 20,
           "kickoffTime": "2026-06-30T12:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "mexico",
+          "awayTeamId": "ecuador",
+          "homeScore": 2,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Mexico 2-0 Ecuador.",
+          "decidedBy": "REGULAR",
+          "winnerId": "mexico"
         },
         {
           "id": "R32_M8",
           "stage": "R32",
           "day": 20,
           "kickoffTime": "2026-06-30T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "england",
+          "awayTeamId": "dr_congo",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: England 2-1 Democratic Republic of the Congo.",
+          "decidedBy": "REGULAR",
+          "winnerId": "england"
         },
         {
           "id": "R32_M9",
           "stage": "R32",
           "day": 20,
           "kickoffTime": "2026-06-30T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "usa",
+          "awayTeamId": "bosnia_herzegovina",
+          "homeScore": 2,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: United States 2-0 Bosnia and Herzegovina.",
+          "decidedBy": "REGULAR",
+          "winnerId": "usa"
         },
         {
           "id": "R32_M10",
           "stage": "R32",
           "day": 21,
           "kickoffTime": "2026-07-01T12:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "belgium",
+          "awayTeamId": "senegal",
+          "homeScore": 3,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Belgium 3-2 Senegal.",
+          "decidedBy": "REGULAR",
+          "winnerId": "belgium"
         },
         {
           "id": "R32_M11",
           "stage": "R32",
           "day": 21,
           "kickoffTime": "2026-07-01T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "portugal",
+          "awayTeamId": "croatia",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Portugal 2-1 Croatia.",
+          "decidedBy": "REGULAR",
+          "winnerId": "portugal"
         },
         {
           "id": "R32_M12",
           "stage": "R32",
           "day": 21,
           "kickoffTime": "2026-07-01T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "spain",
+          "awayTeamId": "austria",
+          "homeScore": 3,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Spain 3-0 Austria.",
+          "decidedBy": "REGULAR",
+          "winnerId": "spain"
         },
         {
           "id": "R32_M13",
           "stage": "R32",
           "day": 22,
           "kickoffTime": "2026-07-02T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "switzerland",
+          "awayTeamId": "algeria",
+          "homeScore": 2,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Switzerland 2-0 Algeria.",
+          "decidedBy": "REGULAR",
+          "winnerId": "switzerland"
         },
         {
           "id": "R32_M14",
           "stage": "R32",
           "day": 22,
           "kickoffTime": "2026-07-02T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "argentina",
+          "awayTeamId": "cape_verde",
+          "homeScore": 3,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Argentina 3-2 Cape Verde.",
+          "decidedBy": "REGULAR",
+          "winnerId": "argentina"
         },
         {
           "id": "R32_M15",
           "stage": "R32",
           "day": 23,
           "kickoffTime": "2026-07-03T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "colombia",
+          "awayTeamId": "ghana",
+          "homeScore": 1,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Colombia 1-0 Ghana.",
+          "decidedBy": "REGULAR",
+          "winnerId": "colombia"
         },
         {
           "id": "R32_M16",
           "stage": "R32",
           "day": 23,
           "kickoffTime": "2026-07-03T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "australia",
+          "awayTeamId": "egypt",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Australia 1-1 Egypt.",
+          "decidedBy": "PENALTIES",
+          "penaltyScores": {
+            "home": 2,
+            "away": 4
+          },
+          "winnerId": "egypt"
         }
       ]
     },
@@ -1918,104 +2096,124 @@
           "stage": "R16",
           "day": 24,
           "kickoffTime": "2026-07-04T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "paraguay",
+          "awayTeamId": "france",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Paraguay 0-1 France.",
+          "decidedBy": "REGULAR",
+          "winnerId": "france"
         },
         {
           "id": "R16_M2",
           "stage": "R16",
           "day": 24,
           "kickoffTime": "2026-07-04T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "canada",
+          "awayTeamId": "morocco",
+          "homeScore": 0,
+          "awayScore": 3,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Canada 0-3 Morocco.",
+          "decidedBy": "REGULAR",
+          "winnerId": "morocco"
         },
         {
           "id": "R16_M3",
           "stage": "R16",
           "day": 25,
           "kickoffTime": "2026-07-05T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "brazil",
+          "awayTeamId": "norway",
+          "homeScore": 1,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Brazil 1-2 Norway.",
+          "decidedBy": "REGULAR",
+          "winnerId": "norway"
         },
         {
           "id": "R16_M4",
           "stage": "R16",
           "day": 25,
           "kickoffTime": "2026-07-05T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "mexico",
+          "awayTeamId": "england",
+          "homeScore": 2,
+          "awayScore": 3,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Mexico 2-3 England.",
+          "decidedBy": "REGULAR",
+          "winnerId": "england"
         },
         {
           "id": "R16_M5",
           "stage": "R16",
           "day": 26,
           "kickoffTime": "2026-07-06T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "portugal",
+          "awayTeamId": "spain",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Portugal 0-1 Spain.",
+          "decidedBy": "REGULAR",
+          "winnerId": "spain"
         },
         {
           "id": "R16_M6",
           "stage": "R16",
           "day": 26,
           "kickoffTime": "2026-07-06T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "usa",
+          "awayTeamId": "belgium",
+          "homeScore": 1,
+          "awayScore": 4,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: United States 1-4 Belgium.",
+          "decidedBy": "REGULAR",
+          "winnerId": "belgium"
         },
         {
           "id": "R16_M7",
           "stage": "R16",
           "day": 27,
           "kickoffTime": "2026-07-07T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "argentina",
+          "awayTeamId": "egypt",
+          "homeScore": 3,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Argentina 3-2 Egypt.",
+          "decidedBy": "REGULAR",
+          "winnerId": "argentina"
         },
         {
           "id": "R16_M8",
           "stage": "R16",
           "day": 27,
           "kickoffTime": "2026-07-07T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "switzerland",
+          "awayTeamId": "colombia",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Switzerland 0-0 Colombia.",
+          "decidedBy": "PENALTIES",
+          "penaltyScores": {
+            "home": 4,
+            "away": 3
+          },
+          "winnerId": "switzerland"
         }
       ]
     },
@@ -2027,52 +2225,60 @@
           "stage": "QF",
           "day": 28,
           "kickoffTime": "2026-07-09T15:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "france",
+          "awayTeamId": "morocco",
+          "homeScore": 2,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: France 2-0 Morocco.",
+          "decidedBy": "REGULAR",
+          "winnerId": "france"
         },
         {
           "id": "QF_M2",
           "stage": "QF",
           "day": 28,
           "kickoffTime": "2026-07-09T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "spain",
+          "awayTeamId": "belgium",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Spain 2-1 Belgium.",
+          "decidedBy": "REGULAR",
+          "winnerId": "spain"
         },
         {
           "id": "QF_M3",
           "stage": "QF",
           "day": 29,
           "kickoffTime": "2026-07-10T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "norway",
+          "awayTeamId": "england",
+          "homeScore": 1,
+          "awayScore": 2,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Norway 1-2 England.",
+          "decidedBy": "REGULAR",
+          "winnerId": "england"
         },
         {
           "id": "QF_M4",
           "stage": "QF",
           "day": 30,
           "kickoffTime": "2026-07-11T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "PENDING",
+          "homeTeamId": "argentina",
+          "awayTeamId": "switzerland",
+          "homeScore": 3,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "timeline": [],
-          "aiSummary": null
+          "aiSummary": "Official Result: Argentina 3-1 Switzerland.",
+          "decidedBy": "REGULAR",
+          "winnerId": "argentina"
         }
       ]
     },
@@ -2084,8 +2290,8 @@
           "stage": "SF",
           "day": 31,
           "kickoffTime": "2026-07-14T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
+          "homeTeamId": "france",
+          "awayTeamId": "spain",
           "homeScore": null,
           "awayScore": null,
           "status": "PENDING",
@@ -2097,8 +2303,8 @@
           "stage": "SF",
           "day": 32,
           "kickoffTime": "2026-07-15T19:00:00-04:00",
-          "homeTeamId": "",
-          "awayTeamId": "",
+          "homeTeamId": "england",
+          "awayTeamId": "argentina",
           "homeScore": null,
           "awayScore": null,
           "status": "PENDING",

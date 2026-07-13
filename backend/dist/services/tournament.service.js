@@ -635,67 +635,161 @@ class TournamentService {
             });
         });
     }
-    syncOfficialResults(state) {
-        let openfootballMatches = [];
+    apiToken = null;
+    cachedGames = null;
+    cacheTimestamp = 0;
+    async getApiToken() {
+        if (this.apiToken)
+            return this.apiToken;
+        const email = "oracle_dev_12345@worldcup.com";
+        const password = "oracle_password_2026";
+        const name = "Oracle Dev";
+        // 1. Try to login
         try {
-            const filePath = path_1.default.join(__dirname, "../../data/worldcup_2026.json");
-            const rawData = fs_1.default.readFileSync(filePath, "utf-8");
-            const parsed = JSON.parse(rawData);
-            openfootballMatches = parsed.matches || [];
+            const res = await fetch("https://worldcup26.ir/auth/authenticate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.token) {
+                    this.apiToken = data.token;
+                    return data.token;
+                }
+            }
         }
-        catch (error) {
-            console.error("Failed to load worldcup_2026.json for sync:", error);
+        catch (err) {
+            console.warn("Login failed, attempting register:", err);
+        }
+        // 2. If login failed, try to register
+        try {
+            const res = await fetch("https://worldcup26.ir/auth/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, password }),
+            });
+            const data = await res.json();
+            if (data && data.token) {
+                this.apiToken = data.token;
+                return data.token;
+            }
+            else if (data && data.user) {
+                // Registration succeeded but no token? Try login again
+                const loginRes = await fetch("https://worldcup26.ir/auth/authenticate", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password }),
+                });
+                const loginData = await loginRes.json();
+                if (loginData && loginData.token) {
+                    this.apiToken = loginData.token;
+                    return loginData.token;
+                }
+            }
+            throw new Error(data.message || "Failed to obtain API token.");
+        }
+        catch (err) {
+            console.error("Auth register/login failed:", err);
+            throw err;
+        }
+    }
+    async fetchOfficialGames() {
+        const now = Date.now();
+        if (this.cachedGames && now - this.cacheTimestamp < 5 * 60 * 1000) {
+            return this.cachedGames;
+        }
+        try {
+            const token = await this.getApiToken();
+            const res = await fetch("https://worldcup26.ir/get/games", {
+                headers: { "Authorization": `Bearer ${token}` },
+            });
+            if (!res.ok) {
+                if (res.status === 401) {
+                    // Token expired, clear cache and retry once
+                    this.apiToken = null;
+                    return this.fetchOfficialGames();
+                }
+                throw new Error(`API returned status ${res.status}`);
+            }
+            const data = await res.json();
+            const games = data.games || [];
+            this.cachedGames = games;
+            this.cacheTimestamp = now;
+            return games;
+        }
+        catch (err) {
+            console.error("Failed to fetch official games:", err);
+            // Fallback to cache if request fails
+            if (this.cachedGames)
+                return this.cachedGames;
+            return [];
+        }
+    }
+    async syncOfficialResults(state) {
+        const apiGames = await this.fetchOfficialGames();
+        if (!apiGames || apiGames.length === 0)
             return false;
-        }
         let modified = false;
+        // Helper to map team names to local IDs
+        const getTeamIdByName = (name) => {
+            const nameToIdMap = {
+                "Bosnia & Herzegovina": "bosnia_herzegovina",
+                "Bosnia and Herzegovina": "bosnia_herzegovina",
+                "Czech Republic": "czech_republic",
+                "South Korea": "south_korea",
+                "Democratic Republic of the Congo": "dr_congo",
+                "DR Congo": "dr_congo",
+                "Congo DR": "dr_congo",
+                "Ivory Coast": "ivory_coast",
+                "Cape Verde": "cape_verde",
+                "Saudi Arabia": "saudi_arabia",
+                "New Zealand": "new_zealand",
+                "Costa Rica": "costa_rica",
+                "Curaçao": "curacao",
+                "Turkey": "turkey",
+                "Türkiye": "turkey",
+                "USA": "usa",
+                "United States": "usa"
+            };
+            if (nameToIdMap[name])
+                return nameToIdMap[name];
+            return name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+        };
         // 1. Sync Group Stage Matches
         const groupNames = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
         groupNames.forEach((gName) => {
-            const groupMatchesData = openfootballMatches.filter((m) => m.group === `Group ${gName}`);
             const group = state.groups[gName];
             if (!group)
                 return;
-            groupMatchesData.forEach((m, idx) => {
-                const matchId = `match_G${gName}_${idx + 1}`;
-                const match = group.matches.find((x) => x.id === matchId);
-                if (match) {
-                    const isCompletedInJson = m.score && m.score.ft;
-                    if (isCompletedInJson && match.status !== "COMPLETED") {
-                        match.homeScore = m.score.ft[0];
-                        match.awayScore = m.score.ft[1];
-                        match.status = "COMPLETED";
-                        match.aiSummary = `Simulated historical score: ${m.team1} ${m.score.ft[0]}-${m.score.ft[1]} ${m.team2}.`;
-                        const nameToIdMap = {
-                            "Bosnia & Herzegovina": "bosnia_herzegovina",
-                            "Czech Republic": "czech_republic",
-                            "South Korea": "south_korea",
-                            "DR Congo": "dr_congo",
-                            "Ivory Coast": "ivory_coast",
-                            "Cape Verde": "cape_verde",
-                            "Saudi Arabia": "saudi_arabia",
-                            "New Zealand": "new_zealand",
-                            "Costa Rica": "costa_rica",
-                            "Curaçao": "curacao",
-                            "Turkey": "turkey",
-                            "USA": "usa"
-                        };
-                        const getTeamIdByName = (name) => {
-                            if (nameToIdMap[name])
-                                return nameToIdMap[name];
-                            return name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
-                        };
-                        const homeId = getTeamIdByName(m.team1);
-                        const awayId = getTeamIdByName(m.team2);
-                        if (m.score.ft[0] > m.score.ft[1]) {
-                            match.winnerId = homeId;
+            const apiGroupMatches = apiGames.filter((m) => m.type === "group" && m.group === gName);
+            apiGroupMatches.forEach((apiMatch) => {
+                const homeId = getTeamIdByName(apiMatch.home_team_name_en);
+                const awayId = getTeamIdByName(apiMatch.away_team_name_en);
+                // Find the match in our group by home and away team IDs
+                const localMatch = group.matches.find((m) => (m.homeTeamId === homeId && m.awayTeamId === awayId) ||
+                    (m.homeTeamId === awayId && m.awayTeamId === homeId));
+                if (localMatch) {
+                    // If the team order is reversed in the local match, swap scores
+                    const isReversed = localMatch.homeTeamId === awayId;
+                    const apiHomeScore = isReversed ? parseInt(apiMatch.away_score, 10) : parseInt(apiMatch.home_score, 10);
+                    const apiAwayScore = isReversed ? parseInt(apiMatch.home_score, 10) : parseInt(apiMatch.away_score, 10);
+                    const isCompleted = apiMatch.finished === "TRUE";
+                    if (isCompleted && localMatch.status !== "COMPLETED") {
+                        localMatch.homeScore = apiHomeScore;
+                        localMatch.awayScore = apiAwayScore;
+                        localMatch.status = "COMPLETED";
+                        localMatch.aiSummary = `Official Result: ${isReversed ? apiMatch.away_team_name_en : apiMatch.home_team_name_en} ${apiHomeScore}-${apiAwayScore} ${isReversed ? apiMatch.home_team_name_en : apiMatch.away_team_name_en}.`;
+                        if (apiHomeScore > apiAwayScore) {
+                            localMatch.winnerId = localMatch.homeTeamId;
                         }
-                        else if (m.score.ft[1] > m.score.ft[0]) {
-                            match.winnerId = awayId;
+                        else if (apiAwayScore > apiHomeScore) {
+                            localMatch.winnerId = localMatch.awayTeamId;
                         }
                         else {
-                            match.winnerId = "";
+                            localMatch.winnerId = "";
                         }
-                        match.decidedBy = "REGULAR";
+                        localMatch.decidedBy = "REGULAR";
                         modified = true;
                     }
                 }
@@ -704,67 +798,94 @@ class TournamentService {
                 group.standings = this.calculateStandings(group);
             }
         });
-        // 2. Sync Knockout Stage Matches
+        // 2. Progress stage to R32 if group stage is completed
+        if (state.currentStage === "GROUPS" && this.isGroupStageFinished(state.groups)) {
+            state.currentStage = "R32";
+            state.bracket.R32.matches = this.buildRoundOf32(state.groups);
+            modified = true;
+        }
+        // 3. Sync Knockouts Stage-by-Stage
         const knockoutStages = [
-            { roundJson: "Round of 32", stageKey: "R32" },
-            { roundJson: "Round of 16", stageKey: "R16" },
-            { roundJson: "Quarter-finals", stageKey: "QF" },
-            { roundJson: "Quarter-final", stageKey: "QF" },
-            { roundJson: "Semi-finals", stageKey: "SF" },
-            { roundJson: "Semi-final", stageKey: "SF" },
-            { roundJson: "Final", stageKey: "FINAL" }
+            { apiType: "r32", stageKey: "R32", nextStageKey: "R16" },
+            { apiType: "r16", stageKey: "R16", nextStageKey: "QF" },
+            { apiType: "qf", stageKey: "QF", nextStageKey: "SF" },
+            { apiType: "sf", stageKey: "SF", nextStageKey: "FINAL" },
+            { apiType: "final", stageKey: "FINAL", nextStageKey: "COMPLETED" }
         ];
-        knockoutStages.forEach(({ roundJson, stageKey }) => {
-            const jsonMatches = openfootballMatches.filter((m) => m.round && m.round.toLowerCase() === roundJson.toLowerCase());
+        for (const { apiType, stageKey, nextStageKey } of knockoutStages) {
+            // Only sync if we are in this stage or a later stage
+            const stageOrder = ["GROUPS", "R32", "R16", "QF", "SF", "FINAL", "COMPLETED"];
+            if (stageOrder.indexOf(state.currentStage) < stageOrder.indexOf(stageKey)) {
+                break;
+            }
+            const apiStageMatches = apiGames.filter((m) => m.type === apiType);
+            apiStageMatches.sort((a, b) => parseInt(a.id, 10) - parseInt(b.id, 10));
             const round = state.bracket[stageKey];
-            if (!round)
-                return;
-            jsonMatches.forEach((m, idx) => {
-                const match = round.matches[idx];
-                if (match) {
-                    const isCompletedInJson = m.score && m.score.ft;
-                    if (isCompletedInJson && match.status !== "COMPLETED") {
-                        match.homeScore = m.score.ft[0];
-                        match.awayScore = m.score.ft[1];
-                        match.status = "COMPLETED";
-                        match.aiSummary = `Simulated historical score: ${m.team1} ${m.score.ft[0]}-${m.score.ft[1]} ${m.team2}.`;
-                        const nameToIdMap = {
-                            "Bosnia & Herzegovina": "bosnia_herzegovina",
-                            "Czech Republic": "czech_republic",
-                            "South Korea": "south_korea",
-                            "DR Congo": "dr_congo",
-                            "Ivory Coast": "ivory_coast",
-                            "Cape Verde": "cape_verde",
-                            "Saudi Arabia": "saudi_arabia",
-                            "New Zealand": "new_zealand",
-                            "Costa Rica": "costa_rica",
-                            "Curaçao": "curacao",
-                            "Turkey": "turkey",
-                            "USA": "usa"
-                        };
-                        const getTeamIdByName = (name) => {
-                            if (nameToIdMap[name])
-                                return nameToIdMap[name];
-                            return name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
-                        };
-                        const homeId = getTeamIdByName(m.team1);
-                        const awayId = getTeamIdByName(m.team2);
-                        match.homeTeamId = homeId;
-                        match.awayTeamId = awayId;
-                        if (m.score.ft[0] > m.score.ft[1]) {
-                            match.winnerId = homeId;
+            if (round) {
+                apiStageMatches.forEach((apiMatch, idx) => {
+                    const localMatch = round.matches[idx];
+                    if (localMatch) {
+                        const homeName = apiMatch.home_team_name_en;
+                        const awayName = apiMatch.away_team_name_en;
+                        if (homeName && awayName) {
+                            const homeId = getTeamIdByName(homeName);
+                            const awayId = getTeamIdByName(awayName);
+                            if (localMatch.homeTeamId !== homeId || localMatch.awayTeamId !== awayId) {
+                                localMatch.homeTeamId = homeId;
+                                localMatch.awayTeamId = awayId;
+                                modified = true;
+                            }
+                            const isCompleted = apiMatch.finished === "TRUE";
+                            if (isCompleted && localMatch.status !== "COMPLETED") {
+                                const apiHomeScore = parseInt(apiMatch.home_score, 10);
+                                const apiAwayScore = parseInt(apiMatch.away_score, 10);
+                                localMatch.homeScore = apiHomeScore;
+                                localMatch.awayScore = apiAwayScore;
+                                localMatch.status = "COMPLETED";
+                                localMatch.aiSummary = `Official Result: ${homeName} ${apiHomeScore}-${apiAwayScore} ${awayName}.`;
+                                const hasPenalties = apiMatch.home_penalty_score !== null &&
+                                    apiMatch.home_penalty_score !== undefined &&
+                                    apiMatch.home_penalty_score !== "null";
+                                if (hasPenalties) {
+                                    const homePen = parseInt(apiMatch.home_penalty_score, 10);
+                                    const awayPen = parseInt(apiMatch.away_penalty_score, 10);
+                                    localMatch.decidedBy = "PENALTIES";
+                                    localMatch.penaltyScores = { home: homePen, away: awayPen };
+                                    localMatch.winnerId = homePen > awayPen ? homeId : awayId;
+                                }
+                                else {
+                                    localMatch.decidedBy = "REGULAR";
+                                    localMatch.winnerId = apiHomeScore > apiAwayScore ? homeId : (apiAwayScore > apiHomeScore ? awayId : "");
+                                }
+                                modified = true;
+                            }
                         }
-                        else if (m.score.ft[1] > m.score.ft[0]) {
-                            match.winnerId = awayId;
+                    }
+                });
+                // Check if this stage has just finished and progress to next stage
+                if (state.currentStage === stageKey) {
+                    const roundFinished = round.matches.every((m) => m.status === "COMPLETED");
+                    if (roundFinished && nextStageKey) {
+                        state.currentStage = nextStageKey;
+                        if (nextStageKey === "COMPLETED") {
+                            const finalMatch = round.matches[0];
+                            if (finalMatch && finalMatch.winnerId) {
+                                state.championId = finalMatch.winnerId;
+                            }
                         }
-                        match.decidedBy = "REGULAR";
+                        else {
+                            const nextRound = state.bracket[nextStageKey];
+                            if (nextRound) {
+                                nextRound.matches = this.propagateKnockouts(round.matches, nextRound.matches);
+                            }
+                        }
                         modified = true;
                     }
                 }
-            });
-        });
+            }
+        }
         if (modified) {
-            this.checkProgress(state);
+            this.assignKickoffTimes(state);
         }
         return modified;
     }

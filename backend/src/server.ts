@@ -3,6 +3,10 @@ import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import dotenv from "dotenv";
+import dns from "dns";
+
+// Force IPv4-first resolution to prevent Node.js fetch dual-stack timeouts
+dns.setDefaultResultOrder("ipv4first");
 import teamRoutes from "./routes/team.routes";
 import tournamentRoutes from "./routes/tournament.routes";
 import { errorHandler } from "./middleware/error.middleware";

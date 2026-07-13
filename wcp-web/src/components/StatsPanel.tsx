@@ -25,7 +25,7 @@ export const StatsPanel: React.FC<StatsPanelProps> = ({ state, teams, activeMatc
 
   return (
     <div className={className}>
-      {activeMatch && activeMatch.status === "COMPLETED" && (activeMatch as any).simulatedByUser && activeMatch.aiSummary && (
+      {activeMatch && activeMatch.status === "COMPLETED" && activeMatch.aiSummary && (
         <div className="glass-card ai-summary-card" style={{ marginBottom: "1rem" }}>
           <div className="ai-summary-header">
             <Sparkles size={16} />
