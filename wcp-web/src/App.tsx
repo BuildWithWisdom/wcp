@@ -4,6 +4,7 @@ import { UpcomingMatches } from "./components/UpcomingMatches";
 import { LiveSimulator } from "./components/LiveSimulator";
 import { StatsPanel } from "./components/StatsPanel";
 import { SettingsModal } from "./components/SettingsModal";
+import { TransitionModal } from "./components/TransitionModal";
 import type { Team } from "./utils/teams";
 import type { Match } from "./utils/poisson";
 import type { TournamentState } from "./utils/state";
@@ -33,6 +34,7 @@ export default function App() {
 
   // Mobile Navigation state: 'home' | 'simulator' | 'stats'
   const [activeMobileView, setActiveMobileView] = useState<"home" | "simulator" | "stats">("home");
+  const [isTransitionOpen, setIsTransitionOpen] = useState(() => !localStorage.getItem("wco_transition_acknowledged"));
 
   // Load initial state from backend
   useEffect(() => {
@@ -295,6 +297,14 @@ export default function App() {
         onUpdateTeamStats={handleUpdateTeamStats}
         onResetAllTeams={handleResetAllTeams}
         onFastForwardDay={handleFastForwardDay}
+      />
+
+      <TransitionModal
+        isOpen={isTransitionOpen}
+        onClose={() => {
+          setIsTransitionOpen(false);
+          localStorage.setItem("wco_transition_acknowledged", "true");
+        }}
       />
     </div>
   );
