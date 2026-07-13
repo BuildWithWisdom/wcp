@@ -1244,5 +1244,25 @@ body {
     padding: 0.5rem;
     font-size: 0.8rem;
   }
+
+  /* Override to show completed scores on a single line on mobile */
+  .fixture-card:has(.fixture-completed-score) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .fixture-card:has(.fixture-completed-score) > :nth-child(3) {
+    display: block;
+    width: auto;
+    text-align: right;
+  }
+
+  .fixture-card:has(.fixture-completed-score) .fixture-info {
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
 }
 

@@ -78,7 +78,6 @@ export const UpcomingMatches: React.FC<UpcomingMatchesProps> = ({
         
         {pendingCount > 0 ? (
           <button className="btn-gold" onClick={onSimulateDay}>
-            <Sparkles size={16} />
             Simulate {getMatchDateDisplay(currentDay)}
           </button>
         ) : (
