@@ -19,11 +19,6 @@ export class TournamentController {
       const teams = await storageService.loadTeams();
       state = tournamentService.initializeTournament(teams);
       await storageService.saveTournamentState(state);
-    } else {
-      const modified = await tournamentService.syncOfficialResults(state);
-      if (modified) {
-        await storageService.saveTournamentState(state);
-      }
     }
     res.json({ success: true, data: state });
   };

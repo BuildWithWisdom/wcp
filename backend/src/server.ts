@@ -60,7 +60,12 @@ app.get("/health", (_req, res) => {
 app.use("/api/teams", teamRoutes);
 app.use("/api/tournament", tournamentRoutes);
 
-// 6. Centralized Error Handler Middleware (Must be registered last)
+// 6. 404 for unknown routes (JSON, not Express default HTML)
+app.use((_req, res) => {
+  res.status(404).json({ success: false, message: "Not found" });
+});
+
+// 7. Centralized Error Handler Middleware (Must be registered last)
 app.use(errorHandler);
 
 // Boot server
