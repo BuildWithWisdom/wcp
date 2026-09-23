@@ -14,6 +14,9 @@ export const teams = sqliteTable("teams", {
   crestUrl: text("crest_url"),
   primaryColor: text("primary_color"),
   secondaryColor: text("secondary_color"),
+  // Oracle strength ratings (legacy FIFA-points scale; neutral defaults until curated)
+  fifaPoints: integer("fifa_points").notNull().default(1530),
+  squadValue: integer("squad_value").notNull().default(250),
 });
 
 export const fixtures = sqliteTable(
