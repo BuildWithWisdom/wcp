@@ -1,4 +1,13 @@
-import { Team, MatchEvent, MatchStage } from "./storage.service";
+import { Team, MatchEvent } from "./storage.service";
+import {
+  getTeamRatings,
+  computeLambdas,
+  simulateScoreline,
+  penaltyConversionRate,
+  simulateShootout,
+  drawPoisson,
+  type ShootoutResult,
+} from "@wco/shared";
 
 export interface SimulationResult {
   homeScore: number;
@@ -14,57 +23,12 @@ export interface SimulationResult {
   aiTacticalAnalysis?: string | null;
 }
 
-// Global averages computed across the 48 teams
-const FIFA_P_AVG = 1530;
-const FIFA_P_MAX = 1860;
-const FIFA_P_MIN = 1200;
-
-// Log scale variables for squad values
-const LOG_VAL_AVG = Math.log(250 + 1);
-const LOG_VAL_MAX = Math.log(1300 + 1);
-const LOG_VAL_MIN = Math.log(10 + 1);
-
-export interface TeamRatings {
-  attack: number;
-  defense: number;
-  quality: number;
-}
+export { getTeamRatings };
+export type { TeamRatings } from "@wco/shared";
 
 export class SimulationService {
   /**
-   * Calculates Attack and Defense ratings based on normalized FIFA points and Squad Values.
-   */
-  getTeamRatings(team: Team): TeamRatings {
-    const fifaStrength = (team.fifaPoints - FIFA_P_AVG) / (FIFA_P_MAX - FIFA_P_MIN);
-    const logVal = Math.log(team.squadValue + 1);
-    const valStrength = (logVal - LOG_VAL_AVG) / (LOG_VAL_MAX - LOG_VAL_MIN);
-
-    // Combine: 60% FIFA history + 40% Squad Talent
-    const quality = 0.6 * fifaStrength + 0.4 * valStrength;
-
-    // Base attack/defense factors
-    const attack = Math.max(0.5, Math.min(2.0, 1.0 + quality * 0.6));
-    const defense = Math.max(0.4, Math.min(1.8, 1.0 - quality * 0.45));
-
-    return { attack, defense, quality };
-  }
-
-  /**
-   * Knuth's algorithm for drawing a Poisson random variable.
-   */
-  private drawPoisson(lambda: number): number {
-    const L = Math.exp(-lambda);
-    let k = 0;
-    let p = 1.0;
-    do {
-      k++;
-      p *= Math.random();
-    } while (p > L);
-    return k - 1;
-  }
-
-  /**
-   * Simulates a football match.
+   * Simulates a football match using shared Poisson math.
    */
   simulateMatch(
     homeTeam: Team,
@@ -78,47 +42,42 @@ export class SimulationService {
       tacticalAnalysis: string;
     }
   ): SimulationResult {
-    const homeRatings = this.getTeamRatings(homeTeam);
-    const awayRatings = this.getTeamRatings(awayTeam);
+    const homeRatings = getTeamRatings(homeTeam);
+    const awayRatings = getTeamRatings(awayTeam);
 
-    const BASE_GOALS = 1.35; // average goals per team per match
+    const { lambdaHome, lambdaAway } = computeLambdas(homeRatings, awayRatings, modifiers);
 
     const homeAttackMod = modifiers?.homeAttackModifier ?? 1.0;
     const homeDefenseMod = modifiers?.homeDefenseModifier ?? 1.0;
     const awayAttackMod = modifiers?.awayAttackModifier ?? 1.0;
     const awayDefenseMod = modifiers?.awayDefenseModifier ?? 1.0;
 
-    const lambdaHome = BASE_GOALS * (homeRatings.attack * homeAttackMod) * (awayRatings.defense * awayDefenseMod);
-    const lambdaAway = BASE_GOALS * (awayRatings.attack * awayAttackMod) * (homeRatings.defense * homeDefenseMod);
-
-    let homeScore = this.drawPoisson(lambdaHome);
-    let awayScore = this.drawPoisson(lambdaAway);
+    let { homeScore, awayScore } = simulateScoreline(lambdaHome, lambdaAway);
 
     let decidedBy: "REGULAR" | "EXTRA_TIME" | "PENALTIES" = "REGULAR";
-    let timeline: MatchEvent[] = [];
     let winnerId = "";
     let penaltyScores: { home: number; away: number } | undefined;
 
-    // Regular time events
-    timeline = this.generateTimeline(homeTeam, awayTeam, homeScore, awayScore, 1, 90);
+    let timeline = this.generateTimeline(homeTeam, awayTeam, homeScore, awayScore, 1, 90);
 
     if (isKnockout && homeScore === awayScore) {
       decidedBy = "EXTRA_TIME";
-      const etHomeScore = this.drawPoisson(lambdaHome * 0.33);
-      const etAwayScore = this.drawPoisson(lambdaAway * 0.33);
-
-      const etTimeline = this.generateTimeline(homeTeam, awayTeam, etHomeScore, etAwayScore, 91, 120);
+      const et = simulateScoreline(lambdaHome * 0.33, lambdaAway * 0.33);
+      const etTimeline = this.generateTimeline(homeTeam, awayTeam, et.homeScore, et.awayScore, 91, 120);
       timeline = [...timeline, ...etTimeline];
 
-      homeScore += etHomeScore;
-      awayScore += etAwayScore;
+      homeScore += et.homeScore;
+      awayScore += et.awayScore;
 
       if (homeScore === awayScore) {
         decidedBy = "PENALTIES";
-        const shootout = this.simulatePenalties(homeTeam, awayTeam);
-        timeline = [...timeline, ...shootout.events];
-        penaltyScores = shootout.score;
-        winnerId = shootout.winnerId;
+        const shootout = simulateShootout(
+          penaltyConversionRate(homeRatings.quality),
+          penaltyConversionRate(awayRatings.quality)
+        );
+        timeline = [...timeline, ...this.buildShootoutEvents(homeTeam, awayTeam, shootout)];
+        penaltyScores = { home: shootout.homeScored, away: shootout.awayScored };
+        winnerId = shootout.winnerSide === "home" ? homeTeam.id : awayTeam.id;
       } else {
         winnerId = homeScore > awayScore ? homeTeam.id : awayTeam.id;
       }
@@ -147,6 +106,54 @@ export class SimulationService {
       awayDefenseModifier: awayDefenseMod,
       aiTacticalAnalysis: modifiers?.tacticalAnalysis ?? null,
     };
+  }
+
+  /**
+   * Maps shared shootout kicks to timeline events with original minute conventions:
+   * regulation home 121-125, away 126-130, sudden death from 136/146.
+   */
+  private buildShootoutEvents(homeTeam: Team, awayTeam: Team, shootout: ShootoutResult): MatchEvent[] {
+    const events: MatchEvent[] = [];
+    let homeKicks = 0;
+    let awayKicks = 0;
+
+    for (const kick of shootout.kicks) {
+      const team = kick.side === "home" ? homeTeam : awayTeam;
+      let minute: number;
+      let playerName: string;
+      let detail: string;
+
+      if (kick.suddenDeath) {
+        const suffix = kick.round - 5;
+        minute = kick.side === "home" ? 130 + kick.round : 140 + kick.round;
+        playerName = `Sudden Death Taker #${suffix}`;
+        detail = kick.scored
+          ? "⚽ Sudden Death Penalty Scored!"
+          : "❌ Sudden Death Penalty Missed/Saved!";
+      } else {
+        if (kick.side === "home") {
+          homeKicks++;
+          minute = 120 + homeKicks;
+        } else {
+          awayKicks++;
+          minute = 120 + awayKicks + 5;
+        }
+        playerName = `Penalty Taker #${kick.round}`;
+        detail = kick.scored
+          ? "⚽ Shootout Penalty Scored!"
+          : "❌ Shootout Penalty Missed/Saved!";
+      }
+
+      events.push({
+        type: kick.scored ? "GOAL" : "MISS",
+        minute,
+        teamId: team.id,
+        playerName,
+        detail,
+      });
+    }
+
+    return events;
   }
 
   /**
@@ -188,9 +195,9 @@ export class SimulationService {
     addGoalEvents(awayTeam, awayGoals);
 
     const totalGoals = homeGoals + awayGoals;
-    const numYellows = this.drawPoisson(1.8 + totalGoals * 0.1);
+    const numYellows = drawPoisson(1.8 + totalGoals * 0.1);
     const numReds = Math.random() < 0.05 ? 1 : 0;
-    const numMisses = this.drawPoisson(3.0);
+    const numMisses = drawPoisson(3.0);
     const numInjuries = Math.random() < 0.15 ? 1 : 0;
 
     const getRandomPlayer = (team: Team): string => {
@@ -271,90 +278,6 @@ export class SimulationService {
   }
 
   /**
-   * Simulates penalty kick shootout.
-   */
-  private simulatePenalties(
-    homeTeam: Team,
-    awayTeam: Team
-  ): { events: MatchEvent[]; score: { home: number; away: number }; winnerId: string } {
-    const events: MatchEvent[] = [];
-    let homePenState = 0;
-    let awayPenState = 0;
-    let homeScored = 0;
-    let awayScored = 0;
-
-    const homeRatings = this.getTeamRatings(homeTeam);
-    const awayRatings = this.getTeamRatings(awayTeam);
-    const homeRate = 0.75 + homeRatings.quality * 0.05;
-    const awayRate = 0.75 + awayRatings.quality * 0.05;
-
-    const simulateKick = (rate: number): boolean => Math.random() < rate;
-
-    for (let round = 1; round <= 5; round++) {
-      const homeIn = simulateKick(homeRate);
-      homePenState++;
-      if (homeIn) homeScored++;
-      events.push({
-        type: homeIn ? "GOAL" : "MISS",
-        minute: 120 + homePenState,
-        teamId: homeTeam.id,
-        playerName: `Penalty Taker #${round}`,
-        detail: homeIn ? "⚽ Shootout Penalty Scored!" : "❌ Shootout Penalty Missed/Saved!",
-      });
-
-      if (homeScored > awayScored + (5 - awayPenState)) break;
-      if (awayScored > homeScored + (5 - homePenState)) break;
-
-      const awayIn = simulateKick(awayRate);
-      awayPenState++;
-      if (awayIn) awayScored++;
-      events.push({
-        type: awayIn ? "GOAL" : "MISS",
-        minute: 120 + awayPenState + 5,
-        teamId: awayTeam.id,
-        playerName: `Penalty Taker #${round}`,
-        detail: awayIn ? "⚽ Shootout Penalty Scored!" : "❌ Shootout Penalty Missed/Saved!",
-      });
-
-      if (homeScored > awayScored + (5 - awayPenState)) break;
-      if (awayScored > homeScored + (5 - homePenState)) break;
-    }
-
-    let suddenDeathRound = 6;
-    while (homeScored === awayScored) {
-      const homeIn = simulateKick(homeRate);
-      if (homeIn) homeScored++;
-      events.push({
-        type: homeIn ? "GOAL" : "MISS",
-        minute: 130 + suddenDeathRound,
-        teamId: homeTeam.id,
-        playerName: `Sudden Death Taker #${suddenDeathRound - 5}`,
-        detail: homeIn ? "⚽ Sudden Death Penalty Scored!" : "❌ Sudden Death Penalty Missed/Saved!",
-      });
-
-      const awayIn = simulateKick(awayRate);
-      if (awayIn) awayScored++;
-      events.push({
-        type: awayIn ? "GOAL" : "MISS",
-        minute: 140 + suddenDeathRound,
-        teamId: awayTeam.id,
-        playerName: `Sudden Death Taker #${suddenDeathRound - 5}`,
-        detail: awayIn ? "⚽ Sudden Death Penalty Scored!" : "❌ Sudden Death Penalty Missed/Saved!",
-      });
-
-      suddenDeathRound++;
-    }
-
-    const winnerId = homeScored > awayScored ? homeTeam.id : awayTeam.id;
-
-    return {
-      events,
-      score: { home: homeScored, away: awayScored },
-      winnerId,
-    };
-  }
-
-  /**
    * Generates a witty, professional post-match summary based on templates.
    */
   generateWittySummary(home: Team, away: Team, result: SimulationResult): string {
@@ -410,4 +333,3 @@ export class SimulationService {
     return `The match between ${home.name} and ${away.name} ended in a scoreline of ${result.homeScore}-${result.awayScore}.`;
   }
 }
-
