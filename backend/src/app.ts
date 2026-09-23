@@ -4,9 +4,10 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import teamRoutes from "./routes/team.routes";
 import tournamentRoutes from "./routes/tournament.routes";
+import fixtureRoutes from "./routes/fixture.routes";
+import statsRoutes from "./routes/stats.routes";
+import competitionRoutes from "./routes/competition.routes";
 import { errorHandler } from "./middleware/error.middleware";
-import { getDb } from "./db";
-import { competitions } from "./db/schema";
 
 /**
  * Builds the Express application without listening — importable in tests.
@@ -28,6 +29,7 @@ export function buildApp(): express.Express {
       origin: allowedOrigins,
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
+      allowedHeaders: ["Content-Type", "X-Device-Id"],
     })
   );
 
@@ -56,11 +58,9 @@ export function buildApp(): express.Express {
   // Route Mounts
   app.use("/api/teams", teamRoutes);
   app.use("/api/tournament", tournamentRoutes);
-
-  app.get("/api/competitions", (_req, res) => {
-    const list = getDb().select().from(competitions).all();
-    res.json({ success: true, data: list });
-  });
+  app.use("/api/fixtures", fixtureRoutes);
+  app.use("/api/stats", statsRoutes);
+  app.use("/api/competitions", competitionRoutes);
 
   // 404 for unknown routes (JSON, not Express default HTML)
   app.use((_req, res) => {
