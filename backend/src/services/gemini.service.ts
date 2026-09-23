@@ -1,4 +1,4 @@
-import { Team, MatchStage } from "./storage.service";
+import { Team } from "./storage.service";
 
 export interface AIModifiers {
   homeAttackModifier: number;
@@ -24,7 +24,7 @@ export class GeminiService {
   static async getMatchPredictionModifiers(
     homeTeam: Team,
     awayTeam: Team,
-    stage: MatchStage
+    stage: string
   ): Promise<AIModifiers> {
     const apiKey = process.env.GEMINI_API_KEY;
 
@@ -34,7 +34,7 @@ export class GeminiService {
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${this.MODEL}:generateContent?key=${apiKey}`;
 
-    const prompt = `Analyze the upcoming World Cup football match:
+    const prompt = `Analyze the upcoming football match:
 Home Team: ${homeTeam.name} (${homeTeam.code})
 FIFA Points: ${homeTeam.fifaPoints}
 Squad Value: €${homeTeam.squadValue}M
