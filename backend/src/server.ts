@@ -1,74 +1,25 @@
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
-import rateLimit from "express-rate-limit";
-import dotenv from "dotenv";
 import dns from "dns";
+import dotenv from "dotenv";
 
 // Force IPv4-first resolution to prevent Node.js fetch dual-stack timeouts
 dns.setDefaultResultOrder("ipv4first");
-import teamRoutes from "./routes/team.routes";
-import tournamentRoutes from "./routes/tournament.routes";
-import { errorHandler } from "./middleware/error.middleware";
 
-// Load environment variables
+// Load environment variables before anything reads them
 dotenv.config();
 
-const app = express();
-app.set("trust proxy", 1);
+import { buildApp } from "./app";
+import { getDb } from "./db";
+import { startSyncScheduler } from "./services/sync.service";
+
 const PORT = process.env.PORT || 3001;
 
-// 1. Security Headers via Helmet
-app.use(helmet());
+getDb(); // run migrations + seed competitions on boot
+startSyncScheduler();
 
-// 2. Cross-Origin Resource Sharing (CORS) Configuration
-const allowedOrigins = process.env.CORS_ORIGIN
-  ? process.env.CORS_ORIGIN.split(",")
-  : ["http://localhost:5173", "http://localhost:3000"];
+const app = buildApp();
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
-
-// 3. Global Rate Limiter (Prevent brute-force / server overload)
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 300, // Limit each IP to 300 requests per window
-  message: {
-    success: false,
-    message: "Too many requests from this IP. Please try again later.",
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-app.use(limiter);
-
-// 4. Request Body Parsers
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Healthcheck Route
-app.get("/health", (_req, res) => {
-  res.json({ success: true, status: "UP", timestamp: new Date() });
-});
-
-// 5. Route Mounts
-app.use("/api/teams", teamRoutes);
-app.use("/api/tournament", tournamentRoutes);
-
-// 6. 404 for unknown routes (JSON, not Express default HTML)
-app.use((_req, res) => {
-  res.status(404).json({ success: false, message: "Not found" });
-});
-
-// 7. Centralized Error Handler Middleware (Must be registered last)
-app.use(errorHandler);
-
-// Boot server
 app.listen(PORT, () => {
-  console.log(`World Cup Oracle Backend is running in ${process.env.NODE_ENV || "development"} mode on port ${PORT}`);
+  console.log(
+    `World Cup Oracle Backend is running in ${process.env.NODE_ENV || "development"} mode on port ${PORT}`
+  );
 });
