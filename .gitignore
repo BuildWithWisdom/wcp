@@ -10,6 +10,8 @@ yarn-error.log*
 
 # Runtime application state (persists locally, not source)
 backend/data/tournament_state.json
+backend/data/*.db
+backend/data/*.db-*
 
 # Editor / OS
 .DS_Store
