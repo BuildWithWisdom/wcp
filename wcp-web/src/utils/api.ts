@@ -1,6 +1,6 @@
-import type { Team } from "./teams";
-import type { Match } from "./poisson";
-import type { TournamentState } from "./state";
+import type { MatchEvent } from "./poisson";
+
+export type { MatchEvent };
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
 
@@ -23,30 +23,88 @@ async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
   return json.data;
 }
 
+export type CompetitionKind = "league" | "cup" | "international";
+
+export interface Competition {
+  id: string;
+  name: string;
+  kind: CompetitionKind;
+  providerId: number;
+}
+
+export interface FixtureTeam {
+  id: string;
+  name: string;
+  tla: string | null;
+  crestUrl: string | null;
+  fifaPoints: number;
+  squadValue: number;
+}
+
+export type FixtureStatus =
+  | "TIMED"
+  | "IN_PLAY"
+  | "PAUSED"
+  | "FINISHED"
+  | "SUSPENDED"
+  | "POSTPONED"
+  | "CANCELLED"
+  | "AWARDED";
+
+export interface Fixture {
+  id: string;
+  competitionId: string;
+  kickoffAt: string;
+  status: FixtureStatus;
+  stage: string | null;
+  matchday: number | null;
+  homeScore: number | null;
+  awayScore: number | null;
+  homeTeam: FixtureTeam | null;
+  awayTeam: FixtureTeam | null;
+}
+
+export interface PredictionModifiers {
+  homeAttackModifier: number;
+  homeDefenseModifier: number;
+  awayAttackModifier: number;
+  awayDefenseModifier: number;
+}
+
+export interface Prediction {
+  fixtureId: string;
+  isKnockout: boolean;
+  homeScore: number;
+  awayScore: number;
+  timeline: MatchEvent[];
+  decidedBy: "REGULAR" | "EXTRA_TIME" | "PENALTIES";
+  winnerId: string | null;
+  penaltyScores: { home: number; away: number } | null;
+  modifiers: PredictionModifiers;
+  tacticalAnalysis: string;
+  aiSummary: string;
+}
+
+export interface FixturesQuery {
+  competition?: string;
+  window?: "upcoming" | "recent";
+  limit?: number;
+}
+
 export const api = {
-  // Teams API
-  getTeams: () => request<Record<string, Team>>("/teams"),
-  
-  updateTeam: (id: string, fifaPoints: number, squadValue: number) =>
-    request<Team>(`/teams/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({ fifaPoints, squadValue }),
-    }),
+  getCompetitions: () => request<Competition[]>("/competitions"),
 
-  resetTeams: () => request<Record<string, Team>>("/teams/reset", { method: "POST" }),
+  getFixtures: (query: FixturesQuery = {}) => {
+    const params = new URLSearchParams();
+    if (query.competition) params.set("competition", query.competition);
+    if (query.window) params.set("window", query.window);
+    if (query.limit) params.set("limit", String(query.limit));
+    const qs = params.toString();
+    return request<Fixture[]>(`/fixtures${qs ? `?${qs}` : ""}`);
+  },
 
-  // Tournament API
-  getTournament: () => request<TournamentState>("/tournament"),
-  
-  resetTournament: () => request<TournamentState>("/tournament/reset", { method: "POST" }),
-
-  simulateMatch: (matchId: string) =>
-    request<{ match: Match; state: TournamentState }>("/tournament/simulate-match", {
+  predict: (fixtureId: string) =>
+    request<Prediction>(`/fixtures/${encodeURIComponent(fixtureId)}/predict`, {
       method: "POST",
-      body: JSON.stringify({ matchId }),
     }),
-
-  simulateDay: () => request<{ matches: Match[]; state: TournamentState }>("/tournament/simulate-day", { method: "POST" }),
-  
-  fastForwardDay: () => request<TournamentState>("/tournament/fast-forward", { method: "POST" }),
 };

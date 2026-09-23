@@ -103,6 +103,6 @@ describe("SyncService", () => {
     const db = createDatabase(":memory:");
     const sync = new SyncService(fakeAdapter(sampleData()), db, 0);
     expect(sync.listCompetitionIds()).toContain("PL");
-    expect(sync.getCompetitions().find((c) => c.id === "CL")?.name).toBe("UEFA Champions League");
+    expect(sync.getCompetitions().find((c) => c.id === "CL")?.name).toBe("UCL");
   });
 });

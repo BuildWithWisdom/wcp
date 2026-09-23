@@ -3,20 +3,20 @@ import { createDatabase } from "../src/db";
 import * as schema from "../src/db/schema";
 
 describe("createDatabase", () => {
-  it("runs migrations and seeds the 8 competitions", () => {
+  it("runs migrations and seeds the 6 competitions", () => {
     const db = createDatabase(":memory:");
     const rows = db.select().from(schema.competitions).all();
-    expect(rows).toHaveLength(8);
+    expect(rows).toHaveLength(6);
     expect(rows.map((r) => r.id).sort()).toEqual(
-      ["BL1", "CL", "EC", "FL1", "PD", "PL", "SA", "WC"].sort()
+      ["BL1", "CL", "FL1", "PD", "PL", "SA"].sort()
     );
   });
 
   it("is safe to call twice (migrations idempotent)", () => {
     const db = createDatabase(":memory:");
     const again = createDatabase(":memory:");
-    expect(again.select().from(schema.competitions).all()).toHaveLength(8);
-    expect(db.select().from(schema.competitions).all()).toHaveLength(8);
+    expect(again.select().from(schema.competitions).all()).toHaveLength(6);
+    expect(db.select().from(schema.competitions).all()).toHaveLength(6);
   });
 
   it("upserts fixtures and updates scores on re-sync", () => {

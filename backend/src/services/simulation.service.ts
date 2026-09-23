@@ -128,7 +128,7 @@ export class SimulationService {
         minute = kick.side === "home" ? 130 + kick.round : 140 + kick.round;
         playerName = `Sudden Death Taker #${suffix}`;
         detail = kick.scored
-          ? "⚽ Sudden Death Penalty Scored!"
+          ? "Sudden Death Penalty Scored!"
           : "❌ Sudden Death Penalty Missed/Saved!";
       } else {
         if (kick.side === "home") {
@@ -140,7 +140,7 @@ export class SimulationService {
         }
         playerName = `Penalty Taker #${kick.round}`;
         detail = kick.scored
-          ? "⚽ Shootout Penalty Scored!"
+          ? "Shootout Penalty Scored!"
           : "❌ Shootout Penalty Missed/Saved!";
       }
 

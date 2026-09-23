@@ -117,7 +117,7 @@ export class TournamentController {
     const result = simulationService.simulateMatch(homeTeam, awayTeam, isKnockout, modifiers);
     const localSummary = simulationService.generateWittySummary(homeTeam, awayTeam, result);
 
-    const finalSummary = `🔮 ${modifiers.tacticalAnalysis} Recap: ${localSummary}`;
+    const finalSummary = `${modifiers.tacticalAnalysis} Recap: ${localSummary}`;
 
     const simulatedMatch: Match = {
       ...matchToSimulate,

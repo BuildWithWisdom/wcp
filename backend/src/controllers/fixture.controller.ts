@@ -159,7 +159,7 @@ export class FixtureController {
 
     const result = simulationService.simulateMatch(homeTeam, awayTeam, isKnockout, modifiers);
     const localSummary = simulationService.generateWittySummary(homeTeam, awayTeam, result);
-    const aiSummary = `🔮 ${modifiers.tacticalAnalysis} Recap: ${localSummary}`;
+    const aiSummary = `${modifiers.tacticalAnalysis} Recap: ${localSummary}`;
 
     res.json({
       success: true,

@@ -31,113 +31,10 @@ interface VisualParticle {
   color: string;
 }
 
-const getTeamColor = (teamId: string): string => {
-  const colorMap: Record<string, string> = {
-    mexico: "#16a34a",
-    south_korea: "#e11d48",
-    czech_republic: "#dc2626",
-    south_africa: "#eab308",
-    switzerland: "#dc2626",
-    canada: "#dc2626",
-    bosnia_herzegovina: "#1d4ed8",
-    qatar: "#881337",
-    brazil: "#eab308",
-    morocco: "#dc2626",
-    scotland: "#1e3a8a",
-    haiti: "#1d4ed8",
-    usa: "#1e3a8a",
-    turkey: "#dc2626",
-    paraguay: "#dc2626",
-    australia: "#eab308",
-    germany: "#e2e8f0",
-    ecuador: "#facc15",
-    ivory_coast: "#f97316",
-    curacao: "#1d4ed8",
-    netherlands: "#ea580c",
-    sweden: "#facc15",
-    japan: "#1e40af",
-    tunisia: "#dc2626",
-    belgium: "#be123c",
-    egypt: "#dc2626",
-    iran: "#ffffff",
-    new_zealand: "#0f172a",
-    spain: "#dc2626",
-    uruguay: "#60a5fa",
-    saudi_arabia: "#16a34a",
-    cape_verde: "#1e40af",
-    france: "#2563eb",
-    senegal: "#16a34a",
-    norway: "#dc2626",
-    iraq: "#16a34a",
-    argentina: "#38bdf8",
-    austria: "#dc2626",
-    algeria: "#ffffff",
-    jordan: "#dc2626",
-    portugal: "#991b1b",
-    colombia: "#facc15",
-    dr_congo: "#3b82f6",
-    uzbekistan: "#ffffff",
-    england: "#ffffff",
-    croatia: "#e11d48",
-    ghana: "#ffffff",
-    panama: "#dc2626",
-  };
-  return colorMap[teamId] || "#475569";
-};
-
-const getTeamBorderColor = (teamId: string): string => {
-  const borderMap: Record<string, string> = {
-    mexico: "#ffffff",
-    south_korea: "#1d4ed8",
-    czech_republic: "#1d4ed8",
-    south_africa: "#16a34a",
-    switzerland: "#ffffff",
-    canada: "#ffffff",
-    bosnia_herzegovina: "#facc15",
-    qatar: "#ffffff",
-    brazil: "#16a34a",
-    morocco: "#047857",
-    scotland: "#ffffff",
-    haiti: "#dc2626",
-    usa: "#ffffff",
-    turkey: "#ffffff",
-    paraguay: "#1d4ed8",
-    australia: "#16a34a",
-    germany: "#0f172a",
-    ecuador: "#1d4ed8",
-    ivory_coast: "#16a34a",
-    curacao: "#facc15",
-    netherlands: "#ffffff",
-    sweden: "#1d4ed8",
-    japan: "#ffffff",
-    tunisia: "#ffffff",
-    belgium: "#facc15",
-    egypt: "#ffffff",
-    iran: "#dc2626",
-    new_zealand: "#ffffff",
-    spain: "#facc15",
-    uruguay: "#ffffff",
-    saudi_arabia: "#ffffff",
-    cape_verde: "#facc15",
-    france: "#ffffff",
-    senegal: "#facc15",
-    norway: "#1d4ed8",
-    iraq: "#ffffff",
-    argentina: "#ffffff",
-    austria: "#ffffff",
-    algeria: "#16a34a",
-    jordan: "#ffffff",
-    portugal: "#16a34a",
-    colombia: "#1d4ed8",
-    dr_congo: "#ef4444",
-    uzbekistan: "#3b82f6",
-    england: "#dc2626",
-    croatia: "#ffffff",
-    ghana: "#facc15",
-    panama: "#1d4ed8",
-  };
-  return borderMap[teamId] || "#ffffff";
-};
+// Side-aware kit colors (no per-team data available from the API yet)
+const HOME_COLOR = "#38bdf8";
+const AWAY_COLOR = "#f43f5e";
+const KIT_BORDER = "#ffffff";
 
 const movePlayerTowards = (p: PlayerNode, tx: number, ty: number, speed: number) => {
   const dx = tx - p.posX;
@@ -152,6 +49,31 @@ const movePlayerTowards = (p: PlayerNode, tx: number, ty: number, speed: number)
   }
 };
 
+const INITIAL_PLAYERS: PlayerNode[] = [
+  { id: 1, isHome: true, baseX: 5, baseY: 50, posX: 5, posY: 50, label: "GK" },
+  { id: 2, isHome: true, baseX: 20, baseY: 20, posX: 20, posY: 20, label: "DF" },
+  { id: 3, isHome: true, baseX: 20, baseY: 40, posX: 20, posY: 40, label: "DF" },
+  { id: 4, isHome: true, baseX: 20, baseY: 60, posX: 20, posY: 60, label: "DF" },
+  { id: 5, isHome: true, baseX: 20, baseY: 80, posX: 20, posY: 80, label: "DF" },
+  { id: 6, isHome: true, baseX: 40, baseY: 30, posX: 40, posY: 30, label: "MF" },
+  { id: 7, isHome: true, baseX: 35, baseY: 50, posX: 35, posY: 50, label: "MF" },
+  { id: 8, isHome: true, baseX: 40, baseY: 70, posX: 40, posY: 70, label: "MF" },
+  { id: 9, isHome: true, baseX: 60, baseY: 20, posX: 60, posY: 20, label: "FW" },
+  { id: 10, isHome: true, baseX: 65, baseY: 50, posX: 65, posY: 50, label: "FW" },
+  { id: 11, isHome: true, baseX: 60, baseY: 80, posX: 60, posY: 80, label: "FW" },
+  { id: 12, isHome: false, baseX: 95, baseY: 50, posX: 95, posY: 50, label: "GK" },
+  { id: 13, isHome: false, baseX: 80, baseY: 20, posX: 80, posY: 20, label: "DF" },
+  { id: 14, isHome: false, baseX: 80, baseY: 40, posX: 80, posY: 40, label: "DF" },
+  { id: 15, isHome: false, baseX: 80, baseY: 60, posX: 80, posY: 60, label: "DF" },
+  { id: 16, isHome: false, baseX: 80, baseY: 80, posX: 80, posY: 80, label: "DF" },
+  { id: 17, isHome: false, baseX: 60, baseY: 30, posX: 60, posY: 30, label: "MF" },
+  { id: 18, isHome: false, baseX: 65, baseY: 50, posX: 65, posY: 50, label: "MF" },
+  { id: 19, isHome: false, baseX: 60, baseY: 70, posX: 60, posY: 70, label: "MF" },
+  { id: 20, isHome: false, baseX: 40, baseY: 20, posX: 40, posY: 20, label: "FW" },
+  { id: 21, isHome: false, baseX: 35, baseY: 50, posX: 35, posY: 50, label: "FW" },
+  { id: 22, isHome: false, baseX: 40, baseY: 80, posX: 40, posY: 80, label: "FW" },
+];
+
 export const PitchCanvas: React.FC<PitchCanvasProps> = ({
   homeTeam,
   awayTeam,
@@ -164,7 +86,7 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const requestRef = useRef<number | null>(null);
 
-  const [players, setPlayers] = useState<PlayerNode[]>([]);
+  const [players] = useState<PlayerNode[]>(INITIAL_PLAYERS);
 
   const particlesRef = useRef<VisualParticle[]>([]);
 
@@ -193,35 +115,6 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
   }, [isPlaying, currentMinute, events, liveHomeScore, liveAwayScore, homeTeam, awayTeam, players]);
 
   useEffect(() => {
-    const homeList: PlayerNode[] = [
-      { id: 1, isHome: true, baseX: 5, baseY: 50, posX: 5, posY: 50, label: "GK" },
-      { id: 2, isHome: true, baseX: 20, baseY: 20, posX: 20, posY: 20, label: "DF" },
-      { id: 3, isHome: true, baseX: 20, baseY: 40, posX: 20, posY: 40, label: "DF" },
-      { id: 4, isHome: true, baseX: 20, baseY: 60, posX: 20, posY: 60, label: "DF" },
-      { id: 5, isHome: true, baseX: 20, baseY: 80, posX: 20, posY: 80, label: "DF" },
-      { id: 6, isHome: true, baseX: 40, baseY: 30, posX: 40, posY: 30, label: "MF" },
-      { id: 7, isHome: true, baseX: 35, baseY: 50, posX: 35, posY: 50, label: "MF" },
-      { id: 8, isHome: true, baseX: 40, baseY: 70, posX: 40, posY: 70, label: "MF" },
-      { id: 9, isHome: true, baseX: 60, baseY: 20, posX: 60, posY: 20, label: "FW" },
-      { id: 10, isHome: true, baseX: 65, baseY: 50, posX: 65, posY: 50, label: "FW" },
-      { id: 11, isHome: true, baseX: 60, baseY: 80, posX: 60, posY: 80, label: "FW" },
-    ];
-
-    const awayList: PlayerNode[] = [
-      { id: 12, isHome: false, baseX: 95, baseY: 50, posX: 95, posY: 50, label: "GK" },
-      { id: 13, isHome: false, baseX: 80, baseY: 20, posX: 80, posY: 20, label: "DF" },
-      { id: 14, isHome: false, baseX: 80, baseY: 40, posX: 80, posY: 40, label: "DF" },
-      { id: 15, isHome: false, baseX: 80, baseY: 60, posX: 80, posY: 60, label: "DF" },
-      { id: 16, isHome: false, baseX: 80, baseY: 80, posX: 80, posY: 80, label: "DF" },
-      { id: 17, isHome: false, baseX: 60, baseY: 30, posX: 60, posY: 30, label: "MF" },
-      { id: 18, isHome: false, baseX: 65, baseY: 50, posX: 65, posY: 50, label: "MF" },
-      { id: 19, isHome: false, baseX: 60, baseY: 70, posX: 60, posY: 70, label: "MF" },
-      { id: 20, isHome: false, baseX: 40, baseY: 20, posX: 40, posY: 20, label: "FW" },
-      { id: 21, isHome: false, baseX: 35, baseY: 50, posX: 35, posY: 50, label: "FW" },
-      { id: 22, isHome: false, baseX: 40, baseY: 80, posX: 40, posY: 80, label: "FW" },
-    ];
-
-    setPlayers([...homeList, ...awayList]);
     particlesRef.current = [];
   }, [homeTeam, awayTeam]);
 
@@ -278,8 +171,7 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
     };
 
     const spawnGoalExplosion = (targetX: number, targetY: number) => {
-      const { homeTeam: activeHome, awayTeam: activeAway } = stateRef.current;
-      const pColor = targetX > 50 ? getTeamColor(activeHome.id) : getTeamColor(activeAway.id);
+      const pColor = targetX > 50 ? HOME_COLOR : AWAY_COLOR;
       for (let pIdx = 0; pIdx < 30; pIdx++) {
         particlesRef.current.push({
           posX: targetX,
@@ -601,18 +493,13 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
     };
 
     const drawPlayers = (canvasW: number, canvasH: number) => {
-      const {
-        homeTeam: activeHome,
-        awayTeam: activeAway,
-        players: activePlayers,
-      } = stateRef.current;
+      const { players: activePlayers } = stateRef.current;
 
       const radius = 9;
 
       activePlayers.forEach((p) => {
-        const teamId = p.isHome ? activeHome.id : activeAway.id;
-        const color = getTeamColor(teamId);
-        const borderColor = getTeamBorderColor(teamId);
+        const color = p.isHome ? HOME_COLOR : AWAY_COLOR;
+        const borderColor = KIT_BORDER;
 
         const pX = (p.posX / 100) * canvasW;
         const pY = (p.posY / 100) * canvasH;
@@ -632,9 +519,6 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
         ctx.stroke();
 
         ctx.fillStyle = p.isHome ? "#0f172a" : "#ffffff";
-        if (color === "#ffffff" || color === "#e2e8f0") {
-          ctx.fillStyle = "#1e293b";
-        }
         ctx.font = "bold 8px sans-serif";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -675,7 +559,7 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
       ctx.globalAlpha = 1.0;
     };
 
-    const drawHUD = (canvasW: number, _canvasH: number) => {
+    const drawHUD = (canvasW: number) => {
       const {
         isPlaying: activePlaying,
         currentMinute: activeMin,
@@ -750,7 +634,7 @@ export const PitchCanvas: React.FC<PitchCanvasProps> = ({
       drawPlayers(canvasW, canvasH);
       drawBall(canvasW, canvasH);
       drawParticles(canvasW, canvasH);
-      drawHUD(canvasW, canvasH);
+      drawHUD(canvasW);
 
       requestRef.current = requestAnimationFrame(renderFrame);
     };
