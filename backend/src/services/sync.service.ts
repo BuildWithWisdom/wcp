@@ -2,7 +2,6 @@ import type { Competition } from "@wco/shared";
 import { type AppDatabase, getDb } from "../db";
 import * as schema from "../db/schema";
 import { FootballDataAdapter, type CompetitionSyncData } from "./football-data.adapter";
-import { scoreFinishedPredictions } from "./scoring.service";
 
 const DEFAULT_TTL_MS = 10 * 60 * 1000;
 const DEFAULT_INTERVAL_MS = 15 * 60 * 1000;
@@ -48,7 +47,6 @@ export class SyncService {
     try {
       const data = await this.adapter.fetchCompetitionMatches(competitionId);
       this.upsert(data);
-      scoreFinishedPredictions(this.db);
       this.lastSyncAt.set(competitionId, Date.now());
       return { competitionId, teams: data.teams.length, fixtures: data.fixtures.length };
     } catch (error) {

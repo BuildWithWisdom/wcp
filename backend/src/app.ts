@@ -5,7 +5,6 @@ import rateLimit from "express-rate-limit";
 import teamRoutes from "./routes/team.routes";
 import tournamentRoutes from "./routes/tournament.routes";
 import fixtureRoutes from "./routes/fixture.routes";
-import statsRoutes from "./routes/stats.routes";
 import competitionRoutes from "./routes/competition.routes";
 import { errorHandler } from "./middleware/error.middleware";
 
@@ -29,7 +28,6 @@ export function buildApp(): express.Express {
       origin: allowedOrigins,
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true,
-      allowedHeaders: ["Content-Type", "X-Device-Id"],
     })
   );
 
@@ -59,7 +57,6 @@ export function buildApp(): express.Express {
   app.use("/api/teams", teamRoutes);
   app.use("/api/tournament", tournamentRoutes);
   app.use("/api/fixtures", fixtureRoutes);
-  app.use("/api/stats", statsRoutes);
   app.use("/api/competitions", competitionRoutes);
 
   // 404 for unknown routes (JSON, not Express default HTML)

@@ -1,8 +1,5 @@
 import { Request, Response } from "express";
-import { randomUUID } from "crypto";
-import { validationResult } from "express-validator";
 import { and, desc, eq, gte, inArray, lte } from "drizzle-orm";
-import { isPredictionOpen } from "@wco/shared";
 import { getDb } from "../db";
 import * as schema from "../db/schema";
 import { GeminiService } from "../services/gemini.service";
@@ -94,143 +91,31 @@ export class FixtureController {
         : [];
     const teamsById = new Map(teams.map((t) => [t.id, t]));
 
-    let predictionsByFixture = new Map<string, typeof schema.predictions.$inferSelect>();
-    if (req.deviceId && fixtureRows.length > 0) {
-      const preds = db
-        .select()
-        .from(schema.predictions)
-        .where(
-          and(
-            eq(schema.predictions.ownerDeviceId, req.deviceId),
-            inArray(
-              schema.predictions.fixtureId,
-              fixtureRows.map((f) => f.id)
-            )
-          )
-        )
-        .all();
-      predictionsByFixture = new Map(preds.map((p) => [p.fixtureId, p]));
-    }
-
-    const data = fixtureRows.map((fixture) => {
-      const home = teamsById.get(fixture.homeTeamId);
-      const away = teamsById.get(fixture.awayTeamId);
-      const prediction = predictionsByFixture.get(fixture.id);
-      return {
-        id: fixture.id,
-        competitionId: fixture.competitionId,
-        kickoffAt: fixture.kickoffAt,
-        status: fixture.status,
-        stage: fixture.stage,
-        matchday: fixture.matchday,
-        homeScore: fixture.homeScore,
-        awayScore: fixture.awayScore,
-        homeTeam: home ? toPublicTeam(home) : null,
-        awayTeam: away ? toPublicTeam(away) : null,
-        prediction: prediction
-          ? {
-              homeScore: prediction.homeScore,
-              awayScore: prediction.awayScore,
-              points: prediction.points,
-            }
-          : null,
-        predictionOpen: isPredictionOpen(fixture.kickoffAt, now),
-      };
-    });
+    const data = fixtureRows.map((fixture) => ({
+      id: fixture.id,
+      competitionId: fixture.competitionId,
+      kickoffAt: fixture.kickoffAt,
+      status: fixture.status,
+      stage: fixture.stage,
+      matchday: fixture.matchday,
+      homeScore: fixture.homeScore,
+      awayScore: fixture.awayScore,
+      homeTeam: teamsById.get(fixture.homeTeamId)
+        ? toPublicTeam(teamsById.get(fixture.homeTeamId)!)
+        : null,
+      awayTeam: teamsById.get(fixture.awayTeamId)
+        ? toPublicTeam(teamsById.get(fixture.awayTeamId)!)
+        : null,
+    }));
 
     res.json({ success: true, data });
   };
 
   /**
-   * POST /api/fixtures/:id/predictions  {homeScore, awayScore}
-   * Create or update this device's prediction (allowed until kickoff).
+   * POST /api/fixtures/:id/predict — the Oracle predicts this match
+   * (Poisson simulation + AI modifiers). Nothing is stored.
    */
   static predict = async (req: Request, res: Response): Promise<void> => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      res.status(400).json({ success: false, errors: errors.array() });
-      return;
-    }
-
-    const db = getDb();
-    const fixtureId = req.params.id;
-    const deviceId = req.deviceId as string;
-
-    const fixture = db
-      .select()
-      .from(schema.fixtures)
-      .where(eq(schema.fixtures.id, fixtureId))
-      .get();
-
-    if (!fixture) {
-      res.status(404).json({ success: false, message: `Fixture ${fixtureId} not found.` });
-      return;
-    }
-    if (fixture.status === "CANCELLED") {
-      res.status(400).json({ success: false, message: "This match has been cancelled." });
-      return;
-    }
-    if (!isPredictionOpen(fixture.kickoffAt)) {
-      res.status(400).json({ success: false, message: "Prediction window has closed (kickoff passed)." });
-      return;
-    }
-
-    const homeScore = Number(req.body.homeScore);
-    const awayScore = Number(req.body.awayScore);
-    const nowIso = new Date().toISOString();
-
-    const existing = db
-      .select()
-      .from(schema.predictions)
-      .where(
-        and(
-          eq(schema.predictions.ownerDeviceId, deviceId),
-          eq(schema.predictions.fixtureId, fixtureId)
-        )
-      )
-      .get();
-
-    if (existing) {
-      db.update(schema.predictions)
-        .set({ homeScore, awayScore, points: null, updatedAt: nowIso })
-        .where(eq(schema.predictions.id, existing.id))
-        .run();
-
-      const updated = db
-        .select()
-        .from(schema.predictions)
-        .where(eq(schema.predictions.id, existing.id))
-        .get();
-      res.json({ success: true, data: { prediction: updated, created: false } });
-      return;
-    }
-
-    const id = randomUUID();
-    db.insert(schema.predictions)
-      .values({
-        id,
-        ownerDeviceId: deviceId,
-        fixtureId,
-        homeScore,
-        awayScore,
-        points: null,
-        createdAt: nowIso,
-        updatedAt: nowIso,
-      })
-      .run();
-
-    const created = db
-      .select()
-      .from(schema.predictions)
-      .where(eq(schema.predictions.id, id))
-      .get();
-    res.json({ success: true, data: { prediction: created, created: true } });
-  };
-
-  /**
-   * POST /api/fixtures/:id/suggest — the Oracle's simulated pick (not stored).
-   */
-  static suggest = async (req: Request, res: Response): Promise<void> => {
     const db = getDb();
     const fixtureId = req.params.id;
 

@@ -11,8 +11,5 @@
     "rootDir": "./src",
     "resolveJsonModule": true
   },
-  "include": ["src/**/*"],
-  "ts-node": {
-    "files": true
-  }
+  "include": ["src/**/*"]
 }
