@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "description": "World Cup Oracle Application Suite",
   "private": true,
+  "workspaces": [
+    "packages/shared",
+    "backend",
+    "wcp-web"
+  ],
   "scripts": {
-    "install:all": "npm install --prefix backend && npm install --prefix wcp-web",
-    "dev:backend": "npm --prefix backend run dev",
-    "dev:frontend": "npm --prefix wcp-web run dev",
-    "dev": "concurrently --kill-others -n \"api,web\" -c \"cyan,magenta\" \"npm run dev:backend\" \"npm run dev:frontend\""
+    "predev": "npm run build:shared",
+    "dev:backend": "npm --workspace wcp-api run dev",
+    "dev:frontend": "npm --workspace wcp-web run dev",
+    "dev": "concurrently --kill-others -n \"api,web\" -c \"cyan,magenta\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:shared": "npm --workspace @wco/shared run build",
+    "test": "npm --workspace @wco/shared test && npm --workspace wcp-api test"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

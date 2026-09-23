@@ -1,0 +1,17 @@
+{
+  "name": "@wco/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared domain types, simulation math, scoring, and lock rules",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vitest": "^5.0.1"
+  }
+}
