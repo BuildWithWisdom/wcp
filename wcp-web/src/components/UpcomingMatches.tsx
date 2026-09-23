@@ -1,5 +1,5 @@
 import React from "react";
-import { Sparkles, Trophy, Lock } from "lucide-react";
+import { Trophy, Lock } from "lucide-react";
 import type { Match } from "../utils/poisson";
 import type { Team } from "../utils/teams";
 
