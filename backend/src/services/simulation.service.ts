@@ -129,7 +129,7 @@ export class SimulationService {
         playerName = `Sudden Death Taker #${suffix}`;
         detail = kick.scored
           ? "Sudden Death Penalty Scored!"
-          : "❌ Sudden Death Penalty Missed/Saved!";
+          : "Sudden Death Penalty Missed/Saved!";
       } else {
         if (kick.side === "home") {
           homeKicks++;
@@ -141,7 +141,7 @@ export class SimulationService {
         playerName = `Penalty Taker #${kick.round}`;
         detail = kick.scored
           ? "Shootout Penalty Scored!"
-          : "❌ Shootout Penalty Missed/Saved!";
+          : "Shootout Penalty Missed/Saved!";
       }
 
       events.push({

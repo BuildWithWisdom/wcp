@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Sparkles,
   RotateCw,
   X,
   Loader2,
@@ -126,7 +125,7 @@ export const PredictionModal: React.FC<PredictionModalProps> = ({ fixture, onClo
 
         {!prediction && !loading && (
           <button className="btn-gold predict-cta" onClick={runPredict}>
-            <Sparkles size={16} /> Predict this match
+            Predict this match
           </button>
         )}
 
@@ -176,7 +175,7 @@ export const PredictionModal: React.FC<PredictionModalProps> = ({ fixture, onClo
 
             <div className="glass-card ai-summary-card">
               <div className="ai-summary-header">
-                <Sparkles size={14} /> Oracle Says
+                Oracle Says
               </div>
               <p className="ai-summary-text">{prediction.aiSummary}</p>
             </div>

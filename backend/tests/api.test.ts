@@ -6,6 +6,8 @@ import type { Express } from "express";
 delete process.env.GEMINI_API_KEY;
 
 const FUTURE = "2099-06-01T15:00:00.000Z";
+const FUTURE_MD6_LATE = "2099-06-02T15:00:00.000Z";
+const FUTURE_MD7 = "2099-06-08T15:00:00.000Z";
 
 let app: Express;
 
@@ -33,7 +35,41 @@ async function seed() {
       kickoffAt: FUTURE,
       status: "TIMED",
       stage: "REGULAR_SEASON",
-      matchday: 1,
+      matchday: 6,
+      homeScore: null,
+      awayScore: null,
+      updatedAt: new Date().toISOString(),
+    })
+    .onConflictDoNothing()
+    .run();
+
+  db.insert(schema.fixtures)
+    .values({
+      id: "fx-md6-late",
+      competitionId: "PL",
+      homeTeamId: "t2",
+      awayTeamId: "t1",
+      kickoffAt: FUTURE_MD6_LATE,
+      status: "TIMED",
+      stage: "REGULAR_SEASON",
+      matchday: 6,
+      homeScore: null,
+      awayScore: null,
+      updatedAt: new Date().toISOString(),
+    })
+    .onConflictDoNothing()
+    .run();
+
+  db.insert(schema.fixtures)
+    .values({
+      id: "fx-md7",
+      competitionId: "PL",
+      homeTeamId: "t1",
+      awayTeamId: "t2",
+      kickoffAt: FUTURE_MD7,
+      status: "TIMED",
+      stage: "REGULAR_SEASON",
+      matchday: 7,
       homeScore: null,
       awayScore: null,
       updatedAt: new Date().toISOString(),
@@ -63,6 +99,17 @@ describe("fixtures API", () => {
     const res = await request(app).get("/api/fixtures?competition=PL").expect(200);
     expect(res.body.data.every((f: { competitionId: string }) => f.competitionId === "PL")).toBe(true);
     await request(app).get("/api/fixtures?competition=NOPE").expect(404);
+  });
+
+  it("upcoming window returns only the current matchday", async () => {
+    const res = await request(app).get("/api/fixtures?competition=PL&window=upcoming").expect(200);
+    const ids = res.body.data.map((f: { id: string }) => f.id);
+    expect(ids).toContain("fx-upcoming");
+    expect(ids).toContain("fx-md6-late");
+    expect(ids).not.toContain("fx-md7");
+    expect(
+      res.body.data.every((f: { matchday: number }) => f.matchday === 6)
+    ).toBe(true);
   });
 
   it("returns an Oracle prediction without Gemini (fallback modifiers)", async () => {

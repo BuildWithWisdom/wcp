@@ -1,31 +1,48 @@
-# Football prediction app (formerly World Cup Oracle)
+# Oracle Football Predictions
 
-A football match prediction app: pick scores before kickoff, get scored against real results, and ask the Oracle — a Poisson-based match simulator with AI tactical commentary — for its suggested pick, complete with an animated canvas replay.
+A football prediction app for the major European leagues. Pick a match from the current matchday, hit **Predict**, and the Oracle runs a Poisson simulation tuned by AI tactical analysis — with a projected timeline, a witty recap, and an animated pitch replay of how the match plays out.
 
-> **Status:** legacy World Cup 2026 mode still powers the UI; the whole-football foundation (SQLite, shared domain package, live fixture sync) is in place. Next: fixtures/predictions API and the new product UI.
+You don't submit anything. The app predicts; you watch.
+
+![Fixture list with league tabs and current matchday](wcp-web/public/image-1.png)
+
+![Oracle pick with animated pitch simulation](wcp-web/public/image-2.png)
+
+## How it works
+
+1. **Pick a league** — EPL, La Liga, Serie A, Bundesliga, Ligue 1, or UCL. Each tab shows only the current/next matchday, never future rounds.
+2. **Pick a match** — fixture cards show crests, kickoff time, and matchday.
+3. **Predict** — the Oracle simulates the match:
+   - **Poisson engine** (`@wco/shared`) draws the score from historical attack/defense ratings.
+   - **Gemini AI** (optional) adds tactical modifiers: home advantage, form, injuries, style matchup — plus a one-paragraph analysis.
+   - You get the predicted score, verdict (win/draw/loss), projected goal timeline, event-by-event breakdown, and a recap.
+4. **Watch the replay** — a canvas pitch animation plays the projected 90 minutes in ~15 seconds, pausing on goals and big chances, with live score and minute.
+
+Nothing is stored. Reload and run it again — you may get a different result.
 
 ## Stack
 
-- **Monorepo** — npm workspaces: `packages/shared` (`@wco/shared`), `backend` (`wcp-api`), `wcp-web`.
-- **Backend** — Express 4 + TypeScript (strict), helmet / CORS allowlist / rate limiting / express-validator, SQLite via Drizzle ORM, Poisson simulation engine, Google Gemini for AI commentary, football-data.org fixture sync.
-- **Frontend** — React 19 + Vite + TypeScript, HTML5 canvas match animation, ESLint flat config.
-- **Shared** — domain types, Poisson math, scoring rules, kickoff-lock rules (built to `dist/`, consumed by backend).
+| Layer | Tech |
+|---|---|
+| Monorepo | npm workspaces: `@wco/shared`, `wcp-api`, `wcp-web` |
+| Backend | Express 4 + TypeScript (strict), Drizzle ORM + SQLite, helmet / CORS allowlist / rate limiting, Poisson engine, Google Gemini |
+| Frontend | React 19 + Vite + TypeScript, HTML5 canvas match animation, ESLint |
+| Shared | Domain types, Poisson math, scoring/simulation rules |
+| Data | [football-data.org](https://www.football-data.org) fixture sync |
 
-## Setup
+## Quick start
 
 ```bash
-npm install          # installs all workspaces
-npm run build:shared # build @wco/shared (also runs automatically via predev)
+npm install               # install all workspaces
 ```
 
 Create `backend/.env` (see `backend/.env.example`):
 
 ```
 PORT=3001
-NODE_ENV=development
-GEMINI_API_KEY=your_google_ai_key        # optional
-FOOTBALL_DATA_API_KEY=your_fd_org_token  # optional, enables fixture sync
-CORS_ORIGIN=http://localhost:5173        # optional
+GEMINI_API_KEY=your_google_ai_key        # optional — AI commentary falls back to neutral
+FOOTBALL_DATA_API_KEY=your_fd_org_token  # optional — without it, sync stays off
+CORS_ORIGIN=http://localhost:5173
 ```
 
 Run everything:
@@ -36,41 +53,39 @@ npm run dev
 
 - Web: http://localhost:5173
 - API health: http://localhost:3001/health
-- Competitions: http://localhost:3001/api/competitions
+
+The database (`backend/data/app.db`) is created and seeded on first boot; migrations run automatically.
+
+## API
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/competitions` | The 6 supported competitions |
+| `GET` | `/api/fixtures?competition=PL&window=upcoming&limit=50` | Fixtures; `upcoming` returns only the current matchday (next stage for cups) |
+| `POST` | `/api/fixtures/:id/predict` | Run the Oracle on a fixture — score, timeline, tactical analysis, AI recap. Nothing stored. |
+
+Example:
+
+```bash
+curl -X POST http://localhost:3001/api/fixtures/123/predict
+```
 
 ## Scripts
 
 | Where | Script | Purpose |
 |---|---|---|
-| root | `npm run dev` | shared build, then API + web concurrently |
-| root | `npm run build:shared` | compile `@wco/shared` |
-| root | `npm test` | shared + backend test suites |
-| backend | `npm run dev` | API with nodemon/ts-node |
-| backend | `npm run build` | Compile TypeScript to `dist/` |
+| root | `npm run dev` | API + web concurrently |
+| root | `npm test` | shared + backend test suites (49 tests) |
 | backend | `npm run sync:once` | one-shot fixture sync into SQLite |
 | backend | `npm run db:generate` | generate a Drizzle migration after schema changes |
-| wcp-web | `npm run dev` | Vite dev server |
 | wcp-web | `npm run lint` | ESLint |
-| wcp-web | `npm run build` | Type-check + production build |
+| wcp-web | `npm run build` | type-check + production build |
 
-## Database
+## Data & attribution
 
-SQLite at `backend/data/app.db` (gitignored). Migrations run automatically on boot; the competition list (PL, La Liga, Serie A, Bundesliga, Ligue 1, UCL, World Cup, Euro) is seeded on first run. Schema: `competitions`, `teams`, `fixtures`, `predictions` (device-owned until accounts ship).
+Live fixtures and results come from [football-data.org](https://www.football-data.org) (free tier, attribution required). The adapter caches and spaces requests for the 10 calls/min limit. Without an API key the app still runs — sync is simply disabled and you keep whatever is already in the database.
 
-## Fixture data
-
-Live fixtures/results come from [football-data.org](https://www.football-data.org) (free tier, attribution required). The adapter caches and spaces requests for the 10 calls/min limit; without an API key the app still runs (sync disabled). Manual sync: `npm run sync:once` in `backend/`.
-
-## Direction
-
-Current product loop (legacy mode): browse fixtures → run the Oracle simulation → watch the animated replay → prediction stored locally.
-
-Rebuild phases:
-
-1. ~~Foundations~~ — workspaces, SQLite/Drizzle, shared domain package, fixture sync adapter. **Done.**
-2. **Next:** fixtures/predictions API (device ID ownership), personal scoring, stats endpoints.
-3. **Then:** auth (accounts claim device-owned predictions), competition UI, personal stats dashboard.
-4. Canvas simulator stays as the Oracle assist.
+Team crests are the property of their respective clubs, fetched via football-data.org.
 
 ## License
 

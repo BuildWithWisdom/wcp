@@ -39,9 +39,40 @@ const toPublicTeam = (team: typeof schema.teams.$inferSelect) => ({
   squadValue: team.squadValue,
 });
 
+type FixtureRow = typeof schema.fixtures.$inferSelect;
+
+/**
+ * Narrow upcoming fixtures to the current/next round only.
+ * Rows arrive ordered by kickoff ascending (upcoming) or descending (recent).
+ * - Leagues (matchday present): the lowest upcoming matchday — e.g. only MD6,
+ *   never MD7+.
+ * - Cups without matchdays: all fixtures of the earliest upcoming stage.
+ * - Otherwise: the earliest fixture's calendar day.
+ * Recent windows pass through untouched.
+ */
+function scopeToCurrentRound(rows: FixtureRow[], window: string): FixtureRow[] {
+  if (window !== "upcoming" || rows.length === 0) return rows;
+
+  const withMatchday = rows.filter((r) => r.matchday !== null);
+  if (withMatchday.length > 0) {
+    const current = Math.min(...withMatchday.map((r) => r.matchday as number));
+    return rows.filter((r) => r.matchday === current);
+  }
+
+  const first = rows[0];
+  if (first.stage !== null) {
+    return rows.filter((r) => r.stage === first.stage);
+  }
+
+  const firstDay = first.kickoffAt.slice(0, 10);
+  return rows.filter((r) => r.kickoffAt.slice(0, 10) === firstDay);
+}
+
 export class FixtureController {
   /**
    * GET /api/fixtures?competition=PL&window=upcoming|recent&limit=30
+   * Upcoming window returns only the current/next round (lowest matchday;
+   * next stage for cups without matchdays) — not future matchdays.
    */
   static list = async (req: Request, res: Response): Promise<void> => {
     const db = getDb();
@@ -81,17 +112,18 @@ export class FixtureController {
       .orderBy(
         window === "upcoming" ? schema.fixtures.kickoffAt : desc(schema.fixtures.kickoffAt)
       )
-      .limit(limit)
       .all();
 
-    const teamIds = [...new Set(fixtureRows.flatMap((f) => [f.homeTeamId, f.awayTeamId]))];
+    const scoped = scopeToCurrentRound(fixtureRows, window);
+
+    const teamIds = [...new Set(scoped.flatMap((f) => [f.homeTeamId, f.awayTeamId]))];
     const teams =
       teamIds.length > 0
         ? db.select().from(schema.teams).where(inArray(schema.teams.id, teamIds)).all()
         : [];
     const teamsById = new Map(teams.map((t) => [t.id, t]));
 
-    const data = fixtureRows.map((fixture) => ({
+    const data = scoped.slice(0, limit).map((fixture) => ({
       id: fixture.id,
       competitionId: fixture.competitionId,
       kickoffAt: fixture.kickoffAt,

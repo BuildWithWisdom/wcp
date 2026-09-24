@@ -95,6 +95,13 @@ export default function App() {
   const activeCompetition = competitions.find((c) => c.id === activeComp);
   const activeName = activeCompetition ? tabLabel(activeCompetition) : "";
 
+  const firstFixture = fixtures[0];
+  const roundLabel = !firstFixture
+    ? ""
+    : firstFixture.matchday !== null
+      ? `Matchday ${firstFixture.matchday}`
+      : (firstFixture.stage ?? "").replace(/_/g, " ") || "";
+
   return (
     <>
       <Header />
@@ -130,9 +137,9 @@ export default function App() {
 
         <div className="section-title-container">
           <span className="section-title">{activeName || "Fixtures"}</span>
-          {!loadingFixtures && !loadError && (
+          {!loadingFixtures && !loadError && roundLabel && (
             <span className="section-link" style={{ cursor: "default" }}>
-              {fixtures.length} upcoming
+              {roundLabel} · {fixtures.length} {fixtures.length === 1 ? "match" : "matches"}
             </span>
           )}
         </div>
