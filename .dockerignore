@@ -1,7 +1,9 @@
 node_modules
 **/node_modules
 .git
-wcp-web
+# keep only the workspace manifest (npm ci needs it), skip the frontend source
+wcp-web/*
+!wcp-web/package.json
 scratch
 backend/data/*.db
 backend/data/*.db-*
